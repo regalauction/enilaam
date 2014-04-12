@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-access="field">
+	<class name="in.regalauction.domain.model.auction.Auction" table="auction" abstract="true">
+
+		<id name="id" column="auction_id">
+		  <generator class="org.hibernate.id.IdentityGenerator"/>
+		</id>
+		
+		<discriminator column="auctiontype"/>
+		
+		<component name="auctionCode" class="in.regalauction.domain.model.auction.AuctionCode" update="false" unique="true">
+			<property name="id" column="AUCTIONCODE" not-null="true"/>
+		</component>
+		
+		<!-- From superclass Auction -->
+		<property name="name" column="name"/>
+		
+		<many-to-one name="item" column="item_id" lazy="false" not-null="true"/>
+		
+		<property name="startDate" column="startdate" type="org.joda.time.contrib.hibernate.PersistentDateTime"/>
+		
+		<property name="endDate" column="enddate" type="org.joda.time.contrib.hibernate.PersistentDateTime"/>
+		
+		<set name="documents" table="auction_document" lazy="false">
+			<key column="auction_id" not-null="true"/>
+			<many-to-many class="in.regalauction.domain.model.attachment.Document" column="ATTACHMENT_ID"/>
+		</set>
+		
+		<list name="bids" table="bid">
+			<key column="auction_id" not-null="true"/>
+			<index column="sequence"/>
+			<composite-element class="in.regalauction.domain.model.auction.Bid">
+				<nested-composite-element name="price" class="in.regalauction.domain.model.types.Money">
+					<property name="amount" column="price" not-null="true" update="false"/>
+				</nested-composite-element>
+				<property name="bidTime" column="bidtime" not-null="true" update="false" type="org.joda.time.contrib.hibernate.PersistentDateTime"/>
+				<many-to-one name="bidder" column="user_id" not-null="true" update="false"/>
+			</composite-element>
+		</list>
+		
+		<set name="users" table="auction_user">
+			<key column="auction_id" />
+			<many-to-many column="user_id" class="in.regalauction.domain.model.user.User"/>
+		</set>
+
+		<!-- From OpenAuction -->
+		<subclass name="in.regalauction.domain.model.auction.OpenAuction" abstract="true">
+		
+			<list name="proxyBids" table="proxybid">
+				<key column="auction_id" not-null="true"/>
+				<index column="sequence"/>
+				<composite-element class="in.regalauction.domain.model.auction.ProxyBid">
+					<nested-composite-element name="price" class="in.regalauction.domain.model.types.Money">
+						<property name="amount" column="price" not-null="true" update="false"/>
+					</nested-composite-element>
+					<property name="bidTime" column="bidtime" not-null="true" update="false" type="org.joda.time.contrib.hibernate.PersistentDateTime"/>
+					<many-to-one name="bidder" column="user_id" not-null="true" update="false"/>
+				</composite-element>
+			</list>
+		
+			<component name="basePrice" class="in.regalauction.domain.model.types.Money">
+				<property name="amount" column="baseprice" />
+			</component>
+			
+			<component name="reservePrice" class="in.regalauction.domain.model.types.Money">
+				<property name="amount" column="reserveprice" />
+			</component>
+			
+			<component name="deltaPrice" class="in.regalauction.domain.model.types.Money">
+				<property name="amount" column="deltaprice" />
+			</component>
+			
+			<property name="timeExtension" column="timeextension"/>
+			
+			
+			<subclass name="in.regalauction.domain.model.auction.EnglishAuction" discriminator-value="ENGLISH" />
+			<subclass name="in.regalauction.domain.model.auction.DutchAuction" discriminator-value="DUTCH" />
+		
+		</subclass>
+		
+	</class>
+	
+</hibernate-mapping>

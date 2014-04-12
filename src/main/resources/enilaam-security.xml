@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+
+	<import resource="enilaam-context.xml"/>
+	
+	<bean id="userService" class="in.regalauction.infrastructure.security.UserServiceImpl">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="userRepository" ref="userRepository"/>
+		<property name="mailingService" ref="mailingService"/>
+		<property name="samePasswordForAll" value="${debug}"/>
+		<property name="authenticationManager" ref="authenticationManager"/>
+		<property name="enableGroups" value="true"/>
+		<property name="enableAuthorities" value="false"/>
+		<property name="groupAuthoritiesByUsernameQuery" value="
+			select g.id, g.group_name, ga.authority 
+			from users u
+			inner join group_members gm on gm.user_id = u.user_id
+			inner join group_authorities ga on gm.group_id = ga.group_id
+			inner join groups g on g.id = gm.group_id
+			where u.username = ?"/>
+		<property name="insertGroupMemberSql" value="
+			insert into group_members (group_id, user_id) 
+			select ?, user_id from users where username = ?"/>
+		<property name="deleteGroupMemberSql" value="
+			delete from group_members where group_id = ? 
+			and user_id = (select user_id from users where username = ?)"/>
+		<property name="findUsersInGroupSql" value="
+			select username from users u
+			inner join group_members gm on gm.user_id = u.user_id
+			inner join groups g on g.id = gm.group_id
+			where g.group_name = ?"/>
+	</bean>
+	
+	<security:http pattern="/login*" security="none"/>
+	<security:http pattern="/forgotPassword/**" security="none"/>
+	<security:http pattern="/services" security="none"/>
+	
+	<security:http pattern="/themes/**" security="none"/>
+	<security:http pattern="/attachments/**" security="none"/>
+	
+	<security:http pattern="/favicon.ico" security="none"/>
+	
+	<security:http auto-config="true">
+		<security:intercept-url pattern="/**" access="ROLE_USER"/>
+		<security:form-login login-page="/login" authentication-failure-url="/login?error=true"/>
+	</security:http>
+	<security:global-method-security pre-post-annotations="enabled"/>
+
+	<security:authentication-manager alias="authenticationManager">
+		<security:authentication-provider user-service-ref="userService"/>
+	</security:authentication-manager>
+</beans>

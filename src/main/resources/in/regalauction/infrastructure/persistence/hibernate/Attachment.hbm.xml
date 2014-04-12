@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-access="field">
+	<class name="in.regalauction.domain.model.attachment.Attachment" table="attachment">
+
+		<id name="id" column="attachment_id">
+		  <generator class="org.hibernate.id.IdentityGenerator"/>
+		</id>
+		
+		<discriminator column="attachmenttype"/>
+		
+		<property name="code" column="code" not-null="true" unique="true"/>
+		
+		<property name="name" column="name"/>
+		
+		<subclass name="in.regalauction.domain.model.attachment.Document" discriminator-value="DOCUMENT"/>
+		<subclass name="in.regalauction.domain.model.attachment.Image" discriminator-value="IMAGE"/>
+		
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+	<definition name="template" template="/WEB-INF/jsp/layouts/template.jsp">
+		<put-attribute name="header" value="/WEB-INF/jsp/views/header.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/jsp/views/footer.jsp" />
+	</definition>
+	
+	<definition name="two-columns" template="/WEB-INF/jsp/layouts/two-columns.jsp"/>
+	
+	<definition name="upcomming" template="/WEB-INF/jsp/views/upcomming.jsp"/>
+	<definition name="upcomming.login" extends="upcomming">
+		<put-attribute name="type" value="login"/>
+	</definition>
+	
+	
+	<definition name="login.body" extends="two-columns">
+		<put-attribute name="one" value="upcomming.login" />
+		<put-attribute name="two" value="/WEB-INF/jsp/views/login.jsp" />
+	</definition>
+
+	<definition name="login" extends="template">
+		<put-attribute name="title" value="login" />
+		<put-attribute name="body" value="login.body" />
+	</definition>
+	
+	<definition name="services" extends="template">
+		<put-attribute name="title" value="services"/>
+		<put-attribute name="body" value="/WEB-INF/jsp/views/services.jsp"/>
+	</definition>
+	
+	<definition name="forgotPassword.body" extends="login.body">
+		<put-attribute name="two" value="/WEB-INF/jsp/views/forgotPassword.jsp" />
+	</definition>
+	<definition name="forgotPassword.mailSent.body" extends="forgotPassword.body">
+		<put-attribute name="two" value="/WEB-INF/jsp/views/forgotPasswordMailSent.jsp" />
+	</definition>
+	<definition name="forgotPassword.reset.body" extends="forgotPassword.body">
+		<put-attribute name="two" value="/WEB-INF/jsp/views/resetPassword.jsp" />
+	</definition>
+
+	<definition name="forgotPassword" extends="template">
+		<put-attribute name="title" value="forgotPassword" />
+		<put-attribute name="body" value="forgotPassword.body" />
+	</definition>
+	
+	<definition name="forgotPassword/mailSent" extends="template">
+		<put-attribute name="title" value="forgotPassword.mailSent" />
+		<put-attribute name="body" value="forgotPassword.mailSent.body" />
+	</definition>
+	
+	<definition name="forgotPassword/reset/*" extends="template">
+		<put-attribute name="title" value="forgotPassword.reset" />
+		<put-attribute name="body" value="forgotPassword.reset.body" />
+	</definition>
+	
+	<definition name="navigation" template="/WEB-INF/jsp/views/menu.jsp"/>
+	<definition name="navigation.menu" extends="navigation">
+		<put-attribute name="cssClass" value="dropdown"/>
+	</definition>
+	<definition name="navigation.sitemap" extends="navigation">
+		<put-attribute name="cssClass" value="sitemap"/>
+	</definition>
+	
+	<definition name="home.body" extends="two-columns">
+		<put-attribute name="one" value="/WEB-INF/jsp/views/home.jsp" />
+		<put-attribute name="two" value="navigation.sitemap" />
+	</definition>
+	
+	<definition name="home" extends="template">
+		<put-attribute name="title" value="home" />
+		<put-attribute name="menu" value="navigation.menu" />
+		<put-attribute name="body" value="home.body" />
+	</definition>
+	
+	<definition name="about" extends="home">
+		<put-attribute name="title" value="about" />
+		<put-attribute name="body" value="/WEB-INF/jsp/views/about.jsp" />
+	</definition>
+	
+	<definition name="auction/bid" extends="home">
+		<put-attribute name="title" value="auction" />
+		<put-attribute name="body" value="/WEB-INF/jsp/views/bid.jsp" />
+	</definition>
+	
+	<definition name="auction/upcomming" extends="home">
+		<put-attribute name="title" value="upcommingAuctions" />
+		<put-attribute name="body" value="upcomming" />
+	</definition>
+	
+	<definition name="auction/history" extends="home">
+		<put-attribute name="title" value="auctionHistory" />
+		<put-attribute name="body" value="/WEB-INF/jsp/views/history.jsp" />
+	</definition>
+		
+	<definition name="auction" extends="home">
+		<put-attribute name="title" value="auction" />
+		<put-attribute name="body" value="/WEB-INF/jsp/views/listAuctions.jsp" />
+	</definition>
+	
+	<definition name="auction/new" extends="home">
+		<put-attribute name="title" value="auction.new" />
+		<put-attribute name="body" value="/WEB-INF/jsp/views/auction.jsp" />
+	</definition>
+	
+	<definition name="auction/*/edit" extends="auction/new">
+		<put-attribute name="title" value="auction.edit" />
+	</definition>
+	
+	<definition name="item" extends="home">
+		<put-attribute name="title" value="item" />
+		<put-attribute name="body" value="/WEB-INF/jsp/views/listItems.jsp" />
+	</definition>
+	
+	<definition name="item/new" extends="home">
+		<put-attribute name="title" value="item.new" />
+		<put-attribute name="body" value="/WEB-INF/jsp/views/item.jsp" />
+	</definition>
+	
+	<definition name="item/*/edit" extends="item/new">
+		<put-attribute name="title" value="item.edit" />
+	</definition>
+	
+	<definition name="user" extends="home">
+		<put-attribute name="title" value="users" />
+		<put-attribute name="body" value="/WEB-INF/jsp/views/listUsers.jsp" />
+	</definition>
+	
+	<definition name="user/new" extends="home">
+		<put-attribute name="title" value="users.new" />
+		<put-attribute name="body" value="/WEB-INF/jsp/views/user.jsp" />
+	</definition>
+	
+	<definition name="user/*/edit" extends="user/new">
+		<put-attribute name="title" value="user.edit" />
+	</definition>
+	
+	<definition name="profile" extends="home">
+		<put-attribute name="title" value="profile.view"/>
+		<put-attribute name="body" value="/WEB-INF/jsp/views/profile.jsp"/>
+	</definition>
+	
+</tiles-definitions>       

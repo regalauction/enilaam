@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.2//EN" "http://java.sun.com/dtd/web-jsptaglibrary_1_2.dtd">
+<taglib>
+	<tlib-version>1.0</tlib-version>
+	<jsp-version>2.0</jsp-version>
+	<short-name>util</short-name>
+	<uri>/WEB-INF/tlds/util.tld</uri>
+	<description>Custom JSP tags</description>
+	
+	<tag>
+		<name>period</name>
+		<tag-class>in.regalauction.web.tags.PeriodFormatterTag</tag-class>
+		<body-content>empty</body-content>
+		<description>This tag is for displaying difference between two dates</description>
+		<attribute>
+			<name>date</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+</taglib>

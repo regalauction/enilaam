@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-access="field">
+	<class name="in.regalauction.domain.model.item.Item" table="item">
+
+		<id name="id" column="item_id">
+		  <generator class="org.hibernate.id.IdentityGenerator"/>
+		</id>
+		
+		<property name="code" column="code" not-null="true" unique="true"/>
+		
+		<property name="name" column="name"/>
+		
+		<many-to-one name="thumbnail" column="thumbimg_id" lazy="false" 
+			class="in.regalauction.domain.model.attachment.Image" cascade="all"/>
+		
+		<set name="images" table="item_image" lazy="false">
+			<key column="item_id" not-null="true"/>
+			<many-to-many class="in.regalauction.domain.model.attachment.Image" column="ATTACHMENT_ID"/>
+		</set>
+		
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,132 @@
+/* This CSS file contains the project specific customization. */
+/* CSS Rules for floating footer - START */
+.fixedbar {
+	bottom: 0; 
+	left: 0; 
+	padding: 0px 0; 
+	position: fixed; 
+	width: 100%; 
+	z-index: 99999; 
+	float: left; 
+	vertical-align: middle; 
+	margin: 0px 0 0; 
+	opacity: 0.85;
+}
+.floatingbox {
+	max-width: 920px; 
+	min-width: 300px; 
+	width: 100%; 
+	margin: 0 auto;
+}
+/* // CSS Rules for floating footer - END */
+#content {
+	min-height: 599px;
+}
+#landing_1 #content {
+	min-height: 536px;
+}
+#landing_1 .banner, #landing_1 .banner .banner-wrapper {
+	height: 250px;
+}
+#landing_1 .banner .banner-wrapper.banner-1 .btn {
+	top: 190px;
+	right: 0;
+}
+#info_tabs {
+	background: 0;
+	margin: 0;
+	border: 0;
+	box-shadow: none;
+}
+#news {
+	font-weight: normal;
+}
+
+/* Rules for upcomming auction table on landing page */
+#landing_1 .pagination {
+  display: inline-block;
+  *display: inline;
+  /* IE7 inline-block hack */
+
+  *zoom: 1;
+  margin-left: 0;
+  margin-bottom: 0;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  background: #ffffff;
+  box-shadow: 0 1px 0 0 #f7f7f7, 0 5px 4px -4px #d8d8d8;
+  -moz-box-shadow: 0 1px 0 0 #f7f7f7, 0 5px 4px -4px #d8d8d8;
+  -webkit-box-shadow: 0 1px 0 0 #f7f7f7, 0 5px 4px -4px #d8d8d8;
+}
+#landing_1 .pagination a {
+  float: left;
+  padding: 4px 12px;
+  line-height: 20px;
+  text-decoration: none;
+  background-color: #ffffff;
+  border: 1px solid #d8d8d8;
+  border-left-width: 0;
+  font-weight: 600;
+}
+#landing_1 .pagination a:hover {
+  box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.2) inset;
+  -webkit-box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.2) inset;
+  -moz-box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.2) inset;
+  border-color: #a8d37d;
+  background: #8ec657;
+  color: #fff;
+  font-weight: 600;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
+}
+#landing_1 .pagination a:first-child {
+  border-left-width: 1px;
+  -webkit-border-top-left-radius: 4px;
+  -moz-border-radius-topleft: 4px;
+  border-top-left-radius: 4px;
+  -webkit-border-bottom-left-radius: 4px;
+  -moz-border-radius-bottomleft: 4px;
+  border-bottom-left-radius: 4px;
+}
+#landing_1 .pagination a:last-child {
+  -webkit-border-top-right-radius: 4px;
+  -moz-border-radius-topright: 4px;
+  border-top-right-radius: 4px;
+  -webkit-border-bottom-right-radius: 4px;
+  -moz-border-radius-bottomright: 4px;
+  border-bottom-right-radius: 4px;
+}
+#landing_1.paginate_disabled_previous, #landing_1 .paginate_disabled_next {
+	border-color: rgb(216, 216, 216);
+	background: none repeat scroll 0% 0% rgb(255, 255, 255);
+	color: rgb(221, 221, 221);
+	font-weight: 600;
+	text-shadow: none;
+	box-shadow: 1px 1px 1px rgba(255, 255, 255, 0) inset, -1px -1px 1px transparent inset;
+}
+
+#landing_1 a.password:hover {
+	color: rgb(216, 216, 216);
+}
+
+/* Rules for Auction table */
+#auction .bidprice input {
+	font-weight: bold;
+}
+#auction .add-on {
+	cursor: pointer;
+}
+#auction .add-on.disabled {
+	cursor: auto;
+}
+#auction .add-on.plus:hover, #auction .add-on.minus:hover {
+	border-color: rgb(193, 193, 193);
+}
+#auction .error .add-on.plus:hover, #auction .error .add-on.minus:hover {
+	border-color: rgb(149, 59, 57);
+	box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset, 0px 0px 6px rgb(213, 147, 146);
+}
+#auction .add-on.clicked {
+	background-color: rgb(213, 213, 213);
+}
+

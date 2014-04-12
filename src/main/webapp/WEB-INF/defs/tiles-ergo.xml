@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+	<!-- Define Layouts -->
+	<definition name="empty" template="/WEB-INF/jsp/ergo/views/blank.jsp"/>
+	
+	<definition name="template" template="/WEB-INF/jsp/ergo/layouts/template.jsp">
+		<put-attribute name="layout" value="fluid"/>
+		<put-attribute name="topbarNav" value="empty"/>
+	</definition>
+	
+	<definition name="contentWrapper.noauthUser" template="/WEB-INF/jsp/ergo/layouts/contentWrapper_noauthUser.jsp"/>
+	<definition name="contentWrapper.authUser" template="/WEB-INF/jsp/ergo/layouts/contentWrapper_authUser.jsp"/>
+	<definition name="contentWrapper.admin" template="/WEB-INF/jsp/ergo/layouts/contentWrapper_admin.jsp">
+		<put-attribute name="sidebarNav" value="/WEB-INF/jsp/ergo/views/sidebarNav.jsp"/>
+	</definition>
+	
+	<definition name="profileMenu" template="/WEB-INF/jsp/ergo/views/profileMenu.jsp"/>
+	<definition name="topbarNav.authUser" template="/WEB-INF/jsp/ergo/layouts/topbarNav_authUser.jsp">
+		<put-attribute name="profileMenu" value="profileMenu"/>
+	</definition>
+	<definition name="topbarNav.admin" template="/WEB-INF/jsp/ergo/layouts/topbarNav_admin.jsp">
+		<put-attribute name="profileMenu" value="profileMenu"/>
+	</definition>
+	
+	<definition name="template.noauthUser" extends="template"/>
+	<definition name="template.authUser" extends="template">
+		<put-attribute name="topbarNav" value="topbarNav.authUser"/>
+	</definition>
+	<definition name="template.admin" extends="template">
+		<put-attribute name="layout" value="fixed"/>
+		<put-attribute name="topbarNav" value="topbarNav.admin"/>
+	</definition>
+	<!-- // Define Layouts END -->
+	
+	<!-- Login page -->
+	<definition name="login.wrappedContent" extends="contentWrapper.noauthUser">
+		<put-attribute name="content" value="/WEB-INF/jsp/ergo/views/login.jsp"/>
+	</definition>
+	<definition name="login" extends="template.noauthUser">
+		<put-attribute name="title" value="Login"/>
+		<put-attribute name="wrappedContent" value="login.wrappedContent"/>
+	</definition>
+	
+	<definition name="forgotPassword.reset.wrappedContent" extends="contentWrapper.noauthUser">
+		<put-attribute name="content" value="/WEB-INF/jsp/views/resetPassword.jsp" />
+	</definition>
+	<definition name="forgotPassword/reset/*" extends="template.noauthUser">
+		<put-attribute name="title" value="Reset Password"/>
+		<put-attribute name="wrappedContent" value="forgotPassword.reset.wrappedContent"/>
+	</definition>
+	<!-- // Login page END -->
+	
+	<!-- Home page definitions -->
+	<definition name="dashboard.wrappedContent" extends="contentWrapper.admin">
+		<put-attribute name="content" value="/WEB-INF/jsp/ergo/views/dashboard.jsp"/>
+	</definition>
+	<definition name="dashboard" extends="template.admin">
+		<put-attribute name="title" value="Dashboard"/>
+		<put-attribute name="wrappedContent" value="dashboard.wrappedContent"/>
+	</definition>
+	
+	<definition name="home_BIDDER.wrappedContent" extends="contentWrapper.authUser">
+		<put-attribute name="content" value="/WEB-INF/jsp/ergo/views/home.jsp"/>
+	</definition>
+	<definition name="home_BIDDER" extends="template.authUser">
+		<put-attribute name="title" value="Home"/>
+		<put-attribute name="wrappedContent" value="home_BIDDER.wrappedContent"/>
+	</definition>
+
+	<definition name="home_ADMIN" extends="dashboard"/>
+
+	<definition name="home_OBSERVER" extends="dashboard"/>
+	<!-- // Home page definitions END -->
+	
+	<!-- Bidder pages -->
+	<definition name="upcoming.wrappedContent" extends="contentWrapper.authUser">
+		<put-attribute name="content" value="/WEB-INF/jsp/ergo/views/auction/upcoming.jsp"/>
+	</definition>
+	<definition name="auction/upcoming" extends="template.authUser">
+		<put-attribute name="title" value="Upcoming Auctions"/>
+		<put-attribute name="wrappedContent" value="upcoming.wrappedContent"/>
+	</definition>
+	
+	<definition name="history.wrappedContent" extends="contentWrapper.authUser">
+		<put-attribute name="content" value="/WEB-INF/jsp/ergo/views/history.jsp"/>
+	</definition>
+	<definition name="auction/history" extends="template.authUser">
+		<put-attribute name="title" value="Auction History"/>
+		<put-attribute name="wrappedContent" value="history.wrappedContent"/>
+	</definition>
+	
+	<definition name="auction/bid.wrappedContent" extends="contentWrapper.authUser">
+		<put-attribute name="content" value="/WEB-INF/jsp/ergo/views/auction/bid.jsp"/>
+	</definition>
+	<definition name="auction/bid" extends="template.authUser">
+		<put-attribute name="title" value="Auction"/>
+		<put-attribute name="wrappedContent" value="auction/bid.wrappedContent"/>
+	</definition>
+	
+	<definition name="auction/refresh" template="/WEB-INF/jsp/ergo/views/auction/auctionRow.jsp"/>
+	
+	<definition name="auction/running" template="/WEB-INF/jsp/ergo/views/auction/running.jsp"/>
+	
+	<!-- // Bidder pages END-->
+	
+	<!-- Admin Pages -->
+	<!-- NOTE: These are temporary, would be replace with Ajax based front end -->
+	<definition name="auction.new.wrappedContent" extends="contentWrapper.admin">
+		<put-attribute name="content" value="/WEB-INF/jsp/ergo/views/auction/auction.jsp"/>
+	</definition>
+	<definition name="auction/new" extends="template.admin">
+		<put-attribute name="title" value=""/>
+		<put-attribute name="wrappedContent" value="auction.new.wrappedContent"/>
+	</definition>
+	
+	<definition name="auction.edit.wrappedContent" extends="contentWrapper.admin">
+		<put-attribute name="content" value="/WEB-INF/jsp/ergo/views/auction/auction.jsp"/>
+	</definition>
+	<definition name="auction/*" extends="template.admin">
+		<put-attribute name="title" value=""/>
+		<put-attribute name="wrappedContent" value="auction.edit.wrappedContent"/>
+	</definition>
+	
+	<definition name="auction.wrappedContent" extends="contentWrapper.admin">
+		<put-attribute name="content" value="/WEB-INF/jsp/ergo/views/auction/listAuctions.jsp"/>
+	</definition>
+	<definition name="auction" extends="template.admin">
+		<put-attribute name="title" value=""/>
+		<put-attribute name="wrappedContent" value="auction.wrappedContent"/>
+	</definition>
+	
+	<definition name="item.new.wrappedContent" extends="contentWrapper.admin">
+		<put-attribute name="content" value="/WEB-INF/jsp/ergo/views/item.jsp"/>
+	</definition>
+	<definition name="item/new" extends="template.admin">
+		<put-attribute name="title" value=""/>
+		<put-attribute name="wrappedContent" value="item.new.wrappedContent"/>
+	</definition>
+	
+	<definition name="item.edit.wrappedContent" extends="contentWrapper.admin">
+		<put-attribute name="content" value="/WEB-INF/jsp/ergo/views/item.jsp"/>
+	</definition>
+	<definition name="item/*" extends="template.admin">
+		<put-attribute name="title" value=""/>
+		<put-attribute name="wrappedContent" value="item.edit.wrappedContent"/>
+	</definition>
+	
+	<definition name="item.wrappedContent" extends="contentWrapper.admin">
+		<put-attribute name="content" value="/WEB-INF/jsp/ergo/views/listItems.jsp"/>
+	</definition>
+	<definition name="item" extends="template.admin">
+		<put-attribute name="title" value=""/>
+		<put-attribute name="wrappedContent" value="item.wrappedContent"/>
+	</definition>
+	
+	<definition name="user.new.wrappedContent" extends="contentWrapper.admin">
+		<put-attribute name="content" value="/WEB-INF/jsp/ergo/views/user.jsp"/>
+	</definition>
+	<definition name="user/new" extends="template.admin">
+		<put-attribute name="title" value=""/>
+		<put-attribute name="wrappedContent" value="user.new.wrappedContent"/>
+	</definition>
+	
+	<definition name="user.edit.wrappedContent" extends="contentWrapper.admin">
+		<put-attribute name="content" value="/WEB-INF/jsp/ergo/views/user.jsp"/>
+	</definition>
+	<definition name="user/edit" extends="template.admin">
+		<put-attribute name="title" value=""/>
+		<put-attribute name="wrappedContent" value="user.edit.wrappedContent"/>
+	</definition>
+	
+	<definition name="user.wrappedContent" extends="contentWrapper.admin">
+		<put-attribute name="content" value="/WEB-INF/jsp/ergo/views/listUsers.jsp"/>
+	</definition>
+	<definition name="user" extends="template.admin">
+		<put-attribute name="title" value=""/>
+		<put-attribute name="wrappedContent" value="user.wrappedContent"/>
+	</definition>
+	<!-- // Admin Pages END -->
+	
+	<!-- Overlays -->
+	<definition name="profile/changePassword" template="/WEB-INF/jsp/ergo/views/changePassword.jsp"/>
+	
+	<definition name="profile/changePasswordSuccess" template="/WEB-INF/jsp/ergo/views/changePasswordSuccess.jsp"/>
+	
+	<definition name="forgotPassword" template="/WEB-INF/jsp/ergo/views/forgotPassword.jsp"/>
+	
+	<definition name="forgotPassword/mailSent" template="/WEB-INF/jsp/ergo/views/resetPasswordMailSent.jsp"/>
+	
+	<definition name="auction/images" template="/WEB-INF/jsp/ergo/views/gallery.jsp"/>
+	<!-- // Overlays END -->
+	
+</tiles-definitions>       

@@ -1,0 +1,69 @@
+package in.regalauction.interfaces.web.authentication;
+
+import in.regalauction.application.UserService;
+import in.regalauction.domain.model.auction.AuctionRepository;
+import in.regalauction.interfaces.bidding.AuctionViewAdapter;
+import in.regalauction.interfaces.bidding.facade.BiddingFacade;
+
+import java.util.Collection;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+
+@Controller
+public class LoginController {
+	
+	private static final Logger LOGGER = LoggerFactory.getLogger(LoginController.class);
+	
+	@Autowired
+	private BiddingFacade biddingFacade;
+	
+	@Autowired
+	private UserService userService;
+	
+	@Autowired
+	private AuctionRepository auctionRepository;
+	
+	@RequestMapping("/login")
+	@Transactional(readOnly = true)
+	public @ModelAttribute("auctions") Collection<AuctionViewAdapter> login() throws Exception {
+		LOGGER.trace("Login handler called.");
+		return biddingFacade.fetchUpcomingAuctions();
+	}
+	
+	@RequestMapping("/home")
+	@Transactional(readOnly = true)
+	public String home(ModelMap map) {
+		LOGGER.trace("Fetching data for home page");
+		
+		String currentUsername = userService.getCurrentUsername();
+		String group = userService.findGroupByUsername(currentUsername);
+		LOGGER.debug("{} is a {}", currentUsername, group);
+
+		map.addAttribute("numRunningAuctions", biddingFacade.fetchRunningAuctions(currentUsername).size());
+		map.addAttribute("hasAuctionHistory", !biddingFacade.fetchOldAuctions(currentUsername).isEmpty());
+		map.addAttribute("hasUpcommingAuctions", !auctionRepository.findUpcommingAuctions().isEmpty());
+		
+		// Return a view name specific to the user group
+		return new StringBuilder("home").append("_").append(group).toString();
+		
+	}
+	
+	@RequestMapping("/about")
+	public void about() {
+		LOGGER.trace("about");
+	}
+	
+	@RequestMapping("/services")
+	public void services() {
+		LOGGER.trace("services");
+	}
+	
+}
