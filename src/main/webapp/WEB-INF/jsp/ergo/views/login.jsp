@@ -8,7 +8,7 @@
 		<div class="banner-wrapper banner-1">
 			<!-- <img alt="Regal Auction" src=""> -->
 			<!-- <h3>Regal Auction</h3> -->
-
+			
 			<div class="row-fluid">
 				<div class="span9">
 					<img src="<spring:theme code="image.banner"/>" alt="website banner"/>
@@ -54,9 +54,10 @@
 
 				</div>
 			</div>
+			
 		</div>
 	</div>
-	<!-- <div class="ribbon-wrapper"><div class="ribbon danger">Running!</div></div> -->
+	<div class="ribbon-wrapper"><div class="ribbon danger">v<span class="large">2</span></div></div>
 </div>
 
 <div class="container-960">
