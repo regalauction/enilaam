@@ -28,7 +28,7 @@
 		
 		<set name="documents" table="auction_document" lazy="false">
 			<key column="auction_id" not-null="true"/>
-			<many-to-many class="in.regalauction.domain.model.attachment.Document" column="ATTACHMENT_ID"/>
+			<many-to-many class="in.regalauction.domain.model.attachment.Document" column="attachment_id"/>
 		</set>
 		
 		<list name="bids" table="bid">

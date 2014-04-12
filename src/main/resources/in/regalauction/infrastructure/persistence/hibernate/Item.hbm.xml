@@ -20,7 +20,7 @@
 		
 		<set name="images" table="item_image" lazy="false">
 			<key column="item_id" not-null="true"/>
-			<many-to-many class="in.regalauction.domain.model.attachment.Image" column="ATTACHMENT_ID"/>
+			<many-to-many class="in.regalauction.domain.model.attachment.Image" column="attachment_id"/>
 		</set>
 		
 	</class>
