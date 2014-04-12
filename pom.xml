@@ -3,7 +3,7 @@
 	<groupId>in.regalauction</groupId>
 	<artifactId>enilaam</artifactId>
 	<packaging>war</packaging>
-	<version>2.9-SNAPSHOT</version>
+	<version>2.9</version>
 	<name>Regal Auction</name>
 	<url>http://www.regalauction.in</url>
 	<description>Online auction platform.</description>
