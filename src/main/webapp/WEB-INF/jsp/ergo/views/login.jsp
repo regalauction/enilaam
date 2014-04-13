@@ -123,11 +123,7 @@
 				<i></i>
 			</div>
 			<div id="news">
-				<ul>
-					<li>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard</li>
-					<li>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard</li>
-					<li>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard</li>
-				</ul>
+				<%@include file="news.jsp" %>
 			</div>
 		</div>
 		<div class="span6">

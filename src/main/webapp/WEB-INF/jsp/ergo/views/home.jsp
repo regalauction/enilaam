@@ -44,11 +44,7 @@
 					</div>
 					<div class="widget-body">
 						<div id="news">
-							<ul>
-								<li>1. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard</li>
-								<li>2. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard</li>
-								<li>3. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard</li>
-							</ul>
+							<%@include file="news.jsp" %>
 						</div>
 					</div>
 					<div class="widget-footer">
