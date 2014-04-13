@@ -34,8 +34,7 @@
 	
 	<%-- Set the base url for the application. This is needed for portability on different browsers --%>
 	<spring:theme code="html.base.href" var="baseUrl"/>
-	<%-- <base href="${baseUrl}"> --%>
-	<base href="/enilaam/">
+	<base href="${baseUrl}">
 	
 	<%-- Page Title - start --%>
 	<title> : <spring:message code="appname"/> : <tiles:getAsString name="title" ignore="true" /></title>

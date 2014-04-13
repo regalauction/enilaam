@@ -57,7 +57,7 @@
 		<dir.log>D:\\Projects\\eNilaam\\logs</dir.log>
 		<dir.image>D:\\Projects\\eNilaam\\attachments\\images\\</dir.image>
 		<dir.document>D:\\Projects\\eNilaam\\attachments\\documents\\</dir.document>
-		<html.base.href>http://localhost:8080/enilaam/</html.base.href>
+		<html.base.href>/enilaam/</html.base.href>
 		<mail.disabled>true</mail.disabled>
 		<mail.host>mail.regalauction.in</mail.host>
 		<mail.username>support@regalauction.in</mail.username>
