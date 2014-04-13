@@ -31,68 +31,139 @@
 	<meta name="apple-mobile-web-app-status-bar-style" content="black">
 	<meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE" />
 
-	<!-- Bootstrap -->
-	<link href="themes/ergo/bootstrap/css/bootstrap.css" rel="stylesheet" />
-	<link href="themes/ergo/bootstrap/css/responsive.css" rel="stylesheet" />
-
-	<!-- Glyphicons Font Icons -->
-	<link href="themes/ergo/theme/css/glyphicons.css" rel="stylesheet" />
+<spring:theme code="css.doNotUseCompressed" var="cssDoNotUseCompressed"/>
+<c:choose>
+	<c:when test="${cssDoNotUseCompressed}">
+		<!-- Bootstrap -->
+		<link href="themes/ergo/bootstrap/css/bootstrap.css" rel="stylesheet" />
+		<link href="themes/ergo/bootstrap/css/responsive.css" rel="stylesheet" />
 	
-	<!-- Uniform Pretty Checkboxes -->
-	<link href="themes/ergo/theme/scripts/plugins/forms/pixelmatrix-uniform/css/uniform.default.css" rel="stylesheet" />
+		<!-- Glyphicons Font Icons -->
+		<link href="themes/ergo/theme/css/glyphicons.css" rel="stylesheet" />
 		
-	<!-- Bootstrap Extended -->
-	<link href="themes/ergo/bootstrap/extend/jasny-bootstrap/css/jasny-bootstrap.css" rel="stylesheet">
-	<link href="themes/ergo/bootstrap/extend/jasny-bootstrap/css/jasny-bootstrap-responsive.css" rel="stylesheet">
-	<link href="themes/ergo/bootstrap/extend/bootstrap-wysihtml5/css/bootstrap-wysihtml5-0.0.2.css" rel="stylesheet">
-	<link href="themes/ergo/bootstrap/extend/bootstrap-select/bootstrap-select.css" rel="stylesheet" />
-	<link href="themes/ergo/bootstrap/extend/bootstrap-toggle-buttons/static/stylesheets/bootstrap-toggle-buttons.css" rel="stylesheet" />
+		<!-- Uniform Pretty Checkboxes -->
+		<link href="themes/ergo/theme/scripts/plugins/forms/pixelmatrix-uniform/css/uniform.default.css" rel="stylesheet" />
+			
+		<!-- Bootstrap Extended -->
+		<link href="themes/ergo/bootstrap/extend/jasny-bootstrap/css/jasny-bootstrap.css" rel="stylesheet">
+		<link href="themes/ergo/bootstrap/extend/jasny-bootstrap/css/jasny-bootstrap-responsive.css" rel="stylesheet">
+		<link href="themes/ergo/bootstrap/extend/bootstrap-wysihtml5/css/bootstrap-wysihtml5-0.0.2.css" rel="stylesheet">
+		<link href="themes/ergo/bootstrap/extend/bootstrap-select/bootstrap-select.css" rel="stylesheet" />
+		<link href="themes/ergo/bootstrap/extend/bootstrap-toggle-buttons/static/stylesheets/bootstrap-toggle-buttons.css" rel="stylesheet" />
+		
+		<!-- Select2 Plugin -->
+		<link href="themes/ergo/theme/scripts/plugins/forms/select2/select2.css" rel="stylesheet" />
+		
+		<!-- DateTimePicker Plugin -->
+		<link href="themes/ergo/theme/scripts/plugins/forms/bootstrap-datetimepicker/css/datetimepicker.css" rel="stylesheet" />
+		
+		<!-- JQueryUI -->
+		<link href="themes/ergo/theme/scripts/plugins/system/jquery-ui/css/smoothness/jquery-ui-1.9.2.custom.css" rel="stylesheet" />
+		
+		<!-- MiniColors ColorPicker Plugin -->
+		<link href="themes/ergo/theme/scripts/plugins/color/jquery-miniColors/jquery.miniColors.css" rel="stylesheet" />
+		
+		<!-- Notyfy Notifications Plugin -->
+		<link href="themes/ergo/theme/scripts/plugins/notifications/notyfy/jquery.notyfy.css" rel="stylesheet" />
+		<link href="themes/ergo/theme/scripts/plugins/notifications/notyfy/themes/default.css" rel="stylesheet" />
+		
+		<!-- Gritter Notifications Plugin -->
+		<link href="themes/ergo/theme/scripts/plugins/notifications/Gritter/css/jquery.gritter.css" rel="stylesheet" />
+		
+		<!-- DataTables Plugin -->
+		<link href="themes/ergo/theme/scripts/plugins/tables/DataTables/media/css/DT_bootstrap.css" rel="stylesheet" />
 	
-	<!-- Select2 Plugin -->
-	<link href="themes/ergo/theme/scripts/plugins/forms/select2/select2.css" rel="stylesheet" />
+		<!-- Bootstrap Image Gallery -->
+		<link href="themes/ergo/bootstrap/extend/bootstrap-image-gallery/css/bootstrap-image-gallery.css" rel="stylesheet" />
+		
+		<!-- Plupload File Manager Plugin -->
+		<style type="text/css">@import url(themes/ergo/theme/scripts/plugins/forms/plupload/js/jquery.plupload.queue/css/jquery.plupload.queue.css);</style>
+		
+		<!-- Main Theme Stylesheet :: CSS -->
+		<link href="themes/ergo/theme/css/style-light.css" rel="stylesheet" />
+		
+		<!-- Custom Stylesheet -->
+		<link href="themes/ergo/custom/css/style.css" rel="stylesheet" />	
+	</c:when>
+	<c:otherwise>
+		<!-- Bootstrap -->
+		<link href="themes/ergo/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+		<link href="themes/ergo/bootstrap/css/responsive.min.css" rel="stylesheet" />
 	
-	<!-- DateTimePicker Plugin -->
-	<link href="themes/ergo/theme/scripts/plugins/forms/bootstrap-datetimepicker/css/datetimepicker.css" rel="stylesheet" />
+		<!-- Glyphicons Font Icons -->
+		<link href="themes/ergo/theme/css/glyphicons.min.css" rel="stylesheet" />
+		
+		<!-- Uniform Pretty Checkboxes -->
+		<link href="themes/ergo/theme/scripts/plugins/forms/pixelmatrix-uniform/css/uniform.default.min.css" rel="stylesheet" />
+			
+		<!-- Bootstrap Extended -->
+		<link href="themes/ergo/bootstrap/extend/jasny-bootstrap/css/jasny-bootstrap.min.css" rel="stylesheet">
+		<link href="themes/ergo/bootstrap/extend/jasny-bootstrap/css/jasny-bootstrap-responsive.min.css" rel="stylesheet">
+		<link href="themes/ergo/bootstrap/extend/bootstrap-wysihtml5/css/bootstrap-wysihtml5-0.0.2.min.css" rel="stylesheet">
+		<link href="themes/ergo/bootstrap/extend/bootstrap-select/bootstrap-select.min.css" rel="stylesheet" />
+		<link href="themes/ergo/bootstrap/extend/bootstrap-toggle-buttons/static/stylesheets/bootstrap-toggle-buttons.min.css" rel="stylesheet" />
+		
+		<!-- Select2 Plugin -->
+		<link href="themes/ergo/theme/scripts/plugins/forms/select2/select2.min.css" rel="stylesheet" />
+		
+		<!-- DateTimePicker Plugin -->
+		<link href="themes/ergo/theme/scripts/plugins/forms/bootstrap-datetimepicker/css/datetimepicker.min.css" rel="stylesheet" />
+		
+		<!-- JQueryUI -->
+		<link href="themes/ergo/theme/scripts/plugins/system/jquery-ui/css/smoothness/jquery-ui-1.9.2.custom.min.css" rel="stylesheet" />
+		
+		<!-- MiniColors ColorPicker Plugin -->
+		<link href="themes/ergo/theme/scripts/plugins/color/jquery-miniColors/jquery.miniColors.min.css" rel="stylesheet" />
+		
+		<!-- Notyfy Notifications Plugin -->
+		<link href="themes/ergo/theme/scripts/plugins/notifications/notyfy/jquery.notyfy.min.css" rel="stylesheet" />
+		<link href="themes/ergo/theme/scripts/plugins/notifications/notyfy/themes/default.min.css" rel="stylesheet" />
+		
+		<!-- Gritter Notifications Plugin -->
+		<link href="themes/ergo/theme/scripts/plugins/notifications/Gritter/css/jquery.gritter.min.css" rel="stylesheet" />
+		
+		<!-- DataTables Plugin -->
+		<link href="themes/ergo/theme/scripts/plugins/tables/DataTables/media/css/DT_bootstrap.min.css" rel="stylesheet" />
 	
-	<!-- JQueryUI -->
-	<link href="themes/ergo/theme/scripts/plugins/system/jquery-ui/css/smoothness/jquery-ui-1.9.2.custom.css" rel="stylesheet" />
-	
-	<!-- MiniColors ColorPicker Plugin -->
-	<link href="themes/ergo/theme/scripts/plugins/color/jquery-miniColors/jquery.miniColors.css" rel="stylesheet" />
-	
-	<!-- Notyfy Notifications Plugin -->
-	<link href="themes/ergo/theme/scripts/plugins/notifications/notyfy/jquery.notyfy.css" rel="stylesheet" />
-	<link href="themes/ergo/theme/scripts/plugins/notifications/notyfy/themes/default.css" rel="stylesheet" />
-	
-	<!-- Gritter Notifications Plugin -->
-	<link href="themes/ergo/theme/scripts/plugins/notifications/Gritter/css/jquery.gritter.css" rel="stylesheet" />
-	
-	<!-- Easy-pie Plugin -->
-	<link href="themes/ergo/theme/scripts/plugins/charts/easy-pie/jquery.easy-pie-chart.css" rel="stylesheet" />
+		<!-- Bootstrap Image Gallery -->
+		<link href="themes/ergo/bootstrap/extend/bootstrap-image-gallery/css/bootstrap-image-gallery.min.css" rel="stylesheet" />
+		
+		<!-- Plupload File Manager Plugin -->
+		<style type="text/css">@import url(themes/ergo/theme/scripts/plugins/forms/plupload/js/jquery.plupload.queue/css/jquery.plupload.queue.min.css);</style>
+		
+		<!-- Main Theme Stylesheet :: CSS -->
+		<link href="themes/ergo/theme/css/style-light.min.css" rel="stylesheet" />
+		
+		<!-- Custom Stylesheet -->
+		<link href="themes/ergo/custom/css/style.min.css" rel="stylesheet" />		
+	</c:otherwise>
+</c:choose>	
 
-	<!-- Google Code Prettify Plugin -->
-	<link href="themes/ergo/theme/scripts/plugins/other/google-code-prettify/prettify.css" rel="stylesheet" />
-	
-	<!-- DataTables Plugin -->
-	<link href="themes/ergo/theme/scripts/plugins/tables/DataTables/media/css/DT_bootstrap.css" rel="stylesheet" />
-
-	<!-- Bootstrap Image Gallery -->
-	<link href="themes/ergo/bootstrap/extend/bootstrap-image-gallery/css/bootstrap-image-gallery.css" rel="stylesheet" />
-	
-	<!-- Plupload File Manager Plugin -->
-	<style type="text/css">@import url(themes/ergo/theme/scripts/plugins/forms/plupload/js/jquery.plupload.queue/css/jquery.plupload.queue.css);</style>
-	
-	<!-- Main Theme Stylesheet :: CSS -->
-	<link href="themes/ergo/theme/css/style-light.css" rel="stylesheet" />
-	
-	<!-- Custom Stylesheet -->
-	<link href="themes/ergo/custom/css/style.css" rel="stylesheet" />
 	
 	<!--[if IE]><!--><script src="themes/ergo/theme/scripts/plugins/other/excanvas/excanvas.js"></script><!--<![endif]-->
 	<!--[if lt IE 8]><script src="themes/ergo/theme/scripts/plugins/other/json2.js"></script><![endif]-->
 	
-	<!-- Rupee Symbol CSS -->
-	<link href="http://cdn.webrupee.com/font" rel="stylesheet">
+	<style type="text/css">
+	#preloader {
+		position: fixed;
+		left: 0px;
+		top: 0px;
+		width: 100%;
+		height: 100%;
+		z-index: 9999;
+		background: url(<spring:theme code="image.preloader"/>) 50% 50% no-repeat #F2F3F4;
+	}
+	</style>
+	
+	<script src="themes/ergo/theme/scripts/plugins/system/jquery.min.js"></script>
+	<!-- display preloader -->
+	<script type="text/javascript">
+		console.log("....");
+		$(window).load(function() {
+			console.log("document loaded");
+			$("#preloader").fadeOut("slow"); 
+		});
+	</script>
 </head>
 
 <security:authentication property="principal.username" var="username" scope="request"/>
@@ -114,6 +185,8 @@
 </c:choose>
 
 <body>
+	<!-- preloader div -->
+	<div id="preloader"></div>
 	
 	<!-- User pages have "fluid" layout. Admin pages have "fixed" layout. -->
 	<div class="container-fluid <tiles:getAsString name="layout" ignore="false"/>">
@@ -142,9 +215,6 @@
 <c:choose>
 	<c:when test="${jsDoNotUseCompressed}">
 		
-		<!-- JQuery -->
-		<script src="themes/ergo/theme/scripts/plugins/system/jquery.min.js"></script>
-
 		<!-- JQueryUI -->
 		<script src="themes/ergo/theme/scripts/plugins/system/jquery-ui/js/jquery-ui-1.9.2.custom.js"></script>
 		
@@ -198,9 +268,6 @@
 	
 		<!-- Cookie Plugin -->
 		<script src="themes/ergo/theme/scripts/plugins/system/jquery.cookie.js"></script>
-		
-		<!-- Twitter Feed -->
-		<script src="themes/ergo/theme/scripts/demo/twitter.js"></script>
 		
 		<!-- Easy-pie Plugin -->
 		<script src="themes/ergo/theme/scripts/plugins/charts/easy-pie/jquery.easy-pie-chart.js"></script>

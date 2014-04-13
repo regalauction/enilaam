@@ -12,6 +12,7 @@
 			<div class="row-fluid">
 				<div class="span9">
 					<img src="<spring:theme code="image.banner"/>" alt="website banner"/>
+					<h2 id="appname"><spring:message code="appname"/></h2>
 				</div>
 				<div class="span3">
 					

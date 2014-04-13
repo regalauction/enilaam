@@ -15,13 +15,13 @@
 		<tag>HEAD</tag>
 	</scm>
 	
-	<distributionManagement>
+	<!-- <distributionManagement>
 		<repository>
 			<id>localrepo</id>
 			<name>Local file system</name>
 			<url>/home/regalau1/enilaam/test/enilaamRepo</url>
 		</repository>
-	</distributionManagement>
+	</distributionManagement> -->
 
 	<!-- Repositories -->
 	<repositories>
@@ -41,9 +41,14 @@
 
 	<!-- Project properties -->
 	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		
 		<java-version>1.6</java-version>
 		<org.springframework.version>3.1.0.RELEASE</org.springframework.version>
 		<org.hibernate.version>3.6.4.Final</org.hibernate.version>
+		
+		<tomcat.url>http://78.46.176.10:30698/manager/text</tomcat.url>
+		<tomcat.server>gojavaServer</tomcat.server>
 
 		<jdbc.driverClass>com.mysql.jdbc.Driver</jdbc.driverClass>
 		<jdbc.url>jdbc:mysql://localhost:3306/enilaamDev</jdbc.url>
@@ -59,81 +64,7 @@
 		<mail.password>Ih2fu50t</mail.password>
 		<mail.from>support@regalauction.in</mail.from>
 		<debug>true</debug>
-		<skipTests>true</skipTests>
 	</properties>
-
-	<!-- Build configuration -->
-	<build>
-		<finalName>${project.artifactId}</finalName>
-		<resources>
-			<resource>
-				<directory>src/main/resources</directory>
-				<filtering>true</filtering>
-			</resource>
-		</resources>
-		<plugins>
-			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.1</version>
-				<configuration>
-					<source>${java-version}</source>
-					<target>${java-version}</target>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>com.samaxes.maven</groupId>
-				<artifactId>maven-minify-plugin</artifactId>
-				<version>1.3.5</version>
-				<executions>
-					<execution>
-						<id>default-minify</id>
-						<phase>prepare-package</phase>
-						<configuration>
-							<jsSourceDir>themes/ergo</jsSourceDir>
-							<jsTargetDir>themes/ergo</jsTargetDir>
-							<jsSourceFiles>
-								<jsSourceFile>theme/scripts/plugins/system/jquery.min.js</jsSourceFile>
-								<jsSourceFile>theme/scripts/plugins/system/jquery-ui/js/jquery-ui-1.9.2.custom.js</jsSourceFile>
-								<jsSourceFile>theme/scripts/plugins/system/jquery-ui-touch-punch/jquery.ui.touch-punch.js</jsSourceFile>
-								<jsSourceFile>theme/scripts/plugins/system/modernizr.js</jsSourceFile>
-								<jsSourceFile>bootstrap/js/bootstrap.js</jsSourceFile>
-								<jsSourceFile>theme/scripts/plugins/other/jquery-slimScroll/jquery.slimscroll.js</jsSourceFile>
-								<jsSourceFile>theme/scripts/demo/common.js</jsSourceFile>
-								<jsSourceFile>theme/scripts/plugins/other/holder/holder.js</jsSourceFile>
-								<jsSourceFile>theme/scripts/plugins/forms/pixelmatrix-uniform/jquery.uniform.js</jsSourceFile>
-								<jsSourceFile>bootstrap/extend/bootstrap-select/bootstrap-select.js</jsSourceFile>
-								<jsSourceFile>bootstrap/extend/bootstrap-toggle-buttons/static/js/jquery.toggle.buttons.js</jsSourceFile>
-								<jsSourceFile>bootstrap/extend/bootstrap-hover-dropdown/twitter-bootstrap-hover-dropdown.js</jsSourceFile>
-								<jsSourceFile>bootstrap/extend/jasny-bootstrap/js/jasny-bootstrap.js</jsSourceFile>
-								<jsSourceFile>bootstrap/extend/jasny-bootstrap/js/bootstrap-fileupload.js</jsSourceFile>
-								<jsSourceFile>bootstrap/extend/bootbox.js</jsSourceFile>
-								<jsSourceFile>bootstrap/extend/bootstrap-wysihtml5/js/wysihtml5-0.3.0_rc2.js</jsSourceFile>
-								<jsSourceFile>bootstrap/extend/bootstrap-wysihtml5/js/bootstrap-wysihtml5-0.0.2.js</jsSourceFile>
-								<jsSourceFile>theme/scripts/plugins/other/google-code-prettify/prettify.js</jsSourceFile>
-								<jsSourceFile>theme/scripts/plugins/notifications/Gritter/js/jquery.gritter.js</jsSourceFile>
-								<jsSourceFile>theme/scripts/plugins/notifications/notyfy/jquery.notyfy.js</jsSourceFile>
-								<jsSourceFile>theme/scripts/plugins/color/jquery-miniColors/jquery.miniColors.js</jsSourceFile>
-								<jsSourceFile>theme/scripts/plugins/forms/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js</jsSourceFile>
-								<jsSourceFile>theme/scripts/plugins/system/jquery.cookie.js</jsSourceFile>
-								<jsSourceFile>theme/scripts/demo/twitter.js</jsSourceFile>
-								<jsSourceFile>theme/scripts/plugins/charts/easy-pie/jquery.easy-pie-chart.js</jsSourceFile>
-								<jsSourceFile>theme/scripts/plugins/charts/sparkline/jquery.sparkline.min.js</jsSourceFile>
-								<jsSourceFile>theme/scripts/plugins/other/jquery.ba-resize.js</jsSourceFile>
-								<jsSourceFile>theme/scripts/plugins/tables/DataTables/media/js/jquery.dataTables.js</jsSourceFile>
-								<jsSourceFile>theme/scripts/plugins/tables/DataTables/media/js/DT_bootstrap.js</jsSourceFile>
-								<jsSourceFile>jquery.easy-ticker/jquery.easy-ticker.js</jsSourceFile>
-								<jsSourceFile>theme/scripts/plugins/forms/plupload-2.1.1/js/plupload.full.min.js</jsSourceFile>
-								<jsSourceFile>custom/scripts/script.js</jsSourceFile>
-							</jsSourceFiles>
-						</configuration>
-						<goals>
-							<goal>minify</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
-	</build>
 
 	<!-- Dependencies -->
 	<dependencies>
@@ -326,6 +257,112 @@
 			<version>1.4.5</version>
 		</dependency>
 	</dependencies>
+	
+	<!-- Build configuration -->
+	<build>
+		<finalName>${project.artifactId}</finalName>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.1</version>
+				<configuration>
+					<source>${java-version}</source>
+					<target>${java-version}</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>com.samaxes.maven</groupId>
+				<artifactId>minify-maven-plugin</artifactId>
+				<version>1.7.2</version>
+				<executions>
+					<execution>
+						<id>css-minify</id>
+						<phase>prepare-package</phase>
+						<configuration>
+							<skipMerge>true</skipMerge>
+							<cssSourceDir>themes/ergo</cssSourceDir>
+							<cssSourceFiles>
+								<cssSourceFile>bootstrap/css/bootstrap.css</cssSourceFile>
+								<cssSourceFile>bootstrap/css/responsive.css</cssSourceFile>
+								<cssSourceFile>theme/css/glyphicons.css</cssSourceFile>
+								<cssSourceFile>theme/scripts/plugins/forms/pixelmatrix-uniform/css/uniform.default.css</cssSourceFile>
+								<cssSourceFile>bootstrap/extend/jasny-bootstrap/css/jasny-bootstrap.css</cssSourceFile>
+								<cssSourceFile>bootstrap/extend/jasny-bootstrap/css/jasny-bootstrap-responsive.css</cssSourceFile>
+								<cssSourceFile>bootstrap/extend/bootstrap-wysihtml5/css/bootstrap-wysihtml5-0.0.2.css</cssSourceFile>
+								<cssSourceFile>bootstrap/extend/bootstrap-select/bootstrap-select.css</cssSourceFile>
+								<cssSourceFile>bootstrap/extend/bootstrap-toggle-buttons/static/stylesheets/bootstrap-toggle-buttons.css</cssSourceFile>
+								<cssSourceFile>theme/scripts/plugins/forms/select2/select2.css</cssSourceFile>
+								<cssSourceFile>theme/scripts/plugins/forms/bootstrap-datetimepicker/css/datetimepicker.css</cssSourceFile>
+								<cssSourceFile>theme/scripts/plugins/system/jquery-ui/css/smoothness/jquery-ui-1.9.2.custom.css</cssSourceFile>
+								<cssSourceFile>theme/scripts/plugins/color/jquery-miniColors/jquery.miniColors.css</cssSourceFile>
+								<cssSourceFile>theme/scripts/plugins/notifications/notyfy/jquery.notyfy.css</cssSourceFile>
+								<cssSourceFile>theme/scripts/plugins/notifications/notyfy/themes/default.css</cssSourceFile>
+								<cssSourceFile>theme/scripts/plugins/notifications/Gritter/css/jquery.gritter.css</cssSourceFile>
+								<cssSourceFile>theme/scripts/plugins/tables/DataTables/media/css/DT_bootstrap.css</cssSourceFile>
+								<cssSourceFile>bootstrap/extend/bootstrap-image-gallery/css/bootstrap-image-gallery.css</cssSourceFile>
+								<cssSourceFile>theme/scripts/plugins/forms/plupload/js/jquery.plupload.queue/css/jquery.plupload.queue.css</cssSourceFile>
+								<cssSourceFile>theme/css/style-light.css</cssSourceFile>
+								<cssSourceFile>custom/css/style.css</cssSourceFile>
+							</cssSourceFiles>
+						</configuration>
+						<goals>
+							<goal>minify</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>js-minify</id>
+						<phase>prepare-package</phase>
+						<configuration>
+							<jsSourceDir>themes/ergo</jsSourceDir>
+							<jsTargetDir>themes/ergo</jsTargetDir>
+							<jsSourceFiles>
+								<jsSourceFile>theme/scripts/plugins/system/jquery-ui/js/jquery-ui-1.9.2.custom.js</jsSourceFile>
+								<jsSourceFile>theme/scripts/plugins/system/jquery-ui-touch-punch/jquery.ui.touch-punch.js</jsSourceFile>
+								<jsSourceFile>theme/scripts/plugins/system/modernizr.js</jsSourceFile>
+								<jsSourceFile>bootstrap/js/bootstrap.js</jsSourceFile>
+								<jsSourceFile>theme/scripts/plugins/other/jquery-slimScroll/jquery.slimscroll.js</jsSourceFile>
+								<jsSourceFile>theme/scripts/demo/common.js</jsSourceFile>
+								<jsSourceFile>theme/scripts/plugins/other/holder/holder.js</jsSourceFile>
+								<jsSourceFile>theme/scripts/plugins/forms/pixelmatrix-uniform/jquery.uniform.js</jsSourceFile>
+								<jsSourceFile>bootstrap/extend/bootstrap-select/bootstrap-select.js</jsSourceFile>
+								<jsSourceFile>bootstrap/extend/bootstrap-toggle-buttons/static/js/jquery.toggle.buttons.js</jsSourceFile>
+								<jsSourceFile>bootstrap/extend/bootstrap-hover-dropdown/twitter-bootstrap-hover-dropdown.js</jsSourceFile>
+								<jsSourceFile>bootstrap/extend/jasny-bootstrap/js/jasny-bootstrap.js</jsSourceFile>
+								<jsSourceFile>bootstrap/extend/jasny-bootstrap/js/bootstrap-fileupload.js</jsSourceFile>
+								<jsSourceFile>bootstrap/extend/bootbox.js</jsSourceFile>
+								<jsSourceFile>bootstrap/extend/bootstrap-wysihtml5/js/wysihtml5-0.3.0_rc2.js</jsSourceFile>
+								<jsSourceFile>bootstrap/extend/bootstrap-wysihtml5/js/bootstrap-wysihtml5-0.0.2.js</jsSourceFile>
+								<jsSourceFile>theme/scripts/plugins/other/google-code-prettify/prettify.js</jsSourceFile>
+								<jsSourceFile>theme/scripts/plugins/notifications/Gritter/js/jquery.gritter.js</jsSourceFile>
+								<jsSourceFile>theme/scripts/plugins/notifications/notyfy/jquery.notyfy.js</jsSourceFile>
+								<jsSourceFile>theme/scripts/plugins/color/jquery-miniColors/jquery.miniColors.js</jsSourceFile>
+								<jsSourceFile>theme/scripts/plugins/forms/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js</jsSourceFile>
+								<jsSourceFile>theme/scripts/plugins/system/jquery.cookie.js</jsSourceFile>
+								<jsSourceFile>theme/scripts/plugins/charts/easy-pie/jquery.easy-pie-chart.js</jsSourceFile>
+								<jsSourceFile>theme/scripts/plugins/charts/sparkline/jquery.sparkline.min.js</jsSourceFile>
+								<jsSourceFile>theme/scripts/plugins/other/jquery.ba-resize.js</jsSourceFile>
+								<jsSourceFile>theme/scripts/plugins/tables/DataTables/media/js/jquery.dataTables.js</jsSourceFile>
+								<jsSourceFile>theme/scripts/plugins/tables/DataTables/media/js/DT_bootstrap.js</jsSourceFile>
+								<jsSourceFile>jquery.easy-ticker/jquery.easy-ticker.js</jsSourceFile>
+								<jsSourceFile>theme/scripts/plugins/forms/plupload-2.1.1/js/plupload.full.min.js</jsSourceFile>
+								<jsSourceFile>custom/scripts/script.js</jsSourceFile>
+							</jsSourceFiles>
+						</configuration>
+						<goals>
+							<goal>minify</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+	
 	<profiles>
 		<profile>
 			<id>uat</id>
@@ -352,64 +389,12 @@
 						</configuration>
 					</plugin>
 					<plugin>
-						<groupId>com.samaxes.maven</groupId>
-						<artifactId>maven-minify-plugin</artifactId>
-						<version>1.3.5</version>
-						<executions>
-							<execution>
-								<id>default-minify</id>
-								<phase>prepare-package</phase>
-								<configuration>
-									<jsSourceDir>themes/ergo</jsSourceDir>
-									<jsTargetDir>themes/ergo</jsTargetDir>
-									<jsSourceFiles>
-										<jsSourceFile>theme/scripts/plugins/system/jquery.min.js</jsSourceFile>
-										<jsSourceFile>theme/scripts/plugins/system/jquery-ui/js/jquery-ui-1.9.2.custom.js</jsSourceFile>
-										<jsSourceFile>theme/scripts/plugins/system/jquery-ui-touch-punch/jquery.ui.touch-punch.js</jsSourceFile>
-										<jsSourceFile>theme/scripts/plugins/system/modernizr.js</jsSourceFile>
-										<jsSourceFile>bootstrap/js/bootstrap.js</jsSourceFile>
-										<jsSourceFile>theme/scripts/plugins/other/jquery-slimScroll/jquery.slimscroll.js</jsSourceFile>
-										<jsSourceFile>theme/scripts/demo/common.js</jsSourceFile>
-										<jsSourceFile>theme/scripts/plugins/other/holder/holder.js</jsSourceFile>
-										<jsSourceFile>theme/scripts/plugins/forms/pixelmatrix-uniform/jquery.uniform.js</jsSourceFile>
-										<jsSourceFile>bootstrap/extend/bootstrap-select/bootstrap-select.js</jsSourceFile>
-										<jsSourceFile>bootstrap/extend/bootstrap-toggle-buttons/static/js/jquery.toggle.buttons.js</jsSourceFile>
-										<jsSourceFile>bootstrap/extend/bootstrap-hover-dropdown/twitter-bootstrap-hover-dropdown.js</jsSourceFile>
-										<jsSourceFile>bootstrap/extend/jasny-bootstrap/js/jasny-bootstrap.js</jsSourceFile>
-										<jsSourceFile>bootstrap/extend/jasny-bootstrap/js/bootstrap-fileupload.js</jsSourceFile>
-										<jsSourceFile>bootstrap/extend/bootbox.js</jsSourceFile>
-										<jsSourceFile>bootstrap/extend/bootstrap-wysihtml5/js/wysihtml5-0.3.0_rc2.js</jsSourceFile>
-										<jsSourceFile>bootstrap/extend/bootstrap-wysihtml5/js/bootstrap-wysihtml5-0.0.2.js</jsSourceFile>
-										<jsSourceFile>theme/scripts/plugins/other/google-code-prettify/prettify.js</jsSourceFile>
-										<jsSourceFile>theme/scripts/plugins/notifications/Gritter/js/jquery.gritter.js</jsSourceFile>
-										<jsSourceFile>theme/scripts/plugins/notifications/notyfy/jquery.notyfy.js</jsSourceFile>
-										<jsSourceFile>theme/scripts/plugins/color/jquery-miniColors/jquery.miniColors.js</jsSourceFile>
-										<jsSourceFile>theme/scripts/plugins/forms/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js</jsSourceFile>
-										<jsSourceFile>theme/scripts/plugins/system/jquery.cookie.js</jsSourceFile>
-										<jsSourceFile>theme/scripts/demo/twitter.js</jsSourceFile>
-										<jsSourceFile>theme/scripts/plugins/charts/easy-pie/jquery.easy-pie-chart.js</jsSourceFile>
-										<jsSourceFile>theme/scripts/plugins/charts/sparkline/jquery.sparkline.min.js</jsSourceFile>
-										<jsSourceFile>theme/scripts/plugins/other/jquery.ba-resize.js</jsSourceFile>
-										<jsSourceFile>theme/scripts/plugins/tables/DataTables/media/js/jquery.dataTables.js</jsSourceFile>
-										<jsSourceFile>theme/scripts/plugins/tables/DataTables/media/js/DT_bootstrap.js</jsSourceFile>
-										<jsSourceFile>jquery.easy-ticker/jquery.easy-ticker.js</jsSourceFile>
-										<jsSourceFile>theme/scripts/plugins/forms/plupload-2.1.1/js/plupload.full.min.js</jsSourceFile>
-										<jsSourceFile>custom/scripts/script.js</jsSourceFile>
-									</jsSourceFiles>
-								</configuration>
-								<goals>
-									<goal>minify</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-					<plugin>
 						<groupId>org.codehaus.mojo</groupId>
 						<artifactId>tomcat-maven-plugin</artifactId>
 						<version>1.1</version>
 						<configuration>
-							<url>http://78.46.176.10:30698/manager/text</url>
-							<server>gojavaServer</server>
+							<url>${tomcat.url}</url>
+							<server>${tomcat.server}</server>
 							<path>/uat</path>
 						</configuration>
 					</plugin>
@@ -441,64 +426,12 @@
 						</configuration>
 					</plugin>
 					<plugin>
-						<groupId>com.samaxes.maven</groupId>
-						<artifactId>maven-minify-plugin</artifactId>
-						<version>1.3.5</version>
-						<executions>
-							<execution>
-								<id>default-minify</id>
-								<phase>prepare-package</phase>
-								<configuration>
-									<jsSourceDir>themes/ergo</jsSourceDir>
-									<jsTargetDir>themes/ergo</jsTargetDir>
-									<jsSourceFiles>
-										<jsSourceFile>theme/scripts/plugins/system/jquery.min.js</jsSourceFile>
-										<jsSourceFile>theme/scripts/plugins/system/jquery-ui/js/jquery-ui-1.9.2.custom.js</jsSourceFile>
-										<jsSourceFile>theme/scripts/plugins/system/jquery-ui-touch-punch/jquery.ui.touch-punch.js</jsSourceFile>
-										<jsSourceFile>theme/scripts/plugins/system/modernizr.js</jsSourceFile>
-										<jsSourceFile>bootstrap/js/bootstrap.js</jsSourceFile>
-										<jsSourceFile>theme/scripts/plugins/other/jquery-slimScroll/jquery.slimscroll.js</jsSourceFile>
-										<jsSourceFile>theme/scripts/demo/common.js</jsSourceFile>
-										<jsSourceFile>theme/scripts/plugins/other/holder/holder.js</jsSourceFile>
-										<jsSourceFile>theme/scripts/plugins/forms/pixelmatrix-uniform/jquery.uniform.js</jsSourceFile>
-										<jsSourceFile>bootstrap/extend/bootstrap-select/bootstrap-select.js</jsSourceFile>
-										<jsSourceFile>bootstrap/extend/bootstrap-toggle-buttons/static/js/jquery.toggle.buttons.js</jsSourceFile>
-										<jsSourceFile>bootstrap/extend/bootstrap-hover-dropdown/twitter-bootstrap-hover-dropdown.js</jsSourceFile>
-										<jsSourceFile>bootstrap/extend/jasny-bootstrap/js/jasny-bootstrap.js</jsSourceFile>
-										<jsSourceFile>bootstrap/extend/jasny-bootstrap/js/bootstrap-fileupload.js</jsSourceFile>
-										<jsSourceFile>bootstrap/extend/bootbox.js</jsSourceFile>
-										<jsSourceFile>bootstrap/extend/bootstrap-wysihtml5/js/wysihtml5-0.3.0_rc2.js</jsSourceFile>
-										<jsSourceFile>bootstrap/extend/bootstrap-wysihtml5/js/bootstrap-wysihtml5-0.0.2.js</jsSourceFile>
-										<jsSourceFile>theme/scripts/plugins/other/google-code-prettify/prettify.js</jsSourceFile>
-										<jsSourceFile>theme/scripts/plugins/notifications/Gritter/js/jquery.gritter.js</jsSourceFile>
-										<jsSourceFile>theme/scripts/plugins/notifications/notyfy/jquery.notyfy.js</jsSourceFile>
-										<jsSourceFile>theme/scripts/plugins/color/jquery-miniColors/jquery.miniColors.js</jsSourceFile>
-										<jsSourceFile>theme/scripts/plugins/forms/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js</jsSourceFile>
-										<jsSourceFile>theme/scripts/plugins/system/jquery.cookie.js</jsSourceFile>
-										<jsSourceFile>theme/scripts/demo/twitter.js</jsSourceFile>
-										<jsSourceFile>theme/scripts/plugins/charts/easy-pie/jquery.easy-pie-chart.js</jsSourceFile>
-										<jsSourceFile>theme/scripts/plugins/charts/sparkline/jquery.sparkline.min.js</jsSourceFile>
-										<jsSourceFile>theme/scripts/plugins/other/jquery.ba-resize.js</jsSourceFile>
-										<jsSourceFile>theme/scripts/plugins/tables/DataTables/media/js/jquery.dataTables.js</jsSourceFile>
-										<jsSourceFile>theme/scripts/plugins/tables/DataTables/media/js/DT_bootstrap.js</jsSourceFile>
-										<jsSourceFile>jquery.easy-ticker/jquery.easy-ticker.js</jsSourceFile>
-										<jsSourceFile>theme/scripts/plugins/forms/plupload-2.1.1/js/plupload.full.min.js</jsSourceFile>
-										<jsSourceFile>custom/scripts/script.js</jsSourceFile>
-									</jsSourceFiles>
-								</configuration>
-								<goals>
-									<goal>minify</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-					<plugin>
 						<groupId>org.codehaus.mojo</groupId>
 						<artifactId>tomcat-maven-plugin</artifactId>
 						<version>1.1</version>
 						<configuration>
-							<url>http://78.46.176.10:30698/manager/text</url>
-							<server>gojavaServer</server>
+							<url>${tomcat.url}</url>
+							<server>${tomcat.server}</server>
 							<path>/</path>
 						</configuration>
 					</plugin>
