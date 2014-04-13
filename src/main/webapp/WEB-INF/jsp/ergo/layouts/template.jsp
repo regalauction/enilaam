@@ -5,7 +5,7 @@
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<!-- eNilaam <spring:theme code="project.version"/> -->
+<!-- <spring:message code="appname"/> <spring:theme code="project.version"/> -->
 
 <!DOCTYPE html>
 <!--[if lt IE 7]> <html class="ie lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -13,19 +13,35 @@
 <!--[if IE 8]>    <html class="ie lt-ie9"> <![endif]-->
 <!--[if gt IE 8]> <html class="ie gt-ie8"> <![endif]-->
 <!--[if !IE]><!--><html><!-- <![endif]-->
+
+<%
+	String userAgent = (String) request.getHeader("user-agent");
+	if (userAgent!=null && userAgent.indexOf("MSIE") != -1) {
+%>
+<head>
+	<title><spring:message code="browser.unsupported.heading"/></title>
+	<link href="themes/ergo/bootstrap/css/bootstrap.css" rel="stylesheet" />
+	<link href="themes/ergo/theme/css/style-light.css" rel="stylesheet" />
+</head>
+<body style="background-color: #F2F3F4;">
+	<p class="center"><spring:message code="browser.unsupported.text"/></p>
+</body>
+<% } else { %>
+
+
 <head profile="http://www.w3.org/2005/10/profile">
 	<link rel="icon" type="image/png" href="<spring:theme code="image.auction.winning"/>">
 	
 	<%-- Set the base url for the application. This is needed for portability on different browsers --%>
 	<spring:theme code="html.base.href" var="baseUrl"/>
-	<base href="${baseUrl}">
+	<%-- <base href="${baseUrl}"> --%>
+	<base href="/enilaam/">
 	
 	<%-- Page Title - start --%>
 	<title> : <spring:message code="appname"/> : <tiles:getAsString name="title" ignore="true" /></title>
 	<%-- Page Title - end --%>
 
 	<!-- Meta -->
-	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -150,17 +166,24 @@
 		top: 0px;
 		width: 100%;
 		height: 100%;
-		z-index: 9999;
+		z-index: 9998;
 		background: url(<spring:theme code="image.preloader"/>) 50% 50% no-repeat #F2F3F4;
+	}
+	#jsrequired {
+		position: fixed;
+		left: 0px;
+		top: 0px;
+		width: 100%;
+		height: 100%;
+		z-index: 9999;
+		background-color: #F2F3F4;
 	}
 	</style>
 	
 	<script src="themes/ergo/theme/scripts/plugins/system/jquery.min.js"></script>
 	<!-- display preloader -->
 	<script type="text/javascript">
-		console.log("....");
 		$(window).load(function() {
-			console.log("document loaded");
 			$("#preloader").fadeOut("slow"); 
 		});
 	</script>
@@ -185,7 +208,14 @@
 </c:choose>
 
 <body>
-	<!-- preloader div -->
+	<div id="jsrequired">
+		<p class="text-error center"><strong>Sorry!</strong><br />The browser needs to allow javascript.</p>
+	</div>
+	<script type="text/javascript">
+		document.getElementById("jsrequired").style.display = "none";
+	</script>
+	
+	<!-- preloader -->
 	<div id="preloader"></div>
 	
 	<!-- User pages have "fluid" layout. Admin pages have "fixed" layout. -->
@@ -207,9 +237,6 @@
 	<script>
 	var basePath = '';
 	</script>
-
-	<!-- Third party script for BrowserPlus runtime (Google Gears included in Gears runtime now) -->
-	<script src="http://bp.yahooapis.com/2.4.21/browserplus-min.js"></script>
 
 <spring:theme code="js.doNotUseCompressed" var="jsDoNotUseCompressed"/>
 <c:choose>
@@ -302,4 +329,7 @@
 </c:choose>	
 </body>
 </html>
+
+<% } %>
+
 <!-- // template.jsp END -->

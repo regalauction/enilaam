@@ -114,6 +114,10 @@
 #landing_1 a.password:hover {
 	color: rgb(216, 216, 216);
 }
+#landing_1 a.password:focus {
+	color: rgb(142, 198, 87);
+	text-decoration: none;
+}
 
 /* Rules for Auction table */
 #auction .bidprice input {

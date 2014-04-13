@@ -6,7 +6,7 @@
 <div id="menu" class="hidden-phone hidden-print">
 
 	<!-- Brand -->
-	<a href="#" class="appbrand">Regal Auction <span>v2.0</span></a>
+	<a href="#" class="appbrand"><spring:message code="appname"/>&nbsp;<span>v<spring:theme code="project.version"/></span></a>
 
 	<!-- Scrollable menu wrapper with Maximum height -->
 	<div class="slim-scroll" data-scroll-height="400px">

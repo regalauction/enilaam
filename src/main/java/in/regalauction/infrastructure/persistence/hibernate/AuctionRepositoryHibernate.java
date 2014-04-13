@@ -4,10 +4,11 @@ import in.regalauction.domain.model.auction.Auction;
 import in.regalauction.domain.model.auction.AuctionCode;
 import in.regalauction.domain.model.auction.AuctionRepository;
 
+import java.math.BigInteger;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.UUID;
 
 import org.springframework.stereotype.Repository;
 
@@ -53,9 +54,9 @@ public class AuctionRepositoryHibernate extends HibernateRepository implements
 
 	@Override
 	public AuctionCode nextAuctionCode() {
-		// TODO replace with a DB sequence
-		String string = UUID.randomUUID().toString();
-		return new AuctionCode(string.substring(0, string.indexOf("-")));
+		// Use the auto increment value of auction_id as the next code
+		BigInteger nextId = (BigInteger) getSession().createSQLQuery("select auto_increment from information_schema.tables where table_name = 'auction' and table_schema = DATABASE()").uniqueResult();
+		return new AuctionCode(nextId.toString());
 	}
 
 	@Override
@@ -72,10 +73,11 @@ public class AuctionRepositoryHibernate extends HibernateRepository implements
 				"left join fetch auction.item item " +
 				"left join fetch item.thumbnail " +
 				"join auction.users user where auction.startDate < current_timestamp() + hour(3) + minute(30) and auction.endDate > current_timestamp() + hour(3) + minute(30) " +
-				"and user.username = :username")
+				"and user.username = :username " +
+				"order by auction.auctionCode")
 				.setString("username", username)
 				.list();
-		return new HashSet<Auction>(resultList);
+		return new LinkedHashSet<Auction>(resultList);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -85,10 +87,10 @@ public class AuctionRepositoryHibernate extends HibernateRepository implements
 				"left join fetch auction.documents " +
 				"left join fetch auction.item item " +
 				"left join fetch item.thumbnail " +
-				"join auction.bids bid " +
+				"left join auction.bids bid " +
 				"join auction.users user where auction.startDate < current_timestamp() + hour(3) + minute(30) and auction.endDate > current_timestamp() + hour(3) + minute(30) " +
-				"order by bid.bidTime desc")
+				"order by bid.bidTime desc, auction.auctionCode")
 				.list();
-		return new HashSet<Auction>(resultList);
+		return new LinkedHashSet<Auction>(resultList);
 	}
 }

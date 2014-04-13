@@ -9,9 +9,10 @@
 	<div class="widget-head">
 		<h4 class="heading glyphicons stopwatch"><i></i><spring:message code="auction.running"/></h4>
 		<span class="pull-right">
-			<a id="auction-refresh" href="<spring:url value="auction/bid"/>" class="btn btn-primary btn-small btn-block btn-icon glyphicons refresh"><i></i>Refresh</a>
+			<a id="auction-refresh" href="<spring:url value="auction/bid"/>" class="btn btn-primary btn-small btn-block btn-icon glyphicons refresh"><i></i><spring:message code="common.refresh"/></a>
 		</span>
 		<span class="pull-right">
+			<span id="auction-refresh-tip" class="muted"><spring:message code="auction.refresh.tip"/>&nbsp;&nbsp;</span>
 			<span id="auction-refresh-loader" class="muted"><spring:message code="auction.refresh.loader"/>&nbsp;&nbsp;</span>
 		</span>
 	</div>
@@ -22,12 +23,12 @@
 			</c:when>
 			<c:otherwise>
 				<div class="heading row-fluid">
-					<div class="span3 info"><strong>Auction</strong></div>
-					<div class="span1 center"><strong>Base</strong> <sup title="base price with which an auction starts" data-toggle="tooltip">?</sup></div>
-					<div class="span1 center"><strong>Lead</strong> <sup title="leading price amount for an auction" data-toggle="tooltip">?</sup></div>
-					<div class="span1 center"><strong>Change</strong> <sup title="minimum price amount by which your bid should differ from the leading bid" data-toggle="tooltip">?</sup></div>
-					<div class="span1 center"><strong>Time Left</strong></div>
-					<div class="span5 center"><strong>Your Bid</strong></div>
+					<div class="span3 info"><strong><spring:message code="bidding.auction.name"/></strong></div>
+					<div class="span1 center"><strong><spring:message code="bidding.auction.basePrice"/></strong> <sup title="base price with which an auction starts" data-toggle="tooltip">?</sup></div>
+					<div class="span1 center"><strong><spring:message code="bidding.auction.leadPrice"/></strong> <sup title="leading price amount for an auction" data-toggle="tooltip">?</sup></div>
+					<div class="span1 center"><strong><spring:message code="bidding.auction.changePrice"/></strong> <sup title="minimum price amount by which your bid should differ from the leading bid" data-toggle="tooltip">?</sup></div>
+					<div class="span1 center"><strong><spring:message code="bidding.auction.timeleft"/></strong></div>
+					<div class="span5 center"><strong><spring:message code="bidding.auction.bid"/></strong></div>
 				</div>
 				<hr />
 				<div id="auction-list">

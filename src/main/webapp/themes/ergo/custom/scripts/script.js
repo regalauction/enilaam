@@ -2,7 +2,7 @@
  * Custom JavaScripts
  */
 $(function() {
-	console.debug("Running custom scripts...");
+	console.log("Running custom scripts...");
 	
 	// Selectors
 	var SEL_UPCOMINGAUCTIONS = "#upcomingAuctionsTable";
@@ -15,7 +15,7 @@ $(function() {
 	var SEL_MINUSBUTTON = ".add-on.minus";
 	var SEL_ADDONBUTTONS = ".add-on:not(.disabled)"; 
 	var AUCTION_REFRESH_INTERVAL = 1000 * 60 * 5;	// Refresh every 5 minutes
-	var DASHBOARD_AUCTION_REFRESH_INTERVAL = 1000 * 60 * 1;	// Refresh every 1 minutes
+	var DASHBOARD_AUCTION_REFRESH_INTERVAL = 1000 * 60 * 5;	// Refresh every 5 minutes
 	
 	// utility functions
 
@@ -51,7 +51,7 @@ $(function() {
 		],
 		init: {
 			PostInit: function() {
-				console.debug("PostInit called.");
+				console.log("PostInit called.");
 				 
 	            document.getElementById("docuploader_uploadfiles").onclick = function() {
 	                docuploader.start();
@@ -59,24 +59,24 @@ $(function() {
 	            };
 			},
 			FilesAdded: function(up, files) {
-				console.debug("FilesAdded called.");
+				console.log("FilesAdded called.");
 				plupload.each(files, function(file) {
-					console.debug("file: " + file.name);
+					console.log("file: " + file.name);
 					var $uploadItem = $("#docuploader_uploaditem").clone();
 					$uploadItem.attr("id", file.id).find(".col1").html(file.name);
 					$uploadItem.find(".col2").children().hide();
 					$uploadItem.find(".filesize").show().html(plupload.formatSize(file.size));
-					$uploadItem.show().appendTo("#plupload_filelist");
+					$uploadItem.show().appendTo("#docuploader_filelist");
 				});
 			},
 			UploadProgress: function(up, file) {
-				console.debug("UploadProgress called.");
+				console.log("UploadProgress called.");
 				$("#" + file.id + " .col2").children().hide().end()
 					.find(".progress").show()
 					.find(".bar").css("width", file.percent + "%").html(plupload.formatSize(file.size));
 			},
 			FileUploaded: function(up, file, object) {
-				console.debug(file.name + "uploaded.");
+				console.log(file.name + "uploaded.");
 				var code = object.response;
 				var documentUrlPrefix = $("#docuploader_container").attr("data-attachmentUrlPrefix");
 				var documentLink = "<a href=\"" + documentUrlPrefix + code + "\"></a>";
@@ -109,7 +109,7 @@ $(function() {
 		],
 		init: {
 			PostInit: function() {
-				console.debug("PostInit called.");
+				console.log("PostInit called.");
 				 
 	            document.getElementById("imageuploader_uploadfiles").onclick = function() {
 	            	imageuploader.start();
@@ -117,9 +117,9 @@ $(function() {
 	            };
 			},
 			FilesAdded: function(up, files) {
-				console.debug("FilesAdded called.");
+				console.log("FilesAdded called.");
 				plupload.each(files, function(file) {
-					console.debug("Creating thumbnail image for " + file.name);
+					console.log("Creating thumbnail image for " + file.name);
 					var img = new o.Image();
 					img.onload = function() {
 						var div = document.createElement('div');
@@ -142,13 +142,13 @@ $(function() {
 				});
 			},
 			UploadProgress: function(up, file) {
-				console.debug("UploadProgress called.");
+				console.log("UploadProgress called.");
 				$("#" + file.id + " .controls").children().hide().end()
 					.find(".progress").show()
 					.find(".bar").css("width", file.percent + "%").html(plupload.formatSize(file.size));
 			},
 			FileUploaded: function(up, file, object) {
-				console.debug(file.name + " uploaded.");
+				console.log(file.name + " uploaded.");
 				var code = object.response;
 				var documentUrlPrefix = $("#imageuploader_container").attr("data-attachmentUrlPrefix");
 				var documentLink = "<a href=\"" + documentUrlPrefix + code + "\"></a>";
@@ -202,11 +202,11 @@ $(function() {
 			"bLengthChange": false,
 			"bInfo": false,
 			"fnDrawCallback": function() {
-				console.debug("fnDrawCallback ENTRY");
+				console.log("fnDrawCallback ENTRY");
 				if (this.fnPagingInfo().iTotalPages == 1) {
 					$(SEL_LANDINGPAGE_UPCOMINGAUCTIONS + "_paginate").parent().parent().hide();
 				}
-				console.debug("fnDrawCallback EXIT");
+				console.log("fnDrawCallback EXIT");
 			}
 		});
 		$(SEL_LANDINGPAGE_UPCOMINGAUCTIONS + "_paginate")
@@ -223,7 +223,7 @@ $(function() {
 	
 	$(".datetimepicker").datetimepicker({
 		format: "MM d, yyyy H:ii P",
-		autoclose: true,
+		autoclose: true
 	});
 	
 	
@@ -245,6 +245,7 @@ $(function() {
 		var url = $refreshBtn.attr("href");
 		
 		$("#auction-refresh").addClass("disabled");
+		$("#auction-refresh-tip").hide();
 		$("#auction-refresh-loader").show();
 		$("#auction-list").fadeOut();
 		
@@ -260,6 +261,7 @@ $(function() {
 			
 			$refreshBtn.removeClass("disabled");
 			$("#auction-list").fadeIn();
+			$("#auction-refresh-tip").show();
 			$("#auction-refresh-loader").hide();
 		});
 	};
@@ -302,7 +304,7 @@ $(function() {
 			var auctionCode = $(this).attr("data-auctionCode");
 			var bidPrice = $("#bidPrice_" + auctionCode).val();
 			var proxy = $("#proxy_" + auctionCode).is(":checked");
-			console.debug("auctionCode: " + auctionCode + " Bid price: " + bidPrice + " proxy: " + proxy);
+			console.log("auctionCode: " + auctionCode + " Bid price: " + bidPrice + " proxy: " + proxy);
 			
 			var $auctionDiv = $("#auction_" + auctionCode);
 			
@@ -333,6 +335,8 @@ $(function() {
 	}
 	bindBidPageButtons("#auction");
 	setInterval(refreshBids, AUCTION_REFRESH_INTERVAL);
+	$("#auction-refresh-tip-interval").text(Math.floor(AUCTION_REFRESH_INTERVAL / (60 * 1000)));
+	$("#auction-refresh-tip").show();
 	$("#auction-refresh-loader").hide();
 	
 	$("#auction-refresh").click(function() {
@@ -345,12 +349,12 @@ $(function() {
 	 */
 	$("#forgotPasswordModal").on("shown.bs.modal", function() {
 		var bind = function() {
-			console.debug("Binding Forgot Password form elements...");
+			console.log("Binding Forgot Password form elements...");
 			$("#forgotPassword").submit(function(e) {
-				console.debug("Forgot Password form submitted");
+				console.log("Forgot Password form submitted");
 				var url = $(this).attr("action");
 				$.post(url, $(this).serialize(), function(data) {
-					console.debug("Success handler called.");
+					console.log("Success handler called.");
 					$("#forgotPasswordModal .modal-body").html(data);
 					bind();
 				});
@@ -365,12 +369,12 @@ $(function() {
 	 */
 	$("#changePasswordModal").on("shown.bs.modal", function() {
 		var bind = function() {
-			console.debug("Binding Change Password form elements...");
+			console.log("Binding Change Password form elements...");
 			$("#changePassword").submit(function(e) {
-				console.debug("Change Password form submitted");
+				console.log("Change Password form submitted");
 				var url = $(this).attr("action");
 				$.post(url, $(this).serialize(), function(data) {
-					console.debug("Success handler called.");
+					console.log("Success handler called.");
 					$("#changePasswordModal .modal-body").html(data);
 					bind();
 				});
@@ -381,15 +385,34 @@ $(function() {
 	});
 	
 	$("#galleryModal").on("shown.bs.modal", function() {
-		console.debug("gallery displayed");
+		console.log("gallery displayed");
 		$(".carousel").carousel();
 	});
 	
 	var refreshRunningAuctions = function () {
-		$("#running .widget-body").load($("#running").attr("data-url"));
+		
+		$("#dashboard-running-refresh").addClass("disabled");
+		$("#dashboard-running-refresh-tip").hide();
+		$("#dashboard-running-refresh-loader").show();
+		$("#dashboard-running-list").fadeOut();
+		
+		$("#running .widget-body").load($("#running").attr("data-url"), function() {
+			$("#dashboard-running-refresh").removeClass("disabled");
+			$("#dashboard-running-list").fadeIn();
+			$("#dashboard-running-refresh-tip").show();
+			$("#dashboard-running-refresh-loader").hide();
+		});
 	};
 	setInterval(refreshRunningAuctions, DASHBOARD_AUCTION_REFRESH_INTERVAL);
 	refreshRunningAuctions();
+	$("#dashboard-running-refresh-tip-interval").text(Math.floor(DASHBOARD_AUCTION_REFRESH_INTERVAL / (60 * 1000)));
+	$("#dashboard-running-refresh-tip").show();
+	$("#dashboard-running-refresh-loader").hide();
 	
-	console.debug("Successfully completed custom scripts...");
+	$("#dashboard-running-refresh").click(function() {
+		refreshRunningAuctions();
+		return false;
+	});
+	
+	console.log("Successfully completed custom scripts...");
 });
