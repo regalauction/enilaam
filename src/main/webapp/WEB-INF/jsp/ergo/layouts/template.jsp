@@ -258,9 +258,6 @@
 		<!-- SlimScroll Plugin -->
 		<script src="themes/ergo/theme/scripts/plugins/other/jquery-slimScroll/jquery.slimscroll.js"></script>
 		
-		<!-- Common Demo Script -->
-		<script src="themes/ergo/theme/scripts/demo/common.js"></script>
-		
 		<!-- Holder Plugin -->
 		<script src="themes/ergo/theme/scripts/plugins/other/holder/holder.js"></script>
 		

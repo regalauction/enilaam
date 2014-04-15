@@ -327,7 +327,6 @@
 								<jsSourceFile>theme/scripts/plugins/system/modernizr.js</jsSourceFile>
 								<jsSourceFile>bootstrap/js/bootstrap.js</jsSourceFile>
 								<jsSourceFile>theme/scripts/plugins/other/jquery-slimScroll/jquery.slimscroll.js</jsSourceFile>
-								<jsSourceFile>theme/scripts/demo/common.js</jsSourceFile>
 								<jsSourceFile>theme/scripts/plugins/other/holder/holder.js</jsSourceFile>
 								<jsSourceFile>theme/scripts/plugins/forms/pixelmatrix-uniform/jquery.uniform.js</jsSourceFile>
 								<jsSourceFile>bootstrap/extend/bootstrap-select/bootstrap-select.js</jsSourceFile>

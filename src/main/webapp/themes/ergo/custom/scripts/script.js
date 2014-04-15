@@ -1,44 +1,287 @@
-/**
- * Custom JavaScripts
+/*
+ * ---------------------------------------------------------------------
+ * Custom Plug-ins
+ * ---------------------------------------------------------------------
  */
-$(function() {
-	console.log("Running custom scripts...");
-	
-	// Selectors
-	var SEL_UPCOMINGAUCTIONS = "#upcomingAuctionsTable";
-	var SEL_LANDINGPAGE_UPCOMINGAUCTIONS = "#landing_1 " + SEL_UPCOMINGAUCTIONS;
-	var SEL_LANDINGPAGE_TABLINKS = ".tab_links a";
+(function($) {
+	$.fn.isEmpty = function(options) {
+		// check if selector is present in DOM or not
+		return this.length <= 0;
+	};
+}(jQuery));
 
-	var SEL_ATTACHMENTS_DIV = "ul.attachments";
-	var SEL_ATTACHMENTS_LINK = "a.attachments";
-	var SEL_PLUSBUTTON = ".add-on.plus";
-	var SEL_MINUSBUTTON = ".add-on.minus";
-	var SEL_ADDONBUTTONS = ".add-on:not(.disabled)"; 
-	var AUCTION_REFRESH_INTERVAL = 1000 * 60 * 5;	// Refresh every 5 minutes
-	var DASHBOARD_AUCTION_REFRESH_INTERVAL = 1000 * 60 * 5;	// Refresh every 5 minutes
-	
-	// utility functions
-
-	function commafyNumber(number) {
-		var withcommas;
-		withcommas = String(number).replace(/(^|[^\w.])(\d{4,})/g, function($0, $1, $2) {
-			var inter;
-			inter = $1 + $2.replace(/\d(?=(?:\d\d\d)+(?!\d))/g, "$&,");
-			return inter;
+(function($) {
+	$.fn.refreshWidget = function(options) {
+		
+		// check if selector is present in DOM or not
+		if (this.isEmpty()) return this;
+		
+		// fetch the ID attribute of the widget
+		var baseName = this.selector;
+		
+		// default settings
+		var settings = $.extend({
+			replaceSelector: "",
+			refreshBtn: baseName + "-refresh",
+			url: $(baseName + "-refresh").attr("href"),
+			refreshTip: baseName + "-refresh-tip",
+			refreshLoader: baseName + "-refresh-loader",
+			list: baseName + "-list",
+			delay: this.attr("data-delay"),
+			preLoad: function () {},
+			postLoad: function() {},
+			refreshOnLoad: true
+		}, options);
+		
+		var isRefreshing = false;
+		
+		var refresh = function(noAnimation) {
+			
+			if (isRefreshing) return;
+			
+			console.log("Refreshing " + baseName + "...");
+			isRefreshing = true;
+			
+			settings.preLoad();
+			if (!noAnimation) {
+				$(settings.refreshBtn).addClass("disabled");
+				$(settings.refreshTip).hide();
+				$(settings.refreshLoader).show();
+				$(settings.list).fadeOut();
+			}
+			
+			// replace response content if particular area is to be replaced
+			var loadUrl = settings.replaceSelector.length > 0? 
+					settings.url + " " + settings.replaceSelector
+					: settings.url;
+			
+			$(settings.list).load(loadUrl, function() {
+				console.log("Refreshed " + baseName);
+				isRefreshing = false;
+				
+				settings.postLoad();
+				if (!noAnimation) {
+					$(settings.list).fadeIn(function() {
+						$(settings.refreshBtn).removeClass("disabled");
+						$(settings.refreshTip).show();
+						$(settings.refreshLoader).hide();
+					});
+				}
+			});
+		};
+		
+		
+		// bind refresh to click event of refresh button
+		$(settings.refreshBtn).click(function() {
+			refresh(false);
+			return false;
 		});
-		return withcommas;
+		
+		// initialize
+		$(settings.refreshTip).show();
+		$(settings.refreshLoader).hide();
+		
+		if (settings.refreshOnLoad)
+			refresh(true);
+		
+		setInterval(refresh, settings.delay);
+		
+		console.log("refreshWidget init called for " + baseName);
+		console.log("url = " + settings.url);
+		console.log("replaceSelector = " + settings.replaceSelector);
+		console.log("refreshBtn = " + settings.refreshBtn);
+		console.log("refreshTip = " + settings.refreshTip);
+		console.log("refreshLoader = " + settings.refreshLoader);
+		console.log("list = " + settings.list);
+		console.log("delay = " + settings.delay);
+		
+		return this;
+	};
+}(jQuery));
+
+/*
+ * ---------------------------------------------------------------------
+ * Global functions and variables declaration
+ * ---------------------------------------------------------------------
+ */
+//generate a random number
+function randNum()
+{
+	return (Math.floor( Math.random()* (1+40-20) ) ) + 20;
+}
+
+// generate a random number within a range (PHP's mt_rand JavaScript implementation)
+function mt_rand (min, max) 
+{
+	// http://kevin.vanzonneveld.net
+	// +   original by: Onno Marsman
+	// +   improved by: Brett Zamir (http://brett-zamir.me)
+	// +   input by: Kongo
+	// *     example 1: mt_rand(1, 1);
+	// *     returns 1: 1
+	var argc = arguments.length;
+	if (argc === 0) {
+		min = 0;
+		max = 2147483647;
 	}
-	function commaStringToFloat(commaStr) {
-		return parseFloat(commaStr.replace(/[,]+/g, ""));
+	else if (argc === 1) {
+		throw new Error('Warning: mt_rand() expects exactly 2 parameters, 1 given');
 	}
+	else {
+		min = parseInt(min, 10);
+		max = parseInt(max, 10);
+	}
+	return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+// scroll to element animation
+function scrollTo(id)
+{
+	if ($(id).length)
+		$('html,body').animate({scrollTop: $(id).offset().top},'slow');
+}
+
+// handle menu toggle button action
+function toggleMenuHidden()
+{
+	//console.log('toggleMenuHidden');
+	$('.container-fluid:first').toggleClass('menu-hidden');
+	$('#menu').toggleClass('hidden-phone', function()
+	{
+		if ($('.container-fluid:first').is('.menu-hidden'))
+		{
+			if (typeof resetResizableMenu != 'undefined') 
+				resetResizableMenu(true);
+		}
+		else 
+		{
+			removeMenuHiddenPhone();
+			
+			if (typeof lastResizableMenuPosition != 'undefined') 
+				lastResizableMenuPosition();
+		}
+		
+		if (typeof $.cookie != 'undefined')
+			$.cookie('menuHidden', $('.container-fluid:first').is('.menu-hidden'));
+	});
 	
-	$(SEL_ADDONBUTTONS).click(function() {
-		$(this).addClass("clicked").delay(100).queue(function(d) {
-			$(this).removeClass("clicked");
-			$(this).dequeue();
+	if (typeof masonryGallery != 'undefined') 
+		masonryGallery();	
+}
+
+function removeMenuHiddenPhone()
+{
+	if (!$('.container-fluid:first').is('.menu-hidden') && $('#menu').is('.hidden-phone'))
+		$('#menu').removeClass('hidden-phone');
+}
+
+/*
+ * Helper function for JQueryUI Sliders Create event
+ */
+function JQSliderCreate()
+{
+	$(this)
+		.removeClass('ui-corner-all ui-widget-content')
+		.wrap('<span class="ui-slider-wrap"></span>')
+		.find('.ui-slider-handle')
+		.removeClass('ui-corner-all ui-state-default');
+}
+// Ergo Admin utility functons - END
+
+// utility functions
+function commafyNumber(number) {
+	var withcommas;
+	withcommas = String(number).replace(/(^|[^\w.])(\d{4,})/g, function($0, $1, $2) {
+		var inter;
+		inter = $1 + $2.replace(/\d(?=(?:\d\d\d)+(?!\d))/g, "$&,");
+		return inter;
+	});
+	return withcommas;
+}
+function commaStringToFloat(commaStr) {
+	return parseFloat(commaStr.replace(/[,]+/g, ""));
+}
+
+// Configurations
+var defaultDataTableConfig = {
+	"sPaginationType": "bootstrap",
+	"sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
+	"oLanguage": {
+		"sLengthMenu": "_MENU_ records per page"
+	}
+};
+
+
+
+function bindBidPageButtons(obj) {
+	
+	$(obj + " a.attachments").click(function() {
+		$(this).parent().parent().parent().find("ul.attachments").slideToggle();
+	});
+	
+	$(obj + " .add-on.plus").click(function () {
+		var $textbox = $(this).siblings("input");
+		var textboxValue = $textbox.val();
+		if (textboxValue && textboxValue.length > 0) {
+			var price = commaStringToFloat(textboxValue);
+			var changePrice = parseFloat($textbox.attr("data-change"));
+			var newPrice = (price + changePrice).toFixed(2);
+			var newPriceString = commafyNumber(newPrice);
+			$textbox.val(newPriceString);
+		}
+	});
+	$(obj + " .add-on.minus").click(function () {
+		var $textbox = $(this).siblings("input");
+		var textboxValue = $textbox.val();
+		if (textboxValue && textboxValue.length > 0) {
+			var price = commaStringToFloat(textboxValue);
+			var changePrice = parseFloat($textbox.attr("data-change"));
+			var newPrice = (price - changePrice).toFixed(2);
+			if (newPrice >= 0) {
+				var newPriceString = commafyNumber(newPrice);
+				$textbox.val(newPriceString);
+			} else {
+				$(this).addClass("disabled");
+			}
+		}
+	});
+	
+	$(obj + " button.bid").click(function() {
+		$(this).addClass("disabled");
+		var auctionCode = $(this).attr("data-auctionCode");
+		var bidPrice = $("#bidPrice_" + auctionCode).val();
+		var proxy = $("#proxy_" + auctionCode).is(":checked");
+		console.log("auctionCode: " + auctionCode + " Bid price: " + bidPrice + " proxy: " + proxy);
+		
+		var $auctionDiv = $("#auction_" + auctionCode);
+		
+		$.ajax({
+			type: "post",
+			url: window.location.href,
+			data: { 
+				"auctionCode": auctionCode, 
+				"bidPrice": commaStringToFloat(bidPrice), 
+				"proxy": proxy 
+			},
+			success: function(html) {
+				$auctionDiv.replaceWith(html);
+				bindBidPageButtons("#auction_" + auctionCode);
+				// Hack for stylish checkbox
+				$("#auction_" + auctionCode + " .uniformjs").find("select, input, button, textarea").uniform();
+				// Hack for stylish tooltips
+				$("#auction_" + auctionCode + ' [data-toggle="tooltip"]').tooltip();
+				// flash auction
+				$("#auction_" + auctionCode).hide().fadeIn("slow");
+			},
+			error: function(data) {
+				console.error("Error occured while submitting bid");
+			}
 		});
 	});
 	
+}
+
+var reRun = function() {
 	// File uploader
 	var docuploader = new plupload.Uploader({
 		runtimes: 'html5,flash,silverlight,html4',
@@ -96,8 +339,7 @@ $(function() {
 			}
 		}
 	});
-	docuploader.init();
-	
+
 	// Image uploader
 	var imageuploader = new plupload.Uploader({
 		runtimes: 'html5,flash,silverlight,html4',
@@ -123,9 +365,9 @@ $(function() {
 					var img = new o.Image();
 					img.onload = function() {
 						var div = document.createElement('div');
-                        div.id = this.uid;
-                        $uploadItem.attr("id", file.id).find(".img").get(0).appendChild(div);
-                        
+	                    div.id = this.uid;
+	                    $uploadItem.attr("id", file.id).find(".img").get(0).appendChild(div);
+	                    
 						// embed the actual thumbnail
 						this.embed(div.id, {
 							width: 180,
@@ -168,7 +410,411 @@ $(function() {
 			}
 		}
 	});
+	
+	docuploader.init();
 	imageuploader.init();
+	
+	/*
+	 * Boostrap Extended
+	 */
+	// custom select for Boostrap using dropdowns
+	if ($('.selectpicker').length) $('.selectpicker').selectpicker();
+	
+	// bootstrap-toggle-buttons
+	if ($('.toggle-button').length) $('.toggle-button').toggleButtons();
+	
+	/*
+	 * UniformJS: Sexy form elements
+	 */
+	if ($('.uniformjs').length) $('.uniformjs').find("select, input, button, textarea").uniform();
+	
+	// colorpicker
+	if ($('#colorpicker').length) $('#colorpicker').farbtastic('#colorpickerColor');
+	
+	// datepicker
+	if ($('#datepicker').length) $("#datepicker").datepicker({ showOtherMonths:true });
+	if ($('#datepicker-inline').length) $('#datepicker-inline').datepicker({ inline: true, showOtherMonths:true });
+	
+	// daterange
+	if ($('#dateRangeFrom').length && $('#dateRangeTo').length)
+	{
+		$( "#dateRangeFrom" ).datepicker({
+			defaultDate: "+1w",
+			changeMonth: false,
+			numberOfMonths: 2,
+			onClose: function( selectedDate ) {
+				$( "#dateRangeTo" ).datepicker( "option", "minDate", selectedDate );
+			}
+		}).datepicker( "option", "maxDate", $('#dateRangeTo').val() );
+
+		$( "#dateRangeTo" ).datepicker({
+			defaultDate: "+1w",
+			changeMonth: false,
+			numberOfMonths: 2,
+			onClose: function( selectedDate ) {
+				$( "#dateRangeFrom" ).datepicker( "option", "maxDate", selectedDate );
+			}
+		}).datepicker( "option", "minDate", $('#dateRangeFrom').val() );
+	}
+	
+	$(".dynamicTable").dataTable(defaultDataTableConfig);
+	
+	$(".datetimepicker").datetimepicker({
+		format: "MM d, yyyy H:ii P",
+		autoclose: true
+	});
+	
+};
+
+var init = function() {
+	console.log("Running Ergo Admin scripts...");
+	
+	reRun();
+
+	// Sidebar menu collapsibles
+	$('#menu .collapse').on('show', function(e)
+	{
+		e.stopPropagation();
+		$(this).parents('.hasSubmenu:first').addClass('active');
+	})
+	.on('hidden', function(e)
+	{
+		e.stopPropagation();
+		$(this).parents('.hasSubmenu:first').removeClass('active');
+	});
+	
+	// main menu visibility toggle
+	$('.navbar.main .btn-navbar').click(function()
+	{
+		var disabled = typeof toggleMenuButtonWhileTourOpen != 'undefined' ? toggleMenuButtonWhileTourOpen(true) : false;
+		if (!disabled)
+			toggleMenuHidden();
+	});
+	
+	// topnav toggle
+	$('.navbar.main .toggle-navbar').click(function()
+	{
+		var that = $(this);
+		
+		if ($('.navbar.main .wrapper').is(':hidden'))
+		{
+			$(this).slideUp(20, function(){
+				$('.navbar.main .wrapper').show();
+				$('.navbar.main').animate({ height: 34 }, 200, function(){
+					$('.navbar.main').toggleClass('navbar-hidden');
+					that.slideDown();
+				});
+			});
+		}
+		else
+		{
+			$(this).slideUp(20, function(){
+				$('.navbar.main').animate({ height: 0 }, 200, function(){
+					$('.navbar.main .wrapper').hide();
+					$('.navbar.main').toggleClass('navbar-hidden');
+					that.slideDown();
+				});
+			});
+		}
+	});
+	
+	// multi-level top menu
+	$('.submenu').hover(function()
+	{
+        $(this).children('ul').removeClass('submenu-hide').addClass('submenu-show');
+    }, function()
+    {
+    	$(this).children('ul').removeClass('.submenu-show').addClass('submenu-hide');
+    })
+    .find("a:first").append(" &raquo; ");
+	
+	// tooltips
+	$('[data-toggle="tooltip"]').tooltip();
+	
+	// popovers
+	$('[data-toggle="popover"]').popover();
+	
+	// print
+	$('[data-toggle="print"]').click(function(e)
+	{
+		e.preventDefault();
+		window.print();
+	});
+	
+	// collapsible widgets
+	$('.widget[data-toggle="collapse-widget"] .widget-body')
+		.on('show', function(){
+			$(this).parents('.widget:first').attr('data-collapse-closed', "false");
+		})
+		.on('shown', function(){
+			setTimeout(function(){ $(window).resize(); }, 500);
+		})
+		.on('hidden', function(){
+			$(this).parents('.widget:first').attr('data-collapse-closed', "true");
+		});
+	
+	$('.widget[data-toggle="collapse-widget"]').each(function()
+	{
+		// append toggle button
+		$(this).find('.widget-head').append('<span class="collapse-toggle"></span>');
+		
+		// make the widget body collapsible
+		$(this).find('.widget-body').addClass('collapse');
+		
+		// verify if the widget should be opened
+		if ($(this).attr('data-collapse-closed') !== "true")
+			$(this).find('.widget-body').addClass('in');
+		
+		// bind the toggle button
+		$(this).find('.collapse-toggle').on('click', function(){
+			$(this).parents('.widget:first').find('.widget-body').collapse('toggle');
+		});
+	});
+	
+	// show/hide toggle buttons
+	$('[data-toggle="hide"]').click(function(){
+		$($(this).attr('data-target')).toggleClass('hide');
+		if ($(this).is('.scrollTarget') && !$($(this).attr('data-target')).is('.hide'))
+			scrollTo($(this).attr('data-target'));
+	});
+	
+	// handle menu position change
+	$('#toggle-menu-position').on('change', function()
+	{
+		$('.container-fluid:first').toggleClass('menu-right');
+		
+		if ($(this).prop('checked')) 
+			$('.container-fluid:first').removeClass('menu-left');
+		else
+			$('.container-fluid:first').addClass('menu-left');
+		
+		if (typeof $.cookie != 'undefined')
+			$.cookie('rightMenu', $(this).prop('checked') ? $(this).prop('checked') : null);
+		
+		if (typeof resetResizableMenu != 'undefined' && typeof lastResizableMenuPosition != 'undefined')
+		{
+			resetResizableMenu(true);
+			lastResizableMenuPosition();
+		}
+		removeMenuHiddenPhone();
+	});
+	
+	// handle persistent menu position on page load
+	if (typeof $.cookie != 'undefined' && $.cookie('rightMenu') && $('#toggle-menu-position').length)
+	{
+		$('#toggle-menu-position').prop('checked', true);
+		$('.container-fluid:first').not('.menu-right').removeClass('menu-left').addClass('menu-right');
+	}
+	
+	// handle layout type change
+	$('#toggle-layout').on('change', function()
+	{
+		if ($(this).prop('checked'))
+		{
+			$('.container-fluid:first').addClass('fixed');
+		}
+		else
+			$('.container-fluid:first').removeClass('fixed');
+		
+		if (typeof $.cookie != 'undefined')
+		{
+			$.cookie('layoutFixed', $(this).prop('checked') ? $(this).prop('checked') : null);
+			$.cookie('layoutFluid', $(this).prop('checked') ? null : $(this).prop('checked'));
+		}
+	});
+	
+	// handle persistent layout type on page load
+	if (typeof $.cookie != 'undefined' && $.cookie('layoutFixed') && $('#toggle-layout').length)
+	{
+		$('#toggle-layout').prop('checked', true);
+		$('.container-fluid:first').addClass('fixed');
+	}
+	else if (!$('.container-fluid:first').is('.fixed') || (typeof $.cookie != 'undefined' && $.cookie('layoutFluid')))
+	{
+		$('#toggle-layout').prop('checked', false);
+		$('.container-fluid:first').removeClass('fixed');
+	}
+	
+	// handle persistent menu visibility on page load
+	if (typeof $.cookie != 'undefined' && $.cookie('menuHidden') && $.cookie('menuHidden') == 'true' || (!$('.container-fluid').is('.menu-hidden') && !$('#menu').is(':visible')))
+		toggleMenuHidden();
+	else if ($('#menu').is(':visible'))
+	{
+		removeMenuHiddenPhone();
+		
+		if (typeof lastResizableMenuPosition != 'undefined') 
+			lastResizableMenuPosition();
+	}
+	
+	// menu slim scroll max height
+	setTimeout(function()
+	{
+		var menu_max_height = parseInt($('#menu .slim-scroll').attr('data-scroll-height'));
+		var menu_real_max_height = parseInt($('#wrapper').height());
+		$('#menu .slim-scroll').slimScroll({
+			height: (menu_max_height < menu_real_max_height ? (menu_real_max_height - 40) : menu_max_height) + "px",
+			allowPageScroll : true,
+			railDraggable: ($.fn.draggable ? true : false)
+	    });
+		
+		if (Modernizr.touch)
+			return; 
+		
+		// fixes weird bug when page loads and mouse over the sidebar (can't scroll)
+		$('#menu .slim-scroll').trigger('mouseenter').trigger('mouseleave');
+	}, 200);
+	
+	/* Slim Scroll Widgets */
+	$('.widget-scroll').each(function(){
+		$(this).find('.widget-body > div').slimScroll({
+			height: $(this).attr('data-scroll-height')
+	    });
+	});
+	
+	/* Other non-widget Slim Scroll areas */
+	$('#content .slim-scroll').each(function(){
+		$(this).slimScroll({
+			height: $(this).attr('data-scroll-height'),
+			allowPageScroll : false,
+			railDraggable: ($.fn.draggable ? true : false)
+	    });
+	});
+
+	/* wysihtml5 */
+	if ($('textarea.wysihtml5').size() > 0)
+		$('textarea.wysihtml5').wysihtml5();
+	
+	/* Table select / checkboxes utility */
+	$('.checkboxs thead :checkbox').change(function(){
+		if ($(this).is(':checked'))
+		{
+			$('.checkboxs tbody :checkbox').prop('checked', true).parent().addClass('checked');
+			$('.checkboxs tbody tr.selectable').addClass('selected');
+			$('.checkboxs_actions').show();
+		}
+		else
+		{
+			$('.checkboxs tbody :checkbox').prop('checked', false).parent().removeClass('checked');
+			$('.checkboxs tbody tr.selectable').removeClass('selected');
+			$('.checkboxs_actions').hide();
+		}
+	});
+	
+	$('.checkboxs tbody').on('click', 'tr.selectable', function(e){
+		var c = $(this).find(':checkbox');
+		
+		if (e.srcElement.nodeName == 'INPUT')
+		{
+			if (c.is(':checked'))
+				$(this).addClass('selected');
+			else
+				$(this).removeClass('selected');
+		}
+		else if (e.srcElement.nodeName != 'TD' && e.srcElement.nodeName != 'TR' && e.srcElement.nodeName != 'DIV')
+		{
+			return true;
+		}
+		else
+		{
+			if (c.is(':checked'))
+			{
+				c.prop('checked', false).parent().removeClass('checked');
+				$(this).removeClass('selected');
+			}
+			else
+			{
+				c.prop('checked', true).parent().addClass('checked');
+				$(this).addClass('selected');
+			}
+		}
+		if ($('.checkboxs tr.selectable :checked').size() == $('.checkboxs tr.selectable :checkbox').size())
+			$('.checkboxs thead :checkbox').prop('checked', true).parent().addClass('checked');
+		else
+			$('.checkboxs thead :checkbox').prop('checked', false).parent().removeClass('checked');
+
+		if ($('.checkboxs tr.selectable :checked').size() >= 1)
+			$('.checkboxs_actions').show();
+		else
+			$('.checkboxs_actions').hide();
+	});
+	
+	if ($('.checkboxs tbody :checked').size() == $('.checkboxs tbody :checkbox').size() && $('.checkboxs tbody :checked').length)
+		$('.checkboxs thead :checkbox').prop('checked', true).parent().addClass('checked');
+	
+	if ($('.checkboxs tbody :checked').length)
+		$('.checkboxs_actions').show();
+	
+	$('.radioboxs tbody tr.selectable').click(function(e){
+		var c = $(this).find(':radio');
+		if (e.srcElement.nodeName == 'INPUT')
+		{
+			if (c.is(':checked'))
+				$(this).addClass('selected');
+			else
+				$(this).removeClass('selected');
+		}
+		else if (e.srcElement.nodeName != 'TD' && e.srcElement.nodeName != 'TR')
+		{
+			return true;
+		}
+		else
+		{
+			if (c.is(':checked'))
+			{
+				c.attr('checked', false);
+				$(this).removeClass('selected');				
+			}
+			else
+			{
+				c.attr('checked', true);
+				$('.radioboxs tbody tr.selectable').removeClass('selected');
+				$(this).addClass('selected');
+			}
+		}
+	});
+	
+	// sortable tables
+	if ($( ".js-table-sortable" ).length)
+	{	
+		$( ".js-table-sortable" ).sortable(
+		{
+			placeholder: "ui-state-highlight",
+			items: "tbody tr",
+			handle: ".js-sortable-handle",
+			forcePlaceholderSize: true,
+			helper: function(e, ui) 
+			{
+				ui.children().each(function() {
+					$(this).width($(this).width());
+				});
+				return ui;
+			},
+			start: function(event, ui) 
+			{
+				if (typeof mainYScroller != 'undefined') mainYScroller.disable();
+				ui.placeholder.html('<td colspan="' + $(this).find('tbody tr:first td').size() + '">&nbsp;</td>');
+			},
+		    stop: function() { if (typeof mainYScroller != 'undefined') mainYScroller.enable(); }
+		});
+	}
+
+	
+	console.log("Completed running Ergo Admin scripts.");
+	
+	// -------------------------------------------------------------------
+	// Custom scripts
+	// -------------------------------------------------------------------
+	
+	console.log("Running custom scripts...");
+	
+	// Initialize DOM elements
+	
+	$(".add-on:not(.disabled)").click(function() {
+		$(this).addClass("clicked").delay(100).queue(function(d) {
+			$(this).removeClass("clicked");
+			$(this).dequeue();
+		});
+	});
 	
 	$('#news').easyTicker({
 		speed: 'slow',
@@ -182,18 +828,9 @@ $(function() {
 		}
 	});
 	
-	// Configurations
-	var defaultDataTableConfig = {
-		"sPaginationType": "bootstrap",
-		"sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
-		"oLanguage": {
-			"sLengthMenu": "_MENU_ records per page"
-		}
-	};
-	
 	// Upcoming Auction table - start
-	if ($(SEL_LANDINGPAGE_UPCOMINGAUCTIONS).size() > 0) {
-		$(SEL_LANDINGPAGE_UPCOMINGAUCTIONS).dataTable({
+	if ($("#landing_1 #upcomingAuctionsTable").size() > 0) {
+		$("#landing_1 #upcomingAuctionsTable").dataTable({
 			"bPaginate": true,
 			"iDisplayLength": 2,
 			"sPaginationType": "two_button",
@@ -204,31 +841,24 @@ $(function() {
 			"fnDrawCallback": function() {
 				console.log("fnDrawCallback ENTRY");
 				if (this.fnPagingInfo().iTotalPages == 1) {
-					$(SEL_LANDINGPAGE_UPCOMINGAUCTIONS + "_paginate").parent().parent().hide();
+					$("#landing_1 #upcomingAuctionsTable" + "_paginate").parent().parent().hide();
 				}
 				console.log("fnDrawCallback EXIT");
 			}
 		});
-		$(SEL_LANDINGPAGE_UPCOMINGAUCTIONS + "_paginate")
+		$("#landing_1 #upcomingAuctionsTable" + "_paginate")
 			.removeClass("paging_two_button")
 			.addClass("paging_bootstrap pagination");
-		$(SEL_LANDINGPAGE_UPCOMINGAUCTIONS + "_wrapper div:first").remove();
+		$("#landing_1 #upcomingAuctionsTable" + "_wrapper div:first").remove();
 	} else {
 		//	Differently formatted data table if not on landing page
-		$(SEL_UPCOMINGAUCTIONS).dataTable(defaultDataTableConfig);
+		$("#upcomingAuctionsTable").dataTable(defaultDataTableConfig);
 	}
 	// Upcoming Auction table - end
 	
-	$(".dynamicTable").dataTable(defaultDataTableConfig);
 	
-	$(".datetimepicker").datetimepicker({
-		format: "MM d, yyyy H:ii P",
-		autoclose: true
-	});
-	
-	
-	$(SEL_LANDINGPAGE_TABLINKS).click(function(e){
-		$(SEL_LANDINGPAGE_TABLINKS).removeClass('active');
+	$(".tab_links a").click(function(e){
+		$(".tab_links a").removeClass('active');
 		$(this).addClass('active');
 	});
 	
@@ -238,111 +868,7 @@ $(function() {
 		notyfy({ text: errorText, type: "error"});
 	}
 	
-	var refreshBids = function() {
-		console.log("Refreshing auctions...");
-		
-		var $refreshBtn = $("#auction-refresh");
-		var url = $refreshBtn.attr("href");
-		
-		$("#auction-refresh").addClass("disabled");
-		$("#auction-refresh-tip").hide();
-		$("#auction-refresh-loader").show();
-		$("#auction-list").fadeOut();
-		
-		$("#auction-list").load(url + " #auction-list", function() {
-			console.log("Auctions refreshed.");
-			
-			bindBidPageButtons("#auction");
-			
-			// Hack for stylish checkbox
-			$("#auction .uniformjs").find("select, input, button, textarea").uniform();
-			// Hack for stylish tooltips
-			$('#auction [data-toggle="tooltip"]').tooltip();
-			
-			$refreshBtn.removeClass("disabled");
-			$("#auction-list").fadeIn();
-			$("#auction-refresh-tip").show();
-			$("#auction-refresh-loader").hide();
-		});
-	};
-	
-	function bindBidPageButtons(obj) {
-		
-		$(obj + " " + SEL_ATTACHMENTS_LINK).click(function() {
-			$(this).parent().parent().parent().find(SEL_ATTACHMENTS_DIV).slideToggle();
-		});
-		
-		$(obj + " " + SEL_PLUSBUTTON).click(function () {
-			var $textbox = $(this).siblings("input");
-			var textboxValue = $textbox.val();
-			if (textboxValue && textboxValue.length > 0) {
-				var price = commaStringToFloat(textboxValue);
-				var changePrice = parseFloat($textbox.attr("data-change"));
-				var newPrice = (price + changePrice).toFixed(2);
-				var newPriceString = commafyNumber(newPrice);
-				$textbox.val(newPriceString);
-			}
-		});
-		$(obj + " " + SEL_MINUSBUTTON).click(function () {
-			var $textbox = $(this).siblings("input");
-			var textboxValue = $textbox.val();
-			if (textboxValue && textboxValue.length > 0) {
-				var price = commaStringToFloat(textboxValue);
-				var changePrice = parseFloat($textbox.attr("data-change"));
-				var newPrice = (price - changePrice).toFixed(2);
-				if (newPrice >= 0) {
-					var newPriceString = commafyNumber(newPrice);
-					$textbox.val(newPriceString);
-				} else {
-					$(this).addClass("disabled");
-				}
-			}
-		});
-		
-		$(obj + " " + "button.bid").click(function() {
-			$(this).addClass("disabled");
-			var auctionCode = $(this).attr("data-auctionCode");
-			var bidPrice = $("#bidPrice_" + auctionCode).val();
-			var proxy = $("#proxy_" + auctionCode).is(":checked");
-			console.log("auctionCode: " + auctionCode + " Bid price: " + bidPrice + " proxy: " + proxy);
-			
-			var $auctionDiv = $("#auction_" + auctionCode);
-			
-			$.ajax({
-				type: "post",
-				url: window.location.href,
-				data: { 
-					"auctionCode": auctionCode, 
-					"bidPrice": commaStringToFloat(bidPrice), 
-					"proxy": proxy 
-				},
-				success: function(html) {
-					$auctionDiv.replaceWith(html);
-					bindBidPageButtons("#auction_" + auctionCode);
-					// Hack for stylish checkbox
-					$("#auction_" + auctionCode + " .uniformjs").find("select, input, button, textarea").uniform();
-					// Hack for stylish tooltips
-					$("#auction_" + auctionCode + ' [data-toggle="tooltip"]').tooltip();
-					// flash auction
-					$("#auction_" + auctionCode).hide().fadeIn("slow");
-				},
-				error: function(data) {
-					console.error("Error occured while submitting bid");
-				}
-			});
-		});
-		
-	}
 	bindBidPageButtons("#auction");
-	setInterval(refreshBids, AUCTION_REFRESH_INTERVAL);
-	$("#auction-refresh-tip-interval").text(Math.floor(AUCTION_REFRESH_INTERVAL / (60 * 1000)));
-	$("#auction-refresh-tip").show();
-	$("#auction-refresh-loader").hide();
-	
-	$("#auction-refresh").click(function() {
-		refreshBids();
-		return false;
-	});
 	
 	/**
 	 * Ajax form submit for forgot password
@@ -389,30 +915,30 @@ $(function() {
 		$(".carousel").carousel();
 	});
 	
-	var refreshRunningAuctions = function () {
-		
-		$("#dashboard-running-refresh").addClass("disabled");
-		$("#dashboard-running-refresh-tip").hide();
-		$("#dashboard-running-refresh-loader").show();
-		$("#dashboard-running-list").fadeOut();
-		
-		$("#running .widget-body").load($("#running").attr("data-url"), function() {
-			$("#dashboard-running-refresh").removeClass("disabled");
-			$("#dashboard-running-list").fadeIn();
-			$("#dashboard-running-refresh-tip").show();
-			$("#dashboard-running-refresh-loader").hide();
-		});
-	};
-	setInterval(refreshRunningAuctions, DASHBOARD_AUCTION_REFRESH_INTERVAL);
-	refreshRunningAuctions();
-	$("#dashboard-running-refresh-tip-interval").text(Math.floor(DASHBOARD_AUCTION_REFRESH_INTERVAL / (60 * 1000)));
-	$("#dashboard-running-refresh-tip").show();
-	$("#dashboard-running-refresh-loader").hide();
-	
-	$("#dashboard-running-refresh").click(function() {
-		refreshRunningAuctions();
-		return false;
+	// Refresh widgets
+	$("#auction").refreshWidget({
+		refreshOnLoad: false,
+		replaceSelector: "#auction-list",
+		postLoad: function() {
+			bindBidPageButtons("#auction");
+			// Hack for stylish checkbox
+			$("#auction .uniformjs").find("select, input, button, textarea").uniform();
+			// Hack for stylish tooltips
+			$('#auction [data-toggle="tooltip"]').tooltip();
+
+		}
 	});
+	$("#dashboard-running").refreshWidget();
 	
-	console.log("Successfully completed custom scripts...");
+	console.log("Completed running custom scripts.");
+	
+};
+
+/*
+ * ---------------------------------------------------------------------
+ * Document ready
+ * ---------------------------------------------------------------------
+ */
+$(function() {
+	init();
 });
