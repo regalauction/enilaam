@@ -32,7 +32,7 @@
 							<td><c:out value="${auction.name}"/></td>
 							<td><joda:format value="${auction.startDate}" style="MM" /></td>
 							<td><joda:format value="${auction.endDate}" style="MM" /></td>
-							<td><a class="btn btn-block btn-primary btn-icon glyphicons pencil" href="${fn:escapeXml(editUrl)}"><i></i><spring:message code="form.button.edit"/></a></td>
+							<td><a class="btn btn-block btn-icon glyphicons pencil" href="${fn:escapeXml(editUrl)}"><i></i><spring:message code="form.button.edit"/></a></td>
 						</tr>
 						</c:forEach>
 					</tbody>

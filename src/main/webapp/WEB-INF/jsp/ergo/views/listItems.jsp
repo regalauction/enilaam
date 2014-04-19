@@ -36,7 +36,7 @@
 									width="<spring:theme code="item.thumbnail.width" />"/>
 								</c:if>
 							</td> --%>
-							<td><a class="btn btn-block btn-primary btn-icon glyphicons pencil" href="${fn:escapeXml(editUrl)}"><i></i><spring:message code="form.button.edit"/></a></td>
+							<td><a class="btn btn-block btn-icon glyphicons pencil" href="${fn:escapeXml(editUrl)}"><i></i><spring:message code="form.button.edit"/></a></td>
 						</tr>
 						</c:forEach>
 					</tbody>

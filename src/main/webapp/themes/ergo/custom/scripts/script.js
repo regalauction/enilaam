@@ -162,7 +162,7 @@ function toggleMenuHidden()
 		}
 		
 		if (typeof $.cookie != 'undefined')
-			$.cookie('menuHidden', $('.container-fluid:first').is('.menu-hidden'));
+			$.cookie('menuHidden', $('.container-fluid:first').is('.menu-hidden'), { path: baseUrl() });
 	});
 	
 	if (typeof masonryGallery != 'undefined') 
@@ -189,6 +189,10 @@ function JQSliderCreate()
 // Ergo Admin utility functons - END
 
 // utility functions
+function baseUrl() {
+	return $("head base").attr("href");
+}
+
 function commafyNumber(number) {
 	var withcommas;
 	withcommas = String(number).replace(/(^|[^\w.])(\d{4,})/g, function($0, $1, $2) {
@@ -475,12 +479,28 @@ var init = function() {
 	$('#menu .collapse').on('show', function(e)
 	{
 		e.stopPropagation();
+		
 		$(this).parents('.hasSubmenu:first').addClass('active');
+		
+		var id = $(this).attr("id");
+		if (typeof $.cookie != 'undefined') {
+			var sidebarNav = $.cookie('sidebarNav')? JSON.parse($.cookie('sidebarNav')) : {};
+			sidebarNav[id] = true;
+			$.cookie('sidebarNav', JSON.stringify(sidebarNav), { path: baseUrl() });
+		}
 	})
 	.on('hidden', function(e)
 	{
 		e.stopPropagation();
+		
 		$(this).parents('.hasSubmenu:first').removeClass('active');
+		
+		var id = $(this).attr("id");
+		if (typeof $.cookie != 'undefined') {
+			var sidebarNav = $.cookie('sidebarNav')? JSON.parse($.cookie('sidebarNav')) : {};
+			sidebarNav[id] = false;
+			$.cookie('sidebarNav', JSON.stringify(sidebarNav), { path: baseUrl() });
+		}
 	});
 	
 	// main menu visibility toggle
@@ -577,6 +597,7 @@ var init = function() {
 		if ($(this).is('.scrollTarget') && !$($(this).attr('data-target')).is('.hide'))
 			scrollTo($(this).attr('data-target'));
 	});
+	
 	
 	// handle menu position change
 	$('#toggle-menu-position').on('change', function()
@@ -929,6 +950,19 @@ var init = function() {
 		}
 	});
 	$("#dashboard-running").refreshWidget();
+	
+	// handle persistent sidebar menu
+	if (typeof $.cookie != 'undefined' && $.cookie('sidebarNav')) {
+		console.log("Reading sidebarNav states from Cookie...");
+		var sidebarNav = JSON.parse($.cookie('sidebarNav'));
+		$.each(sidebarNav, function(id, obj) {
+			if (obj) $("#" + id).collapse("show");
+		});
+	}
+	// Highlight dashboard when activated
+	if (window.location.pathname == $("#menu .menu-0 li:first a").attr("href")) {
+		$("#menu .menu-0 li:first").addClass("active");
+	}
 	
 	console.log("Completed running custom scripts.");
 	

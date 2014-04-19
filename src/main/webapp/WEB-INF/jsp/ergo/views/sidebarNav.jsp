@@ -16,7 +16,7 @@
 	
 						
 		<!-- Menu Regular Item -->
-		<li class="glyphicons display active"><a href="<spring:url value="/"/>"><i></i><span>Dashboard</span></a></li>
+		<li class="glyphicons display"><a href="<spring:url value="/"/>"><i></i><span>Dashboard</span></a></li>
 		
 		<security:authorize ifAnyGranted="ROLE_ADMIN">
 		<!-- Components Submenu Level 1 -->
@@ -67,6 +67,7 @@
 		</li>
 		<!-- Components Submenu Level 1 END -->
 		
+<%--
 		<!-- Wizards Submenu Level 1 -->
 		<li class="hasSubmenu">
 		
@@ -97,12 +98,12 @@
 			<span class="count">2</span>
 		</li>
 		<!-- // Reports Submenu Level 1 END -->
-		
+ --%>
 		</security:authorize>		
 	</ul>
 	<div class="clearfix"></div>
 	<!-- // Regular Size Menu END -->
-	
+<%--	
 	<security:authorize ifAnyGranted="ROLE_ADMIN">
 	<ul class="menu-1">
 		<li class="hasSubmenu active">
@@ -117,7 +118,7 @@
 	</ul>
 	<div class="clearfix"></div>
 	</security:authorize>
-	
+ --%>	
 	<div class="separator bottom"></div>
 	
 	
