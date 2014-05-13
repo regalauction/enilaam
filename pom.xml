@@ -54,9 +54,9 @@
 		<jdbc.url>jdbc:mysql://localhost:3306/enilaamDev</jdbc.url>
 		<jdbc.username>root</jdbc.username>
 		<jdbc.password>passw0rd</jdbc.password>
-		<dir.log>D:\\Projects\\eNilaam\\logs</dir.log>
-		<dir.image>D:\\Projects\\eNilaam\\attachments\\images\\</dir.image>
-		<dir.document>D:\\Projects\\eNilaam\\attachments\\documents\\</dir.document>
+		<dir.log>/Users/Zubin/Documents/Projects/eNilaam/logs</dir.log>
+		<dir.image>/Users/Zubin/Documents/Projects/eNilaam/attachments/images/</dir.image>
+		<dir.document>/Users/Zubin/Documents/Projects/eNilaam/attachments/documents/</dir.document>
 		<html.base.href>/enilaam/</html.base.href>
 		<mail.disabled>true</mail.disabled>
 		<mail.host>mail.regalauction.in</mail.host>
