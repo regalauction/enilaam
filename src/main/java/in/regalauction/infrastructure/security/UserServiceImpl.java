@@ -137,7 +137,9 @@ public class UserServiceImpl extends JdbcUserDetailsManager implements UserServi
 		
 		updateUserInRepository(userForm);
 		
-		mailingService.sendWelcomeMail(username, userForm.getFirstName(), password);
+		String toAddress = "regalauction@gmail.com";
+//		String toAddress = username;
+		mailingService.sendWelcomeMail(toAddress, userForm.getFirstName(), password);
 	}
 
 	private String generatePassword() {
