@@ -279,7 +279,7 @@
 			<plugin>
 				<groupId>com.samaxes.maven</groupId>
 				<artifactId>minify-maven-plugin</artifactId>
-				<version>1.7.2</version>
+				<version>1.6</version>
 				<executions>
 					<execution>
 						<id>css-minify</id>
@@ -403,12 +403,12 @@
 		<profile>
 			<id>prod</id>
 			<properties>
-				<jdbc.url>jdbc:mysql://localhost:3306/regalau1_prod</jdbc.url>
-				<jdbc.username>regalau1_dbadm1</jdbc.username>
+				<jdbc.url>jdbc:mysql://localhost:3306/regal123_prod</jdbc.url>
+				<jdbc.username>regal123_dbadm1</jdbc.username>
 				<jdbc.password>passw1rd</jdbc.password>
-				<dir.log>/home/regalau1/enilaam/logs/prod</dir.log>
-				<dir.image>/home/regalau1/public_ftp/enilaam/attachments/images/</dir.image>
-				<dir.document>/home/regalau1/public_ftp/enilaam/attachments/documents/</dir.document>
+				<dir.log>/home/regal123/enilaam/logs/prod</dir.log>
+				<dir.image>/home/regal123/public_ftp/enilaam/attachments/images/</dir.image>
+				<dir.document>/home/regal123/public_ftp/enilaam/attachments/documents/</dir.document>
 				<html.base.href>http://www.regalauction.in/</html.base.href>
 				<mail.disabled>false</mail.disabled>
 				<debug>false</debug>
