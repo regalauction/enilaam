@@ -406,7 +406,7 @@
 			<properties>
 				<jdbc.url>jdbc:mysql://regalauction.in:3306/enilaamprod</jdbc.url>
 				<jdbc.username>root</jdbc.username>
-				<jdbc.password>passw1rd</jdbc.password>
+				<jdbc.password></jdbc.password>
 				<dir.log>/root/logs/prod</dir.log>
 				<dir.image>/root/attachments/images/</dir.image>
 				<dir.document>/root/attachments/documents/</dir.document>
