@@ -26,7 +26,7 @@ insert into item(code, name, thumbimg_id) values ('DUMMY-ITEM-3', 'Machine', 3);
 
 
 -- running auction
-insert into auction(auctioncode, auctiontype, name, item_id, startdate, enddate, baseprice, reserveprice, deltaprice, timeextension) select 'DUMMY-AUCTION-1', 'ENGLISH', 'Well-maintained Vintage Car (1914)', item_id, subdate(current_timestamp, interval 1 month), adddate(current_timestamp, interval 1 month), 100.00, 10000.00, 10.00, 1 FROM ITEM WHERE CODE = 'DUMMY-ITEM-1';
+insert into auction(auctioncode, auctiontype, name, item_id, startdate, enddate, baseprice, reserveprice, deltaprice, timeextension) select 'DUMMY-AUCTION-1', 'ENGLISH', 'Well-maintained Vintage Car (1914)', item_id, subdate(current_timestamp, interval 1 month), adddate(current_timestamp, interval 1 month), 100.00, 10000.00, 10.00, 1 from item where code = 'DUMMY-ITEM-1';
 insert into auction_document select auction_id, (select attachment_id from attachment where code = '1.txt') from auction where auctioncode = 'DUMMY-AUCTION-1';
 
 insert into auction(auctioncode, auctiontype, name, item_id, startdate, enddate, baseprice, reserveprice, deltaprice, timeextension) select 'DUMMY-AUCTION-2', 'DUTCH', 'Filtering Machine', item_id, subdate(current_timestamp, interval 1 month), adddate(current_timestamp, interval 1 month), 10000.00, 100.00, 10.00, 2 from item where code = 'DUMMY-ITEM-3';

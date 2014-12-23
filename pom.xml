@@ -9,9 +9,9 @@
 	<description>Online auction platform.</description>
 	
 	<scm>
-		<connection>scm:git:ssh://github.com/regalauction/enilaam.git</connection>
-		<developerConnection>scm:git:ssh://git@github.com/regalauction/enilaam.git</developerConnection>
-		<url>https://github.com/regalauction/enilaam.git</url>
+		<connection>scm:git:git@github.com:regalauction/enilaam.git</connection>
+		<developerConnection>scm:git:git@github.com:regalauction/enilaam.git</developerConnection>
+		<url>scm:git:git@github.com:regalauction/enilaam.git</url>
 		<tag>HEAD</tag>
 	</scm>
 	
@@ -280,7 +280,7 @@
 			<plugin>
 				<groupId>com.samaxes.maven</groupId>
 				<artifactId>minify-maven-plugin</artifactId>
-				<version>1.6</version>
+				<version>1.7</version>
 				<executions>
 					<execution>
 						<id>css-minify</id>
@@ -288,6 +288,7 @@
 						<configuration>
 							<skipMerge>true</skipMerge>
 							<cssSourceDir>themes/ergo</cssSourceDir>
+							
 							<cssSourceFiles>
 								<cssSourceFile>bootstrap/css/bootstrap.css</cssSourceFile>
 								<cssSourceFile>bootstrap/css/responsive.css</cssSourceFile>
