@@ -6,6 +6,9 @@
 <%@ taglib uri="/WEB-INF/tlds/util.tld" prefix="util"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 
+<c:set var="isRoleAdmin" value="false"/>
+<security:authorize ifAnyGranted="ROLE_ADMIN"><c:set var="isRoleAdmin" value="true"/></security:authorize>
+
 <table class="table table-striped">
 	<thead>
 		<tr>
@@ -15,22 +18,26 @@
 			<th><spring:message code="auction.reserveprice"/></th>
 			<th><spring:message code="auction.bidprice"/></th>
 			<th><spring:message code="auction.bidtime"/></th>
-			<th><spring:message code="bidder"/></th>
+			<c:if test="${isRoleAdmin}">
+				<th><spring:message code="bidder"/></th>
+			</c:if>
 		</tr>
 	</thead>
 	<tbody>
 		<c:forEach items="${auctions}" var="auction">
 			<tr>
 				<td>
-					<security:authorize ifAnyGranted="ROLE_ADMIN">
-						<spring:url value="/auction/{auctionCode}" var="editUrl">
-							<spring:param name="auctionCode" value="${auction.auctionCode}"/>
-						</spring:url>
-						<a href="${editUrl}"><c:out value="${auction.auctionCode}"/></a>
-					</security:authorize>
-					<security:authorize ifNotGranted="ROLE_ADMIN">
-						<c:out value="${auction.auctionCode}"/>
-					</security:authorize>
+					<c:choose>
+						<c:when test="${isRoleAdmin}">
+							<spring:url value="/auction/{auctionCode}" var="editUrl">
+								<spring:param name="auctionCode" value="${auction.auctionCode}"/>
+							</spring:url>
+							<a href="${editUrl}"><c:out value="${auction.auctionCode}"/></a>
+						</c:when>
+						<c:otherwise>
+							<c:out value="${auction.auctionCode}"/>
+						</c:otherwise>
+					</c:choose>
 				</td>
 				<td><c:out value="${auction.name}"/></td>
 				<td>
@@ -44,7 +51,7 @@
 				</td>
 				<c:choose>
 					<c:when test="${auction.noBid}">
-						<td colspan="3" class="center text-warning"><spring:message code="auction.nobids"/></td>
+						<td colspan="${isRoleAdmin? '3': '2'}" class="center text-warning"><spring:message code="auction.nobids"/></td>
 					</c:when>
 					<c:otherwise>
 						<td>
@@ -52,10 +59,12 @@
 							<fmt:formatNumber value="${auction.leadPrice.amount}" groupingUsed="true" minFractionDigits="0" maxFractionDigits="2"/>
 						</td>
 						<td><joda:format value="${auction.winningBid.bidTime}" style="MM" /></td>
-						<td>
-							<c:out value="${auction.winningBid.bidder.firstName}"/>
-							<c:out value="${auction.winningBid.bidder.lastName}"/>
-						</td>
+						<c:if test="${isRoleAdmin}">
+							<td>
+								<c:out value="${auction.winningBid.bidder.firstName}"/>
+								<c:out value="${auction.winningBid.bidder.lastName}"/>
+							</td>
+						</c:if>
 					</c:otherwise>
 				</c:choose>
 			</tr>

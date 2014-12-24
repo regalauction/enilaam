@@ -26,6 +26,7 @@ import java.util.Set;
 
 import javax.validation.Valid;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.Validate;
 import org.joda.time.DateTime;
@@ -101,6 +102,11 @@ public class AuctionController {
 	public AuctionForm getEditForm(@PathVariable("auctionCode") String auctionCode, ModelMap map) throws Exception {
 		Auction auction = auctionRepository.findByAuctionCode(new AuctionCode(auctionCode));
 		Validate.notNull(auction);
+		
+		// Compute number of bidders and observers
+		map.addAttribute("numBidders", CollectionUtils.intersection(auction.getUsers(), userService.findBidders()).size());
+		map.addAttribute("numObservers", CollectionUtils.intersection(auction.getUsers(), userService.findObservers()).size());
+		
 		return new AuctionForm(new AuctionViewAdapter(auction));
 	}
 

@@ -1,5 +1,6 @@
 <!-- item.jsp -->
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
@@ -10,8 +11,10 @@
 		<!-- Widget heading -->
 		<div class="widget-head">
 			<ul>
-				<li class="active"><a href="#info" class="glyphicons notes" data-toggle="tab"><i></i><span>Info</span></a></li>
-				<li><a href="#images" class="glyphicons camera" data-toggle="tab"><i></i><span>Images</span></a></li>
+				<li class="active"><a href="#info" class="glyphicons notes" data-toggle="tab"><i></i><span class="strong">Info</span></a></li>
+				<li><a href="#images" class="glyphicons camera" data-toggle="tab"><i></i><span class="strong">Images</span>
+					<span>(${not empty itemForm.currImages? fn:length(itemForm.currImages) : 'empty'})</span>
+				</a></li>
 			</ul>
 		</div>
 		<!-- // Widget heading END -->

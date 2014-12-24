@@ -31,8 +31,8 @@ $(document).ready(function() {
 		<!-- Widget heading -->
 		<div class="widget-head">
 			<ul>
-				<li class="active"><a href="#info" class="glyphicons notes" data-toggle="tab"><i></i><span>Info</span></a></li>
-				<li><a href="#contact" class="glyphicons phone" data-toggle="tab"><i></i><span>Contact</span></a></li>
+				<li class="active"><a href="#info" class="glyphicons notes" data-toggle="tab"><i></i><span class="strong">Info</span></a></li>
+				<li><a href="#contact" class="glyphicons phone" data-toggle="tab"><i></i><span class="strong">Contact</span></a></li>
 			</ul>
 		</div>
 		<!-- // Widget heading END -->

@@ -1,5 +1,6 @@
 <!-- auction.jsp -->
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://www.joda.org/joda/time/tags" prefix="joda"%>
@@ -11,10 +12,19 @@
 		<!-- Widget heading -->
 		<div class="widget-head">
 			<ul>
-				<li class="active"><a href="#info" class="glyphicons notes" data-toggle="tab"><i></i><span>Info</span></a></li>
-				<li><a href="#attachments" class="glyphicons paperclip" data-toggle="tab"><i></i><span>Attachments</span></a></li>
-				<li><a href="#bidders" class="glyphicons group" data-toggle="tab"><i></i><span><spring:message code="auction.bidders"/></span></a></li>
-				<li><a href="#observers" class="glyphicons group" data-toggle="tab"><i></i><span><spring:message code="auction.observers"/></span></a></li>
+				<li class="active"><a href="#info" class="glyphicons notes" data-toggle="tab"><i></i><span class="strong">Info</span></a></li>
+				<li>
+					<a href="#attachments" class="glyphicons paperclip" data-toggle="tab"><i></i><span class="strong">Attachments</span>
+					<span>(${not empty auctionForm.currDocuments? fn:length(auctionForm.currDocuments) : 'empty'})</span></a>
+				</li>				
+				<li>
+					<a href="#bidders" class="glyphicons group" data-toggle="tab"><i></i><span class="strong"><spring:message code="auction.bidders"/></span>
+					<span>(${(numBidders gt 0)? numBidders: 'empty'})</span></a>
+				</li>
+				<li>
+					<a href="#observers" class="glyphicons group" data-toggle="tab"><i></i><span class="strong"><spring:message code="auction.observers"/></span>
+					<span>(${(numObservers gt 0)? numObservers: 'empty'})</span></a>
+				</li>
 			</ul>
 		</div>
 		<!-- // Widget heading END -->
@@ -177,7 +187,7 @@
 						<!-- // Widget heading END -->
 						
 						<div class="widget-body">
-							<c:if test="${not empty itemForm.currImages}">
+							<c:if test="${not empty auctionForm.currDocuments}">
 								<div>
 									<c:forEach var="document" items="${auctionForm.currDocuments}">
 										<div class="row-fluid">
