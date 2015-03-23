@@ -43,7 +43,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		
-		<java-version>1.6</java-version>
+		<java-version>1.7</java-version>
 		<org.springframework.version>3.1.0.RELEASE</org.springframework.version>
 		<org.hibernate.version>3.6.4.Final</org.hibernate.version>
 		
@@ -54,6 +54,7 @@
 		<jdbc.url>jdbc:mysql://localhost:3306/enilaamDev</jdbc.url>
 		<jdbc.username>root</jdbc.username>
 		<jdbc.password>passw0rd</jdbc.password>
+		<jdbc.timeZone></jdbc.timeZone>
 		<dir.log>/Users/Zubin/Documents/Projects/eNilaam/logs</dir.log>
 		<dir.image>/Users/Zubin/Documents/Projects/eNilaam/attachments/images/</dir.image>
 		<dir.document>/Users/Zubin/Documents/Projects/eNilaam/attachments/documents/</dir.document>
@@ -255,7 +256,7 @@
 			<groupId>javax.mail</groupId>
 			<artifactId>mail</artifactId>
 			<version>1.4.5</version>
-		</dependency>
+		</dependency>				
 	</dependencies>
 	
 	<!-- Build configuration -->
@@ -280,7 +281,7 @@
 			<plugin>
 				<groupId>com.samaxes.maven</groupId>
 				<artifactId>minify-maven-plugin</artifactId>
-				<version>1.6</version>
+				<version>1.7</version>
 				<executions>
 					<execution>
 						<id>css-minify</id>
@@ -307,6 +308,7 @@
 								<cssSourceFile>theme/scripts/plugins/notifications/notyfy/themes/default.css</cssSourceFile>
 								<cssSourceFile>theme/scripts/plugins/notifications/Gritter/css/jquery.gritter.css</cssSourceFile>
 								<cssSourceFile>theme/scripts/plugins/tables/DataTables/media/css/DT_bootstrap.css</cssSourceFile>
+								<cssSourceFile>theme/scripts/plugins/tables/DataTables/extras/TableTools/media/css/TableTools.css</cssSourceFile>
 								<cssSourceFile>bootstrap/extend/bootstrap-image-gallery/css/bootstrap-image-gallery.css</cssSourceFile>
 								<cssSourceFile>theme/scripts/plugins/forms/plupload/js/jquery.plupload.queue/css/jquery.plupload.queue.css</cssSourceFile>
 								<cssSourceFile>theme/css/style-light.css</cssSourceFile>
@@ -350,6 +352,7 @@
 								<jsSourceFile>theme/scripts/plugins/other/jquery.ba-resize.js</jsSourceFile>
 								<jsSourceFile>theme/scripts/plugins/tables/DataTables/media/js/jquery.dataTables.js</jsSourceFile>
 								<jsSourceFile>theme/scripts/plugins/tables/DataTables/media/js/DT_bootstrap.js</jsSourceFile>
+								<jsSourceFile>theme/scripts/plugins/tables/DataTables/extras/TableTools/media/js/TableTools.min.js</jsSourceFile>
 								<jsSourceFile>jquery.easy-ticker/jquery.easy-ticker.js</jsSourceFile>
 								<jsSourceFile>theme/scripts/plugins/forms/plupload-2.1.1/js/plupload.full.min.js</jsSourceFile>
 								<jsSourceFile>custom/scripts/script.js</jsSourceFile>

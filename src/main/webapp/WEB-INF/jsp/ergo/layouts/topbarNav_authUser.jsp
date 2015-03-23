@@ -1,5 +1,6 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!-- Authenticated page top navigation bar - start -->
 <div class="navbar main">
 
@@ -39,11 +40,17 @@
 				</li>
 			</ul>
 			
+			
 			<!-- Profile Menu -->
 			<ul class="topnav pull-right margin-none">
 				<tiles:insertAttribute name="profileMenu" ignore="false" />	
 			</ul>
 			<!-- // Profile Menu END -->
+
+			<!-- System clock -->
+			<div id="sysclock" class="topnav pull-right" title="<spring:message code="common.sysclock.title"/>">
+				<c:out value="${systime}"/>
+			</div>
 			
 		</div>
 		

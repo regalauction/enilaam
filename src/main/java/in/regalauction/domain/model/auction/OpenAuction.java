@@ -210,6 +210,10 @@ public abstract class OpenAuction extends Auction {
 		return !hasWinningBid()? Bid.NO_BID : bids.get(bids.size() - 1);
 	}
 	
+	public ProxyBid getProxyBid() {
+		return hasProxyBid()? proxyBids.get(proxyBids.size()-1): ProxyBid.NO_BID;
+	}
+	
 	private boolean isOutbidNextBid(final Money bidPrice) {
 		return isOutbiddedBy(bidPrice, getNextBidPrice());
 	}
@@ -221,6 +225,7 @@ public abstract class OpenAuction extends Auction {
 	private boolean hasProxyBid() {
 		return !proxyBids.isEmpty();
 	}
+	
 	
 	protected abstract boolean isOutbiddedBy(Money x, Money y);
 	

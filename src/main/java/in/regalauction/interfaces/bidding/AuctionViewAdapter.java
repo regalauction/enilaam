@@ -6,6 +6,7 @@ import in.regalauction.domain.model.auction.Auction;
 import in.regalauction.domain.model.auction.Bid;
 import in.regalauction.domain.model.auction.EnglishAuction;
 import in.regalauction.domain.model.auction.OpenAuction;
+import in.regalauction.domain.model.auction.ProxyBid;
 import in.regalauction.domain.model.item.Item;
 import in.regalauction.domain.model.types.Money;
 import in.regalauction.domain.model.user.User;
@@ -33,6 +34,7 @@ public final class AuctionViewAdapter {
 	private final Bid winningBid;
 	private final boolean isWinner;
 	private final int numBidders;
+	private final ProxyBid proxyBid;
 
 	public AuctionViewAdapter(Auction auction, String username) {
 		
@@ -43,6 +45,9 @@ public final class AuctionViewAdapter {
 		LOGGER.trace("Checking whether {} is the winner of {}", username, auction);
 		this.isWinner = auction.hasWinningBid() && winningBid.getBidder().getUsername().equals(username);
 		this.isOpenAuction = auction instanceof OpenAuction;
+		
+		// Proxy bid can be viewable only by the winner
+		proxyBid = (isOpenAuction && isWinner)? ((OpenAuction) auction).getProxyBid(): ProxyBid.NO_BID;
 		
 		// We need to to avoid the following because it fetches all the users for the auction from the database.
 //		LOGGER.trace("Fetching number of users in {}", auction);
@@ -59,6 +64,7 @@ public final class AuctionViewAdapter {
 		this.winningBid = auction.getWinningBid();
 		this.isWinner = false;
 		this.isOpenAuction = auction instanceof OpenAuction;
+		proxyBid = (isOpenAuction)? ((OpenAuction) auction).getProxyBid(): ProxyBid.NO_BID;
 		
 		LOGGER.trace("Fetching number of users in {}", auction);
 		this.numBidders = auction.getUsers().size();
@@ -175,6 +181,10 @@ public final class AuctionViewAdapter {
 	
 	public int getNumBids() {
 		return auction.getBidCount();
+	}
+	
+	public ProxyBid getProxyBid() {
+		return proxyBid;
 	}
 	
 	public AuctionType getAuctionType() {

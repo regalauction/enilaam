@@ -8,7 +8,6 @@ import org.slf4j.LoggerFactory;
 
 /**
  * Functionality common to all Hibernate repositories
- * @author Diptangshu Chakrabarty
  *
  */
 public abstract class HibernateRepository {

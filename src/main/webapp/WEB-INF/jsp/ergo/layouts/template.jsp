@@ -4,6 +4,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 
 <!-- <spring:message code="appname"/> <spring:theme code="project.version"/> -->
 
@@ -37,7 +38,7 @@
 	<base href="${baseUrl}">
 	
 	<%-- Page Title - start --%>
-	<title> : <spring:message code="appname"/> : <tiles:getAsString name="title" ignore="true" /></title>
+	<title><spring:message code="appname"/> - <tiles:getAsString name="title" ignore="true" /></title>
 	<%-- Page Title - end --%>
 
 	<!-- Meta -->
@@ -87,6 +88,8 @@
 		
 		<!-- DataTables Plugin -->
 		<link href="themes/ergo/theme/scripts/plugins/tables/DataTables/media/css/DT_bootstrap.css" rel="stylesheet" />
+		
+		<link href="themes/ergo/theme/scripts/plugins/tables/DataTables/extras/TableTools/media/css/TableTools.css" rel="stylesheet" />
 	
 		<!-- Bootstrap Image Gallery -->
 		<link href="themes/ergo/bootstrap/extend/bootstrap-image-gallery/css/bootstrap-image-gallery.css" rel="stylesheet" />
@@ -139,6 +142,8 @@
 		
 		<!-- DataTables Plugin -->
 		<link href="themes/ergo/theme/scripts/plugins/tables/DataTables/media/css/DT_bootstrap.min.css" rel="stylesheet" />
+		
+		<link href="themes/ergo/theme/scripts/plugins/tables/DataTables/extras/TableTools/media/css/TableTools.min.css" rel="stylesheet" />
 	
 		<!-- Bootstrap Image Gallery -->
 		<link href="themes/ergo/bootstrap/extend/bootstrap-image-gallery/css/bootstrap-image-gallery.min.css" rel="stylesheet" />
@@ -205,6 +210,11 @@
 		<c:set var="userDisplayName" value="${user.username}" scope="request"/>
 	</c:when>
 </c:choose>
+
+<%-- Fetch system time from database and save it in a request level variable --%>
+<%@include file="../views/reports/dataSource.jsp"%>
+<sql:query var="result" dataSource="${dataSource}" sql="select curtime();"/>
+<c:set var="systime" value="${result.rowsByIndex[0][0]}" scope="request"/>
 
 <body>
 	<div id="jsrequired">
@@ -304,6 +314,8 @@
 		<!-- DataTables Tables Plugin -->
 		<script src="themes/ergo/theme/scripts/plugins/tables/DataTables/media/js/jquery.dataTables.js"></script>
 		<script src="themes/ergo/theme/scripts/plugins/tables/DataTables/media/js/DT_bootstrap.js"></script>
+		
+		<script src="themes/ergo/theme/scripts/plugins/tables/DataTables/extras/TableTools/media/js/TableTools.min.js"></script>
 		
 		<!-- Easy-ticker Plugin -->
 		<script src="themes/ergo/jquery.easy-ticker/jquery.easy-ticker.js"></script>

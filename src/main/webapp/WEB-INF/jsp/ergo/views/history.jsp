@@ -15,6 +15,7 @@
 				<table class="dynamicTable table table-condensed">
 					<thead>
 						<tr>
+							<th></th>
 							<th><spring:message code="auction.name" /></th>
 							<th><spring:message code="auction.type" /></th>
 							<th><spring:message code="auction.startdate" /></th>
@@ -25,6 +26,11 @@
 						<c:forEach items="${auctions}" var="auction">
 							<tr>
 								<td>
+									<c:if test="${auction.winner}">
+										<img alt="hammer" title="<spring:message code="auction.winner"/>"  data-toggle="tooltip" src="<spring:theme code="image.auction.winning"/>">
+									</c:if>
+								</td>
+								<td>									
 									<c:out value="${auction.name}"/>
 									<c:if test="${not empty auction.documents}">
 										<ul>

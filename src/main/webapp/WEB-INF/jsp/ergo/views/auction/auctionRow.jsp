@@ -12,7 +12,7 @@
 		<div class="row-fluid">
 			<div class="span2 center">
 				<c:if test="${auction.winner}">
-					<img alt="hammer" title="you are winning!"  data-toggle="tooltip" src="<spring:theme code="image.auction.winning"/>">
+					<img alt="hammer" title="<spring:message code="auction.winning"/>"  data-toggle="tooltip" src="<spring:theme code="image.auction.winning"/>">
 				</c:if>
 			</div>
 			<c:if test="${not empty auction.item.images}">
@@ -116,11 +116,20 @@
 		</div>
 		
 		<div class="span2">
-			<label class="checkbox uniformjs" data-original-title="check this to place proxy bid on this item" data-toggle="tooltip">
+			<label class="checkbox uniformjs" data-original-title="<spring:message code="auction.proxy.title"/>" data-toggle="tooltip">
 				<input type="checkbox" value="1" 
 					id="proxy_${auction.auctionCode}" 
 					name="proxy_${auction.auctionCode}" 
-					class="checkbox" /><spring:message code="auction.proxy"/>
+					class="checkbox" />
+				<spring:message code="auction.proxy"/>
+				<c:if test="${auction.winner and auction.proxyBid.price.amount gt 0}"> 
+					<br />
+					<spring:message code="common.currencySymbol"/>&nbsp;
+					<fmt:formatNumber value="${auction.proxyBid.price.amount}" 
+							groupingUsed="true" 
+							minFractionDigits="2" 
+							maxFractionDigits="2"/>
+				</c:if>
 			</label>
 		</div>
 		

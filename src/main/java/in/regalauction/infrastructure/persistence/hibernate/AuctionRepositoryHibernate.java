@@ -31,7 +31,7 @@ public class AuctionRepositoryHibernate extends HibernateRepository implements
 				"left join fetch auction.documents " +
 				"left join fetch auction.item item " +
 				"left join fetch item.thumbnail " +
-				"where startDate > current_timestamp() + hour(3) + minute(30)").list();
+				"where startDate > current_timestamp()").list();
 		return new HashSet<Auction>(returnList);
 	}
 
@@ -39,7 +39,7 @@ public class AuctionRepositoryHibernate extends HibernateRepository implements
 	@Override
 	public Collection<Auction> findOldAuctions(final String username) {
 		List<Auction> returnList = getSession().createQuery("select auction from Auction auction " +
-				"join auction.users user where auction.endDate < current_timestamp() + hour(3) + minute(30) " +
+				"join auction.users user where auction.endDate < current_timestamp() " +
 				"and user.username = :username")
 				.setString("username", username)
 				.list();
@@ -72,7 +72,7 @@ public class AuctionRepositoryHibernate extends HibernateRepository implements
 				"left join fetch auction.documents " +
 				"left join fetch auction.item item " +
 				"left join fetch item.thumbnail " +
-				"join auction.users user where auction.startDate < current_timestamp() + hour(3) + minute(30) and auction.endDate > current_timestamp() + hour(3) + minute(30) " +
+				"join auction.users user where auction.startDate < current_timestamp() and auction.endDate > current_timestamp() " +
 				"and user.username = :username " +
 				"order by auction.auctionCode")
 				.setString("username", username)
@@ -88,7 +88,7 @@ public class AuctionRepositoryHibernate extends HibernateRepository implements
 				"left join fetch auction.item item " +
 				"left join fetch item.thumbnail " +
 				"left join auction.bids bid " +
-				"join auction.users user where auction.startDate < current_timestamp() + hour(3) + minute(30) and auction.endDate > current_timestamp() + hour(3) + minute(30) " +
+				"join auction.users user where auction.startDate < current_timestamp() and auction.endDate > current_timestamp() " +
 				"order by bid.bidTime desc, auction.auctionCode")
 				.list();
 		return new LinkedHashSet<Auction>(resultList);

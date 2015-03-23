@@ -8,9 +8,7 @@
 		// check if selector is present in DOM or not
 		return this.length <= 0;
 	};
-}(jQuery));
 
-(function($) {
 	$.fn.refreshWidget = function(options) {
 		
 		// check if selector is present in DOM or not
@@ -206,15 +204,16 @@ function commaStringToFloat(commaStr) {
 	return parseFloat(commaStr.replace(/[,]+/g, ""));
 }
 
-// Configurations
 var defaultDataTableConfig = {
-	"sPaginationType": "bootstrap",
-	"sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
-	"oLanguage": {
-		"sLengthMenu": "_MENU_ records per page"
-	}
-};
-
+		"sPaginationType": "bootstrap",
+		"sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>><'row-fluid'T>",
+		"oLanguage": {
+			"sLengthMenu": "_MENU_ per page"
+		},
+	    "oTableTools": {
+	        "sSwfPath": "themes/ergo/theme/scripts/plugins/tables/DataTables/extras/TableTools/media/swf/copy_csv_xls_pdf.swf" 
+	    }
+	};
 
 
 function bindBidPageButtons(obj) {

@@ -180,6 +180,30 @@
 		<put-attribute name="title" value=""/>
 		<put-attribute name="wrappedContent" value="user.wrappedContent"/>
 	</definition>
+	
+	<definition name="report.winners.wrappedContent" extends="contentWrapper.admin">
+		<put-attribute name="content" value="/WEB-INF/jsp/ergo/views/reports/winners.jsp"/>
+	</definition>
+	<definition name="report/winners" extends="template.admin">
+		<put-attribute name="title" value="Winners Report"/>
+		<put-attribute name="wrappedContent" value="report.winners.wrappedContent"/>
+	</definition>
+	
+	<definition name="report.bidDetails.wrappedContent" extends="contentWrapper.admin">
+		<put-attribute name="content" value="/WEB-INF/jsp/ergo/views/reports/bidDetails.jsp"/>
+	</definition>
+	<definition name="report/bidDetails" extends="template.admin">
+		<put-attribute name="title" value="Bid Details Report"/>
+		<put-attribute name="wrappedContent" value="report.bidDetails.wrappedContent"/>
+	</definition>	
+	
+	<definition name="report.biddersByRank.wrappedContent" extends="contentWrapper.admin">
+		<put-attribute name="content" value="/WEB-INF/jsp/ergo/views/reports/biddersByRank.jsp"/>
+	</definition>
+	<definition name="report/biddersByRank" extends="template.admin">
+		<put-attribute name="title" value="Bidders by Rank Report"/>
+		<put-attribute name="wrappedContent" value="report.biddersByRank.wrappedContent"/>
+	</definition>
 	<!-- // Admin Pages END -->
 	
 	<!-- Overlays -->

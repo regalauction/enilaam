@@ -83,6 +83,7 @@
 		</li>
 		<!-- // Wizards Submenu Level 1 END -->
 		
+ --%>
 		<!-- Reports Submenu Level 1 -->
 		<li class="hasSubmenu">
 		
@@ -90,15 +91,15 @@
 			<ul class="collapse" id="menu_reports">
 			
 				<!-- Wizards Submenu Regular Items -->
-				<li class=""><a href=""><i></i><span>Bid Details Report</span></a></li>
-				<li class=""><a href=""><i></i><span>Winner Report</span></a></li>
+				<li class=""><a href="<spring:url value="/report/bidDetails" />"><i></i><span>Bid Details Report</span></a></li>
+				<li class=""><a href="<spring:url value="/report/biddersByRank" />"><i></i><span>Bidders by Rank Report</span></a></li>
+				<li class=""><a href="<spring:url value="/report/winners" />"><i></i><span>Winner Report</span></a></li>
 				<!-- // Wizards Submenu Regular Items END -->
 				
 			</ul>
-			<span class="count">2</span>
+			<span class="count">3</span>
 		</li>
 		<!-- // Reports Submenu Level 1 END -->
- --%>
 		</security:authorize>		
 	</ul>
 	<div class="clearfix"></div>

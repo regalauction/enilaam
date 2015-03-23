@@ -261,6 +261,19 @@ public class OpenAuctionTest {
 	}
 	
 	@Test
+	public void testGetProxyBid() {
+		
+		try {
+			ProxyBid proxyBid = new ProxyBid(new Money("550"), new DateTime(), zubin);
+			openAuction.placeBid(proxyBid);
+			assertEquals(proxyBid, openAuction.getProxyBid());
+		} catch (NotAttachedException e) {
+			LOGGER.warn("Error in test case");
+			fail("Bidder not attached!");
+		}
+	}
+	
+	@Test
 	public void testSecondProxyLowerThanFirst() {
 		BidResult bidResult;
 		try {
