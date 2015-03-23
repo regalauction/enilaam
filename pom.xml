@@ -3,7 +3,7 @@
 	<groupId>in.regalauction</groupId>
 	<artifactId>enilaam</artifactId>
 	<packaging>war</packaging>
-	<version>2.11-SNAPSHOT</version>
+	<version>2.11</version>
 	<name>Regal Auction</name>
 	<url>http://www.regalauction.in</url>
 	<description>Online auction platform.</description>
@@ -12,7 +12,7 @@
 		<connection>scm:git:git@github.com:regalauction/enilaam.git</connection>
 		<developerConnection>scm:git:git@github.com:regalauction/enilaam.git</developerConnection>
 		<url>scm:git:git@github.com:regalauction/enilaam.git</url>
-		<tag>HEAD</tag>
+		<tag>enilaam-2.11</tag>
 	</scm>
 	
 	<!-- <distributionManagement>
@@ -54,7 +54,7 @@
 		<jdbc.url>jdbc:mysql://localhost:3306/enilaamDev</jdbc.url>
 		<jdbc.username>root</jdbc.username>
 		<jdbc.password>passw0rd</jdbc.password>
-		<jdbc.timeZone></jdbc.timeZone>
+		<jdbc.timeZone />
 		<dir.log>/Users/Zubin/Documents/Projects/eNilaam/logs</dir.log>
 		<dir.image>/Users/Zubin/Documents/Projects/eNilaam/attachments/images/</dir.image>
 		<dir.document>/Users/Zubin/Documents/Projects/eNilaam/attachments/documents/</dir.document>
