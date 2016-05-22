@@ -68,7 +68,7 @@
 									<form:label path="quantity" cssClass="control-label"><spring:message code="auction.quantity"/></form:label>
 								</div>
 								<div class="controls">
-									<form:textarea path="quantity" cssClass="input-xlarge"/>
+									<form:input path="quantity" cssClass="input-xlarge"/>
 									<c:if test="${status.error}">
 										<p class="error help-block"><form:errors cssClass="label label-important" path="quantity"/></p>
 									</c:if>

@@ -213,7 +213,7 @@
 
 <%-- Fetch system time from database and save it in a request level variable --%>
 <%@include file="../views/reports/dataSource.jsp"%>
-<sql:query var="result" dataSource="${dataSource}" sql="select lower(date_format(curtime(), '%h:%i%p'));"/>
+<sql:query var="result" dataSource="${dataSource}" sql="select lower(time_format(curtime(), '%h:%i%p'));"/>
 <c:set var="systime" value="${result.rowsByIndex[0][0]}" scope="request"/>
 
 <body>
