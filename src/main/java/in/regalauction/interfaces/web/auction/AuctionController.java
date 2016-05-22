@@ -148,6 +148,7 @@ public class AuctionController {
 					auctionForm.getTimeExtension());
 		
 		setBidders(auctionForm, auction);
+		auction.setQuantity(auctionForm.getQuantity());
 		
 		manageDocuments(auctionForm, auction);
 		
@@ -178,6 +179,7 @@ public class AuctionController {
 		auction = (OpenAuction) auctionRepository.findByAuctionCode(new AuctionCode(auctionCode));
 		
 		auction.setItem(item);
+		auction.setQuantity(auctionForm.getQuantity());
 		auction.setName(auctionForm.getName());
 		auction.setStartDate(auctionForm.getStartDate());
 		auction.setEndDate(auctionForm.getEndDate());

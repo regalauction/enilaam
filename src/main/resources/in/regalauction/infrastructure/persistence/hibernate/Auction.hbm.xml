@@ -22,6 +22,8 @@
 		
 		<many-to-one name="item" column="item_id" lazy="false" not-null="true"/>
 		
+		<property name="quantity" column="quantity"/>
+		
 		<property name="startDate" column="startdate" type="org.joda.time.contrib.hibernate.PersistentDateTime"/>
 		
 		<property name="endDate" column="enddate" type="org.joda.time.contrib.hibernate.PersistentDateTime"/>

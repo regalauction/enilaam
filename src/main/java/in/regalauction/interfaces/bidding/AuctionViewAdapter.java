@@ -143,6 +143,10 @@ public final class AuctionViewAdapter {
 	public String getName() {
 		return auction.getName();
 	}
+	
+	public Float getQuantity() {
+		return auction.getQuantity();
+	}
 
 	public DateTime getStartDate() {
 		return auction.getStartDate();

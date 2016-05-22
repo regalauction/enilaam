@@ -36,6 +36,10 @@ public class AuctionForm {
 	
 	@NotBlank private String item;
 	
+	@NotNull 
+	@Min(1)
+	private Float quantity;
+	
 	@NotNull
 	@Min(0)
 	@Digits(integer = 8, fraction = 2) 
@@ -67,6 +71,7 @@ public class AuctionForm {
 		endDate = startDate.plusHours(1);
 		timeExtension = 0;
 		currDocuments = new HashSet<Document>();
+		quantity = 1f;
 	}
 	
 	public AuctionForm(final AuctionViewAdapter auctionViewAdapter) {
@@ -74,6 +79,7 @@ public class AuctionForm {
 		startDate = auctionViewAdapter.getStartDate();
 		endDate = auctionViewAdapter.getEndDate();
 		item = auctionViewAdapter.getItem().getCode();
+		quantity = auctionViewAdapter.getQuantity();
 		
 		Set<User> attachedBidders = auctionViewAdapter.getBidders();
 		LOGGER.debug("Attached Bidders: {}", attachedBidders.size());
@@ -148,9 +154,17 @@ public class AuctionForm {
 	public String getItem() {
 		return item;
 	}
+	
+	public Float getQuantity() {
+		return quantity;
+	}
 
 	public void setItem(String code) {
 		this.item = code;
+	}
+	
+	public void setQuantity(Float quantity) {
+		this.quantity = quantity;
 	}
 
 	public BigDecimal getBasePrice() {

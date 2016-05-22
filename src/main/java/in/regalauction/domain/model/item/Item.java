@@ -27,8 +27,13 @@ public class Item implements Entity<Item> {
 	
 	private String code;
 	private String name;
+	private String unitOfMeasure;
 	private Image thumbnail;
 	private Set<Image> images = Collections.emptySet();
+	
+	private String field1;
+	private String field2;
+	private String field3;
 	
 	
 	public Item(final String code, final String name) {
@@ -46,8 +51,28 @@ public class Item implements Entity<Item> {
 		return name;
 	}
 	
+	public String getUnitOfMeasure() {
+		return unitOfMeasure;
+	}
+	
+	public String getField1() {
+		return field1;
+	}
+	
+	public String getField2() {
+		return field2;
+	}
+	
+	public String getField3() {
+		return field3;
+	}
+	
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public void setUnitOfMeasure(String unitOfMeasure) {
+		this.unitOfMeasure = unitOfMeasure;
 	}
 	
 	public Image getThumbnail() {
@@ -56,6 +81,18 @@ public class Item implements Entity<Item> {
 	
 	public void setThumbnail(Image thumbnail) {
 		this.thumbnail = thumbnail;
+	}
+	
+	public void setField1(String field1) {
+		this.field1 = field1;
+	}
+	
+	public void setField2(String field2) {
+		this.field2 = field2;
+	}
+	
+	public void setField3(String field3) {
+		this.field3 = field3;
 	}
 	
 	/**

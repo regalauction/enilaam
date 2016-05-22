@@ -35,6 +35,7 @@ public abstract class Auction implements Entity<Auction> {
 
 	protected AuctionCode auctionCode;
 	protected Item item;
+	protected Float quantity;
 	protected String name;
 	protected Set<Document> documents = Collections.emptySet();
 	
@@ -66,11 +67,16 @@ public abstract class Auction implements Entity<Auction> {
 		this.name = name;
 		this.startDate = startDate;
 		this.endDate = endDate;
+		this.quantity = 1f;
 		
 	}
 	
 	public Item getItem() {
 		return item;
+	}
+	
+	public Float getQuantity() {
+		return quantity;
 	}
 	
 	public void addUser(final User user) {
@@ -214,6 +220,10 @@ public abstract class Auction implements Entity<Auction> {
 	
 	public void setItem(Item item) {
 		this.item = item;
+	}
+	
+	public void setQuantity(Float quantity) {
+		this.quantity = quantity;
 	}
 	
 	public Set<User> getUsers() {

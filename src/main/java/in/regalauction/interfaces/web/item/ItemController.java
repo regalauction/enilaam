@@ -16,6 +16,7 @@ import javax.validation.Valid;
 import org.apache.commons.lang.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -69,6 +70,7 @@ public class ItemController {
 		final String name = itemForm.getName();
 		
 		final Item item = new Item(code, name);
+		BeanUtils.copyProperties(itemForm, item);
 		
 		manageImages(itemForm, item);
 		
@@ -92,10 +94,8 @@ public class ItemController {
 		if (result.hasErrors())
 			return returnView;
 		
-		final String name = itemForm.getName();
-		
 		final Item item = itemRepository.findByCode(itemCode);
-		item.setName(name);
+		BeanUtils.copyProperties(itemForm, item);
 		
 		manageImages(itemForm, item);
 		

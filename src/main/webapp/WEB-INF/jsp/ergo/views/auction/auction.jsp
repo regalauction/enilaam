@@ -63,6 +63,18 @@
 								</div>
 							</spring:bind>
 							
+							<spring:bind path="quantity">
+								<div class="control-group ${status.error ? 'error' : ''}">
+									<form:label path="quantity" cssClass="control-label"><spring:message code="auction.quantity"/></form:label>
+								</div>
+								<div class="controls">
+									<form:textarea path="quantity" cssClass="input-xlarge"/>
+									<c:if test="${status.error}">
+										<p class="error help-block"><form:errors cssClass="label label-important" path="quantity"/></p>
+									</c:if>
+								</div>
+							</spring:bind>
+							
 							<div class="control-group">
 								<form:label path="auctionType" cssClass="control-label"><spring:message code="auction.type"/></form:label>
 							</div>

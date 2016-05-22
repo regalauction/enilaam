@@ -15,6 +15,9 @@
 		
 		<property name="name" column="name"/>
 		
+		<property name="unitOfMeasure" column="uom"/>
+		
+		
 		<many-to-one name="thumbnail" column="thumbimg_id" lazy="false" 
 			class="in.regalauction.domain.model.attachment.Image" cascade="all"/>
 		
@@ -23,5 +26,9 @@
 			<many-to-many class="in.regalauction.domain.model.attachment.Image" column="attachment_id"/>
 		</set>
 		
+		<property name="field1" column="field1"/>
+		<property name="field2" column="field2"/>
+		<property name="field3" column="field3"/>
+
 	</class>
 </hibernate-mapping>

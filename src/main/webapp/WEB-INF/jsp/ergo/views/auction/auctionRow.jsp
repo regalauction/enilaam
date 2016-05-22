@@ -1,5 +1,6 @@
 <!-- auctionRow.jsp -->
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://www.joda.org/joda/time/tags" prefix="joda"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
@@ -8,7 +9,42 @@
 
 <div id="auction_${auction.auctionCode}" class="row-fluid">
 	<div class="span3 info">
-		<div class="row-fluid"><c:out value="${auction.name}" /></div>
+		<div class="row-fluid"><h4><c:out value="${auction.name}" /></h4></div>					
+		<dl class="dl-horizontal">
+			<dt>Route</dt>
+			<dd>
+				<c:choose>
+					<c:when test="${not empty auction.item.field1}">
+						<c:out value="${auction.item.field1}"/>						
+					</c:when>
+					<c:otherwise>						
+						<em><spring:message code="common.notpresent"/></em>
+					</c:otherwise>
+				</c:choose>
+			</dd>
+			<dt>UOM</dt>
+			<dd>
+				<c:choose>
+					<c:when test="${not empty auction.item.unitOfMeasure}">
+						<c:out value="${auction.item.unitOfMeasure}"/>
+					</c:when>
+					<c:otherwise>
+						<em><spring:message code="common.notpresent"/></em>
+					</c:otherwise>
+				</c:choose>
+			</dd>
+			<dt>Quantity</dt>
+			<dd>
+				<c:choose>
+					<c:when test="${not empty auction.quantity}">
+						<fmt:formatNumber value="${auction.quantity}" groupingUsed="true" minFractionDigits="0"/>
+					</c:when>
+					<c:otherwise>
+						<em><spring:message code="common.notpresent"/></em>
+					</c:otherwise>
+				</c:choose>
+			</dd>
+		</dl>		
 		<div class="row-fluid">
 			<div class="span2 center">
 				<c:if test="${auction.winner}">
@@ -28,7 +64,9 @@
 					<a href="javascript: void(0);" title="click to view attachments of this item" data-toggle="tooltip" class="attachments glyphicons paperclip"><i></i></a>
 				</div>
 			</c:if>
-			<div class="span6"></div>
+			<div class="span6">
+				<%-- <a class="btn btn-small glyphicons pencil" href="${fn:escapeXml(editUrl)}"><i></i> <spring:message code="form.button.edit"/></a> --%>
+			</div>
 		</div>
 		<div class="row-fluid margin2">
 			<c:if test="${not empty auction.documents}">
@@ -38,7 +76,7 @@
 					</c:forEach>
 				</ul>
 			</c:if>
-		</div>
+		</div>		
 	</div>
 	
 	<div class="span1 center">
@@ -145,3 +183,4 @@
 	</div>
 </div>
 <!-- // auctionRow.jsp END -->
+

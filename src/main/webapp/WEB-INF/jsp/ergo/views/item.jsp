@@ -26,29 +26,83 @@
 			<div class="tab-content">
 			
 				<div class="tab-pane active" id="info">
-					<spring:bind path="name">
-						<div class="control-group ${status.error ? 'error' : ''}">
-							<form:label path="name" cssClass="control-label"><spring:message code="item.name"/></form:label>
-						</div>
-						<div class="controls">
-							<form:textarea path="name"/>
-							<c:if test="${status.error}">
-								<p class="error help-block"><form:errors cssClass="label label-important" path="name"/></p>
-							</c:if>
-						</div>
-					</spring:bind>
 					
-					<spring:bind path="code">
-						<div class="control-group ${status.error ? 'error' : ''}">
-							<form:label path="code" cssClass="control-label"><spring:message code="item.code"/></form:label>
+					<div class="row-fluid">
+						<div class="span6">
+							<spring:bind path="name">
+								<div class="control-group ${status.error ? 'error' : ''}">
+									<form:label path="name" cssClass="control-label"><spring:message code="item.name"/></form:label>
+								</div>
+								<div class="controls">
+									<form:textarea path="name"/>
+									<c:if test="${status.error}">
+										<p class="error help-block"><form:errors cssClass="label label-important" path="name"/></p>
+									</c:if>
+								</div>
+							</spring:bind>
+							
+							<spring:bind path="code">
+								<div class="control-group ${status.error ? 'error' : ''}">
+									<form:label path="code" cssClass="control-label"><spring:message code="item.code"/></form:label>
+								</div>
+								<div class="controls">
+									<form:input path="code" readonly="${itemForm.existing}"/>
+									<c:if test="${status.error}">
+										<p class="error help-block"><form:errors cssClass="label label-important" path="code"/></p>
+									</c:if>
+								</div>
+							</spring:bind>
+							
 						</div>
-						<div class="controls">
-							<form:input path="code" readonly="${itemForm.existing}"/>
-							<c:if test="${status.error}">
-								<p class="error help-block"><form:errors cssClass="label label-important" path="code"/></p>
-							</c:if>
+						<div class="span6">
+							<spring:bind path="unitOfMeasure">
+								<div class="control-group ${status.error ? 'error' : ''}">
+									<form:label path="unitOfMeasure" cssClass="control-label"><spring:message code="item.unitOfMeasure"/></form:label>
+								</div>
+								<div class="controls">
+									<form:input path="unitOfMeasure" />
+									<c:if test="${status.error}">
+										<p class="error help-block"><form:errors cssClass="label label-important" path="unitOfMeasure"/></p>
+									</c:if>
+								</div>
+							</spring:bind>
+							
+							<spring:bind path="field1">
+								<div class="control-group ${status.error ? 'error' : ''}">
+									<form:label path="field1" cssClass="control-label"><spring:message code="item.field1"/></form:label>
+								</div>
+								<div class="controls">
+									<form:input path="field1" />
+									<c:if test="${status.error}">
+										<p class="error help-block"><form:errors cssClass="label label-important" path="field1"/></p>
+									</c:if>
+								</div>
+							</spring:bind>
+							<spring:bind path="field2">
+								<div class="control-group ${status.error ? 'error' : ''}">
+									<form:label path="field2" cssClass="control-label"><spring:message code="item.field2"/></form:label>
+								</div>
+								<div class="controls">
+									<form:input path="field2" />
+									<c:if test="${status.error}">
+										<p class="error help-block"><form:errors cssClass="label label-important" path="field2"/></p>
+									</c:if>
+								</div>
+							</spring:bind>
+							<spring:bind path="field3">
+								<div class="control-group ${status.error ? 'error' : ''}">
+									<form:label path="field3" cssClass="control-label"><spring:message code="item.field3"/></form:label>
+								</div>
+								<div class="controls">
+									<form:input path="field3" />
+									<c:if test="${status.error}">
+										<p class="error help-block"><form:errors cssClass="label label-important" path="field3"/></p>
+									</c:if>
+								</div>
+							</spring:bind>
+							
 						</div>
-					</spring:bind>
+					</div>
 					
 				</div>
 				
@@ -130,7 +184,7 @@
 			
 			<div class="right form-actions">
 				<button type="submit" class="btn btn-primary btn-icon glyphicons circle_ok"><i></i><spring:message code="common.save"/></button>
-				<a href="javascript: window.location.href=auctionForm.action;" class="btn btn-default btn-icon glyphicons circle_remove"><i></i><spring:message code="common.cancel"/></a>
+				<a href="javascript: window.location.href=itemForm.action;" class="btn btn-default btn-icon glyphicons circle_remove"><i></i><spring:message code="common.cancel"/></a>
 			</div>
 		</div>
 	</div>
