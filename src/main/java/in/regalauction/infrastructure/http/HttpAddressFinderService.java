@@ -1,8 +1,5 @@
 package in.regalauction.infrastructure.http;
 
-import in.regalauction.application.AddressFinderService;
-import in.regalauction.interfaces.web.util.HttpUtil;
-
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.Arrays;
@@ -13,6 +10,9 @@ import java.util.Map;
 import org.apache.commons.lang.WordUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import in.regalauction.application.AddressFinderService;
+import in.regalauction.interfaces.web.util.HttpUtil;
 
 
 public class HttpAddressFinderService implements AddressFinderService {

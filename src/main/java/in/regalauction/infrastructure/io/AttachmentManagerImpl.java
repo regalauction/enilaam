@@ -1,8 +1,5 @@
 package in.regalauction.infrastructure.io;
 
-import in.regalauction.domain.model.attachment.Document;
-import in.regalauction.domain.model.attachment.Image;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -14,6 +11,9 @@ import org.apache.commons.lang.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.multipart.MultipartFile;
+
+import in.regalauction.domain.model.attachment.Document;
+import in.regalauction.domain.model.attachment.Image;
 
 
 

@@ -1,5 +1,7 @@
 package in.regalauction.domain.model;
 
+import org.joda.time.DateTime;
+
 import in.regalauction.domain.model.auction.AuctionCode;
 import in.regalauction.domain.model.auction.DutchAuction;
 import in.regalauction.domain.model.auction.EnglishAuction;
@@ -7,8 +9,6 @@ import in.regalauction.domain.model.item.Item;
 import in.regalauction.domain.model.types.Money;
 import in.regalauction.domain.model.user.User;
 import in.regalauction.domain.model.user.UserTest;
-
-import org.joda.time.DateTime;
 
 
 public class TestHelper {

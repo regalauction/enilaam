@@ -1,10 +1,5 @@
 package in.regalauction.interfaces.web.authentication;
 
-import in.regalauction.application.UserService;
-import in.regalauction.domain.model.auction.AuctionRepository;
-import in.regalauction.interfaces.bidding.AuctionViewAdapter;
-import in.regalauction.interfaces.bidding.facade.BiddingFacade;
-
 import java.util.Collection;
 
 import org.slf4j.Logger;
@@ -15,6 +10,11 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import in.regalauction.application.UserService;
+import in.regalauction.domain.model.auction.AuctionRepository;
+import in.regalauction.interfaces.bidding.AuctionViewAdapter;
+import in.regalauction.interfaces.bidding.facade.BiddingFacade;
 
 
 @Controller

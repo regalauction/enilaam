@@ -1,9 +1,5 @@
 package in.regalauction.infrastructure.persistence.hibernate;
 
-import in.regalauction.domain.model.auction.Auction;
-import in.regalauction.domain.model.auction.AuctionCode;
-import in.regalauction.domain.model.auction.AuctionRepository;
-
 import java.math.BigInteger;
 import java.util.Collection;
 import java.util.HashSet;
@@ -11,6 +7,10 @@ import java.util.LinkedHashSet;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
+
+import in.regalauction.domain.model.auction.Auction;
+import in.regalauction.domain.model.auction.AuctionCode;
+import in.regalauction.domain.model.auction.AuctionRepository;
 
 
 @Repository

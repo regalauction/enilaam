@@ -1,10 +1,5 @@
 package in.regalauction.interfaces.web.authentication;
 
-import in.regalauction.application.UserService;
-import in.regalauction.infrastructure.security.InvalidResetPasswordException;
-import in.regalauction.interfaces.web.user.ForgotPassword;
-import in.regalauction.interfaces.web.user.ResetPassword;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
@@ -18,6 +13,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import in.regalauction.application.UserService;
+import in.regalauction.infrastructure.security.InvalidResetPasswordException;
+import in.regalauction.interfaces.web.user.ForgotPassword;
+import in.regalauction.interfaces.web.user.ResetPassword;
 
 
 @Controller

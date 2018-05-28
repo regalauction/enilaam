@@ -1,12 +1,5 @@
 package in.regalauction.infrastructure.security;
 
-import in.regalauction.application.MailingService;
-import in.regalauction.application.UserService;
-import in.regalauction.domain.model.user.DuplicateUserException;
-import in.regalauction.domain.model.user.User;
-import in.regalauction.domain.model.user.UserRepository;
-import in.regalauction.interfaces.web.user.UserForm;
-
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Collection;
@@ -26,6 +19,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.transaction.annotation.Transactional;
+
+import in.regalauction.application.MailingService;
+import in.regalauction.application.UserService;
+import in.regalauction.domain.model.user.DuplicateUserException;
+import in.regalauction.domain.model.user.User;
+import in.regalauction.domain.model.user.UserRepository;
+import in.regalauction.interfaces.web.user.UserForm;
 
 
 @Transactional

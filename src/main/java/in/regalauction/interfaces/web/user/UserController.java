@@ -1,10 +1,5 @@
 package in.regalauction.interfaces.web.user;
 
-import in.regalauction.application.AddressFinderService;
-import in.regalauction.application.UserService;
-import in.regalauction.domain.model.user.DuplicateUserException;
-import in.regalauction.domain.model.user.User;
-
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
@@ -20,6 +15,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import in.regalauction.application.AddressFinderService;
+import in.regalauction.application.UserService;
+import in.regalauction.domain.model.user.DuplicateUserException;
+import in.regalauction.domain.model.user.User;
 
 
 @Controller

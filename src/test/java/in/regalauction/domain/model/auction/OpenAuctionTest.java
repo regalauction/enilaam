@@ -1,20 +1,18 @@
 package in.regalauction.domain.model.auction;
 
-import static org.junit.Assert.*;
-import in.regalauction.domain.model.TestHelper;
-import in.regalauction.domain.model.auction.Bid;
-import in.regalauction.domain.model.auction.BidResult;
-import in.regalauction.domain.model.auction.NotAttachedException;
-import in.regalauction.domain.model.auction.OpenAuction;
-import in.regalauction.domain.model.auction.ProxyBid;
-import in.regalauction.domain.model.types.Money;
-import in.regalauction.domain.model.user.User;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import in.regalauction.domain.model.TestHelper;
+import in.regalauction.domain.model.types.Money;
+import in.regalauction.domain.model.user.User;
 
 
 public class OpenAuctionTest {

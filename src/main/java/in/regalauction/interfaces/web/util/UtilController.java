@@ -1,11 +1,5 @@
 package in.regalauction.interfaces.web.util;
 
-import in.regalauction.application.AddressFinderService;
-import in.regalauction.domain.model.attachment.Attachment;
-import in.regalauction.domain.model.attachment.AttachmentRepository;
-import in.regalauction.domain.model.attachment.AttachmentType;
-import in.regalauction.infrastructure.io.AttachmentManager;
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.List;
@@ -25,6 +19,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+
+import in.regalauction.application.AddressFinderService;
+import in.regalauction.domain.model.attachment.Attachment;
+import in.regalauction.domain.model.attachment.AttachmentRepository;
+import in.regalauction.domain.model.attachment.AttachmentType;
+import in.regalauction.infrastructure.io.AttachmentManager;
 
 
 @Controller

@@ -53,11 +53,11 @@
 		<jdbc.driverClass>com.mysql.jdbc.Driver</jdbc.driverClass>
 		<jdbc.url>jdbc:mysql://localhost:3306/enilaamDev</jdbc.url>
 		<jdbc.username>root</jdbc.username>
-		<jdbc.password>passw0rd</jdbc.password>
+		<jdbc.password>1234</jdbc.password>
 		<jdbc.timeZone />
-		<dir.log>/Users/Zubin/Documents/Projects/eNilaam/logs</dir.log>
-		<dir.image>/Users/Zubin/Documents/Projects/eNilaam/attachments/images/</dir.image>
-		<dir.document>/Users/Zubin/Documents/Projects/eNilaam/attachments/documents/</dir.document>
+		<dir.log>D:\\Dev\\enilaam\\logs</dir.log>
+		<dir.image>D:\\Dev\\enilaam\\attachments\\images\\</dir.image>
+		<dir.document>D:\\Dev\\enilaam\\attachments\\documents\\</dir.document>
 		<html.base.href>/enilaam/</html.base.href>
 		<mail.disabled>true</mail.disabled>
 		<mail.host>mail.regalauction.in</mail.host>
@@ -214,7 +214,7 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.6</version>
+			<version>5.1.46</version>
 		</dependency>
 		<dependency>
 			<groupId>org.easymock</groupId>

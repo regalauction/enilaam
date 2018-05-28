@@ -1,8 +1,8 @@
 package in.regalauction.domain.model.auction;
 
-import in.regalauction.domain.shared.ValueObject;
-
 import org.apache.commons.lang.Validate;
+
+import in.regalauction.domain.shared.ValueObject;
 
 
 public class AuctionCode implements ValueObject<AuctionCode> {

@@ -1,12 +1,5 @@
 package in.regalauction.interfaces.web.auction;
 
-import in.regalauction.application.UserService;
-import in.regalauction.domain.model.auction.BidResult;
-import in.regalauction.domain.model.types.Money;
-import in.regalauction.interfaces.bidding.AuctionViewAdapter;
-import in.regalauction.interfaces.bidding.BidResultViewAdapter;
-import in.regalauction.interfaces.bidding.facade.BiddingFacade;
-
 import java.util.Collection;
 
 import javax.validation.Valid;
@@ -23,6 +16,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import in.regalauction.application.UserService;
+import in.regalauction.domain.model.auction.BidResult;
+import in.regalauction.domain.model.types.Money;
+import in.regalauction.interfaces.bidding.AuctionViewAdapter;
+import in.regalauction.interfaces.bidding.BidResultViewAdapter;
+import in.regalauction.interfaces.bidding.facade.BiddingFacade;
 
 
 @Controller

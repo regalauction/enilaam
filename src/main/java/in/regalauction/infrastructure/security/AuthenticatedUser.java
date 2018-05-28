@@ -1,8 +1,8 @@
 package in.regalauction.infrastructure.security;
 
-import in.regalauction.domain.model.user.User;
-
 import org.springframework.security.core.userdetails.UserDetails;
+
+import in.regalauction.domain.model.user.User;
 
 
 public class AuthenticatedUser extends org.springframework.security.core.userdetails.User {

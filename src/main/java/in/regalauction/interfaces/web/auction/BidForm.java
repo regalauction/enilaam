@@ -1,12 +1,12 @@
 package in.regalauction.interfaces.web.auction;
 
-import in.regalauction.domain.model.types.Money;
-
 import java.util.Map;
 
 import javax.validation.Valid;
 
 import org.hibernate.validator.constraints.NotEmpty;
+
+import in.regalauction.domain.model.types.Money;
 
 
 public class BidForm {

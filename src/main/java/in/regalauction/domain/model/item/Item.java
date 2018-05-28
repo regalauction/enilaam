@@ -1,8 +1,5 @@
 package in.regalauction.domain.model.item;
 
-import in.regalauction.domain.model.attachment.Image;
-import in.regalauction.domain.shared.Entity;
-
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -11,6 +8,9 @@ import java.util.Set;
 import org.apache.commons.lang.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import in.regalauction.domain.model.attachment.Image;
+import in.regalauction.domain.shared.Entity;
 
 
 

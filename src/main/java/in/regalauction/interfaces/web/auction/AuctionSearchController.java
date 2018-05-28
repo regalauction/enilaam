@@ -1,11 +1,5 @@
 package in.regalauction.interfaces.web.auction;
 
-import in.regalauction.application.UserService;
-import in.regalauction.domain.model.auction.Auction;
-import in.regalauction.domain.model.auction.AuctionRepository;
-import in.regalauction.interfaces.bidding.AuctionViewAdapter;
-import in.regalauction.interfaces.bidding.facade.BiddingFacade;
-
 import java.util.Collection;
 import java.util.List;
 
@@ -14,6 +8,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import in.regalauction.application.UserService;
+import in.regalauction.domain.model.auction.Auction;
+import in.regalauction.domain.model.auction.AuctionRepository;
+import in.regalauction.interfaces.bidding.AuctionViewAdapter;
+import in.regalauction.interfaces.bidding.facade.BiddingFacade;
 
 
 @Controller

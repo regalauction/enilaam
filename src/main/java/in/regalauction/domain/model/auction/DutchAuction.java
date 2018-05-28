@@ -1,10 +1,10 @@
 package in.regalauction.domain.model.auction;
 
-import in.regalauction.domain.model.item.Item;
-import in.regalauction.domain.model.types.Money;
-
 import org.apache.commons.lang.Validate;
 import org.joda.time.DateTime;
+
+import in.regalauction.domain.model.item.Item;
+import in.regalauction.domain.model.types.Money;
 
 
 /**

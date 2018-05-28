@@ -1,15 +1,15 @@
 package in.regalauction.interfaces.bidding.facade;
 
+import java.util.Collection;
+
+import org.joda.time.DateTime;
+import org.springframework.security.access.prepost.PreAuthorize;
+
 import in.regalauction.domain.model.auction.BidResult;
 import in.regalauction.domain.model.auction.CannotBidException;
 import in.regalauction.domain.model.auction.NotAttachedException;
 import in.regalauction.domain.model.types.Money;
 import in.regalauction.interfaces.bidding.AuctionViewAdapter;
-
-import java.util.Collection;
-
-import org.joda.time.DateTime;
-import org.springframework.security.access.prepost.PreAuthorize;
 
 
 public interface BiddingFacade {

@@ -4,7 +4,13 @@ import static org.easymock.EasyMock.createMock;
 import static org.easymock.EasyMock.expect;
 import static org.easymock.EasyMock.replay;
 import static org.easymock.EasyMock.verify;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+
+import org.joda.time.DateTime;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
 import in.regalauction.domain.model.TestHelper;
 import in.regalauction.domain.model.auction.Auction;
 import in.regalauction.domain.model.auction.AuctionCode;
@@ -14,12 +20,6 @@ import in.regalauction.domain.model.auction.EnglishAuction;
 import in.regalauction.domain.model.types.Money;
 import in.regalauction.domain.model.user.User;
 import in.regalauction.domain.model.user.UserRepository;
-import in.regalauction.interfaces.bidding.facade.internal.BiddingFacadeImpl;
-
-import org.joda.time.DateTime;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
 
 
 public class BiddingFacadeTest {

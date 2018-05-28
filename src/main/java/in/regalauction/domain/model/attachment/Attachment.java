@@ -1,8 +1,8 @@
 package in.regalauction.domain.model.attachment;
 
-import in.regalauction.domain.shared.Entity;
-
 import org.apache.commons.lang.Validate;
+
+import in.regalauction.domain.shared.Entity;
 
 
 public abstract class Attachment implements Entity<Attachment> {

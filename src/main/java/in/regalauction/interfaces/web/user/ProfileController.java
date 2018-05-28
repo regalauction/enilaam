@@ -1,8 +1,5 @@
 package in.regalauction.interfaces.web.user;
 
-import in.regalauction.application.UserService;
-import in.regalauction.domain.model.user.User;
-
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -15,6 +12,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import in.regalauction.application.UserService;
+import in.regalauction.domain.model.user.User;
 
 
 @Controller

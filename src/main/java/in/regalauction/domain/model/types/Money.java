@@ -1,11 +1,11 @@
 package in.regalauction.domain.model.types;
 
-import in.regalauction.domain.shared.ValueObject;
-
 import java.math.BigDecimal;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import in.regalauction.domain.shared.ValueObject;
 
 
 /**

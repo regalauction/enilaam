@@ -1,12 +1,12 @@
 package in.regalauction.interfaces.web.item;
 
-import in.regalauction.domain.model.attachment.Image;
-import in.regalauction.domain.model.item.Item;
-
 import java.util.HashSet;
 import java.util.Set;
 
 import org.hibernate.validator.constraints.NotBlank;
+
+import in.regalauction.domain.model.attachment.Image;
+import in.regalauction.domain.model.item.Item;
 
 
 public class ItemForm {

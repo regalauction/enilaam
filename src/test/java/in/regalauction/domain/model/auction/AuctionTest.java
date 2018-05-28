@@ -5,15 +5,16 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
-import in.regalauction.domain.model.TestHelper;
-import in.regalauction.domain.model.types.Money;
-import in.regalauction.domain.model.user.User;
 
 import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import in.regalauction.domain.model.TestHelper;
+import in.regalauction.domain.model.types.Money;
+import in.regalauction.domain.model.user.User;
 
 
 public class AuctionTest {

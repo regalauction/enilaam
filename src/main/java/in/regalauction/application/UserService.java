@@ -1,15 +1,15 @@
 package in.regalauction.application;
 
-import in.regalauction.domain.model.user.DuplicateUserException;
-import in.regalauction.domain.model.user.User;
-import in.regalauction.infrastructure.security.InvalidResetPasswordException;
-import in.regalauction.interfaces.web.user.UserForm;
-
 import java.util.Collection;
 import java.util.List;
 
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.provisioning.UserDetailsManager;
+
+import in.regalauction.domain.model.user.DuplicateUserException;
+import in.regalauction.domain.model.user.User;
+import in.regalauction.infrastructure.security.InvalidResetPasswordException;
+import in.regalauction.interfaces.web.user.UserForm;
 
 
 public interface UserService extends UserDetailsManager {

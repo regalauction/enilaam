@@ -1,17 +1,5 @@
 package in.regalauction.interfaces.bidding;
 
-import in.regalauction.domain.model.attachment.Document;
-import in.regalauction.domain.model.attachment.Image;
-import in.regalauction.domain.model.auction.Auction;
-import in.regalauction.domain.model.auction.Bid;
-import in.regalauction.domain.model.auction.EnglishAuction;
-import in.regalauction.domain.model.auction.OpenAuction;
-import in.regalauction.domain.model.auction.ProxyBid;
-import in.regalauction.domain.model.item.Item;
-import in.regalauction.domain.model.types.Money;
-import in.regalauction.domain.model.user.User;
-import in.regalauction.interfaces.web.auction.AuctionType;
-
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
@@ -23,6 +11,18 @@ import org.joda.time.DateTime;
 import org.joda.time.Interval;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import in.regalauction.domain.model.attachment.Document;
+import in.regalauction.domain.model.attachment.Image;
+import in.regalauction.domain.model.auction.Auction;
+import in.regalauction.domain.model.auction.Bid;
+import in.regalauction.domain.model.auction.EnglishAuction;
+import in.regalauction.domain.model.auction.OpenAuction;
+import in.regalauction.domain.model.auction.ProxyBid;
+import in.regalauction.domain.model.item.Item;
+import in.regalauction.domain.model.types.Money;
+import in.regalauction.domain.model.user.User;
+import in.regalauction.interfaces.web.auction.AuctionType;
 
 
 public final class AuctionViewAdapter {

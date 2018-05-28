@@ -2,10 +2,10 @@ package in.regalauction.domain.model.user;
 
 import java.io.Serializable;
 
+import org.apache.commons.lang.StringUtils;
+
 import in.regalauction.domain.model.types.Address;
 import in.regalauction.domain.shared.Entity;
-
-import org.apache.commons.lang.StringUtils;
 
 
 

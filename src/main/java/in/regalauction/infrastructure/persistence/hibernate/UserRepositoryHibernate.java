@@ -1,11 +1,11 @@
 package in.regalauction.infrastructure.persistence.hibernate;
 
-import in.regalauction.domain.model.user.User;
-import in.regalauction.domain.model.user.UserRepository;
-
 import java.util.Collection;
 
 import org.springframework.stereotype.Repository;
+
+import in.regalauction.domain.model.user.User;
+import in.regalauction.domain.model.user.UserRepository;
 
 
 /**

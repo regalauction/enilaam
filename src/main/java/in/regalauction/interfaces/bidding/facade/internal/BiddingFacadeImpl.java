@@ -1,5 +1,12 @@
 package in.regalauction.interfaces.bidding.facade.internal;
 
+import java.util.Collection;
+
+import org.joda.time.DateTime;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.transaction.annotation.Transactional;
+
 import in.regalauction.domain.model.auction.Auction;
 import in.regalauction.domain.model.auction.AuctionCode;
 import in.regalauction.domain.model.auction.AuctionRepository;
@@ -14,13 +21,6 @@ import in.regalauction.domain.model.user.User;
 import in.regalauction.domain.model.user.UserRepository;
 import in.regalauction.interfaces.bidding.AuctionViewAdapter;
 import in.regalauction.interfaces.bidding.facade.BiddingFacade;
-
-import java.util.Collection;
-
-import org.joda.time.DateTime;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.transaction.annotation.Transactional;
 
 
 @Transactional

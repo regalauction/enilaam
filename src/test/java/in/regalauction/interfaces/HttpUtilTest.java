@@ -1,9 +1,10 @@
 package in.regalauction.interfaces;
 
 import static org.junit.Assert.assertFalse;
-import in.regalauction.interfaces.web.util.HttpUtil;
 
 import org.junit.Test;
+
+import in.regalauction.interfaces.web.util.HttpUtil;
 
 
 public class HttpUtilTest {

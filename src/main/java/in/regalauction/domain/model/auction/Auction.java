@@ -1,10 +1,5 @@
 package in.regalauction.domain.model.auction;
 
-import in.regalauction.domain.model.attachment.Document;
-import in.regalauction.domain.model.item.Item;
-import in.regalauction.domain.model.user.User;
-import in.regalauction.domain.shared.Entity;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -16,6 +11,11 @@ import org.apache.commons.lang.Validate;
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import in.regalauction.domain.model.attachment.Document;
+import in.regalauction.domain.model.item.Item;
+import in.regalauction.domain.model.user.User;
+import in.regalauction.domain.shared.Entity;
 
 
 /**

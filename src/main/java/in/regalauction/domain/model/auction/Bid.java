@@ -1,12 +1,12 @@
 package in.regalauction.domain.model.auction;
 
-import in.regalauction.domain.model.types.Money;
-import in.regalauction.domain.model.user.User;
-import in.regalauction.domain.shared.ValueObject;
-
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.joda.time.DateTime;
+
+import in.regalauction.domain.model.types.Money;
+import in.regalauction.domain.model.user.User;
+import in.regalauction.domain.shared.ValueObject;
 
 
 /**

@@ -1,7 +1,5 @@
 package in.regalauction.interfaces.web.user;
 
-import in.regalauction.domain.model.user.User;
-
 import java.lang.reflect.InvocationTargetException;
 
 import javax.validation.constraints.Pattern;
@@ -9,6 +7,8 @@ import javax.validation.constraints.Pattern;
 import org.apache.commons.beanutils.BeanUtils;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
+
+import in.regalauction.domain.model.user.User;
 
 
 public class UserForm {

@@ -1,8 +1,8 @@
 package in.regalauction.domain.model.types;
 
-import in.regalauction.domain.shared.ValueObject;
-
 import org.apache.commons.lang.builder.EqualsBuilder;
+
+import in.regalauction.domain.shared.ValueObject;
 
 
 public class Address implements ValueObject<Address> {

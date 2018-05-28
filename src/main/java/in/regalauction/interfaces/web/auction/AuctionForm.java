@@ -1,9 +1,5 @@
 package in.regalauction.interfaces.web.auction;
 
-import in.regalauction.domain.model.attachment.Document;
-import in.regalauction.domain.model.user.User;
-import in.regalauction.interfaces.bidding.AuctionViewAdapter;
-
 import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
@@ -17,6 +13,10 @@ import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.format.annotation.DateTimeFormat;
+
+import in.regalauction.domain.model.attachment.Document;
+import in.regalauction.domain.model.user.User;
+import in.regalauction.interfaces.bidding.AuctionViewAdapter;
 
 
 

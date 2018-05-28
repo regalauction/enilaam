@@ -1,22 +1,5 @@
 package in.regalauction.interfaces.web.auction;
 
-import in.regalauction.application.UserService;
-import in.regalauction.domain.model.attachment.AttachmentRepository;
-import in.regalauction.domain.model.attachment.AttachmentType;
-import in.regalauction.domain.model.attachment.Document;
-import in.regalauction.domain.model.auction.Auction;
-import in.regalauction.domain.model.auction.AuctionCode;
-import in.regalauction.domain.model.auction.AuctionRepository;
-import in.regalauction.domain.model.auction.DutchAuction;
-import in.regalauction.domain.model.auction.EnglishAuction;
-import in.regalauction.domain.model.auction.OpenAuction;
-import in.regalauction.domain.model.item.Item;
-import in.regalauction.domain.model.item.ItemRepository;
-import in.regalauction.domain.model.types.Money;
-import in.regalauction.domain.model.user.User;
-import in.regalauction.infrastructure.io.AttachmentManager;
-import in.regalauction.interfaces.bidding.AuctionViewAdapter;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -41,6 +24,23 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import in.regalauction.application.UserService;
+import in.regalauction.domain.model.attachment.AttachmentRepository;
+import in.regalauction.domain.model.attachment.AttachmentType;
+import in.regalauction.domain.model.attachment.Document;
+import in.regalauction.domain.model.auction.Auction;
+import in.regalauction.domain.model.auction.AuctionCode;
+import in.regalauction.domain.model.auction.AuctionRepository;
+import in.regalauction.domain.model.auction.DutchAuction;
+import in.regalauction.domain.model.auction.EnglishAuction;
+import in.regalauction.domain.model.auction.OpenAuction;
+import in.regalauction.domain.model.item.Item;
+import in.regalauction.domain.model.item.ItemRepository;
+import in.regalauction.domain.model.types.Money;
+import in.regalauction.domain.model.user.User;
+import in.regalauction.infrastructure.io.AttachmentManager;
+import in.regalauction.interfaces.bidding.AuctionViewAdapter;
 
 
 @Controller

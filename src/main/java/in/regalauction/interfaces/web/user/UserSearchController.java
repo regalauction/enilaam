@@ -1,8 +1,5 @@
 package in.regalauction.interfaces.web.user;
 
-import in.regalauction.domain.model.user.User;
-import in.regalauction.domain.model.user.UserRepository;
-
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import in.regalauction.domain.model.user.User;
+import in.regalauction.domain.model.user.UserRepository;
 
 
 @Controller

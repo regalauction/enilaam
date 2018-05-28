@@ -1,12 +1,5 @@
 package in.regalauction.interfaces.web.item;
 
-import in.regalauction.domain.model.attachment.AttachmentRepository;
-import in.regalauction.domain.model.attachment.AttachmentType;
-import in.regalauction.domain.model.attachment.Image;
-import in.regalauction.domain.model.item.Item;
-import in.regalauction.domain.model.item.ItemRepository;
-import in.regalauction.infrastructure.io.AttachmentManager;
-
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
@@ -25,6 +18,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import in.regalauction.domain.model.attachment.AttachmentRepository;
+import in.regalauction.domain.model.attachment.AttachmentType;
+import in.regalauction.domain.model.attachment.Image;
+import in.regalauction.domain.model.item.Item;
+import in.regalauction.domain.model.item.ItemRepository;
+import in.regalauction.infrastructure.io.AttachmentManager;
 
 
 @Controller

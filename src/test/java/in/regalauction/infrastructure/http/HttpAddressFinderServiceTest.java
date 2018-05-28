@@ -1,14 +1,14 @@
 package in.regalauction.infrastructure.http;
 
-import static org.junit.Assert.*;
-
-import in.regalauction.infrastructure.http.HttpAddressFinderService;
-import in.regalauction.infrastructure.persistence.inmemory.InMemoryAddressFinderService;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import in.regalauction.infrastructure.persistence.inmemory.InMemoryAddressFinderService;
 
 
 public class HttpAddressFinderServiceTest {

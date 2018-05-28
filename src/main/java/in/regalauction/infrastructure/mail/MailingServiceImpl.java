@@ -1,13 +1,13 @@
 package in.regalauction.infrastructure.mail;
 
-import in.regalauction.application.MailingService;
-
 import org.apache.commons.lang.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.mail.MailException;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
+
+import in.regalauction.application.MailingService;
 
 
 public class MailingServiceImpl implements MailingService {

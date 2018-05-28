@@ -1,12 +1,12 @@
 package in.regalauction.infrastructure.io;
 
-import in.regalauction.domain.model.attachment.Document;
-import in.regalauction.domain.model.attachment.Image;
-
 import java.io.FileInputStream;
 import java.io.IOException;
 
 import org.springframework.web.multipart.MultipartFile;
+
+import in.regalauction.domain.model.attachment.Document;
+import in.regalauction.domain.model.attachment.Image;
 
 
 public interface AttachmentManager {

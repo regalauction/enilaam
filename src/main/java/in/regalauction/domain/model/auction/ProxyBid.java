@@ -1,9 +1,9 @@
 package in.regalauction.domain.model.auction;
 
+import org.joda.time.DateTime;
+
 import in.regalauction.domain.model.types.Money;
 import in.regalauction.domain.model.user.User;
-
-import org.joda.time.DateTime;
 
 
 public class ProxyBid extends Bid {
