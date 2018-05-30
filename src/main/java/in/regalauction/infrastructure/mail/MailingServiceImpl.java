@@ -8,6 +8,8 @@ import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 
 import in.regalauction.application.MailingService;
+import in.regalauction.domain.model.spotdeal.SpotDealItem;
+import in.regalauction.domain.model.user.User;
 
 
 public class MailingServiceImpl implements MailingService {
@@ -43,6 +45,7 @@ public class MailingServiceImpl implements MailingService {
 			try {
 				mailSender.send(mailMessage);
 				LOGGER.info("Mail sent to {}", to);
+				LOGGER.trace(body);
 			} catch (MailException e) {
 				LOGGER.warn("Could not send mail to {}", to);
 				e.printStackTrace();
@@ -84,6 +87,41 @@ public class MailingServiceImpl implements MailingService {
 		
 		sendMail(to, "Your reset password link", body.toString());
 		
+	}
+	
+	@Override
+	public void sendSpotDealOrderMail(final SpotDealItem spotDealItem, final User bidder, final Long quantity) {
+		
+		LOGGER.info("Sending spot deal order mail");
+		
+		Validate.notNull(spotDealItem);
+		Validate.isTrue(quantity > 0);
+		
+		StringBuilder subject = new StringBuilder("Spot Deal Purchased: ")
+				.append(spotDealItem.getCode());		
+		
+		StringBuilder bodyFrag = new StringBuilder();
+		
+		bodyFrag.append("Hello!\n\n").append("The following spot deal order was placed\n\n")
+		.append("Name: ").append(spotDealItem.getName())
+		.append("\n")
+		.append("Seller: ").append(spotDealItem.getSellerName())
+		.append("\n")
+		.append("Quantity ordered: ").append(quantity);
+		
+		String footer = "\n\nThanks!\n";
+		
+		String bodyToBidder = bodyFrag.toString() + footer;
+		
+		sendMail(bidder.getUsername(), subject.toString(), bodyToBidder);		
+		
+		String bodyToClient = bodyFrag.append("\n")
+				.append("Remaining quantity: ")
+				.append(spotDealItem.getQuantity())
+				.append(footer)
+				.toString();
+				
+		sendMail(spotDealItem.getSellerEmail(), subject.toString(), bodyToClient);
 	}
 	
 
