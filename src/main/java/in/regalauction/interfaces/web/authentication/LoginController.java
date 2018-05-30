@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import in.regalauction.application.UserService;
 import in.regalauction.domain.model.auction.AuctionRepository;
+import in.regalauction.domain.model.spotdeal.SpotDealItemRepository;
 import in.regalauction.interfaces.bidding.AuctionViewAdapter;
 import in.regalauction.interfaces.bidding.facade.BiddingFacade;
 
@@ -29,13 +30,17 @@ public class LoginController {
 	private UserService userService;
 	
 	@Autowired
+	private SpotDealItemRepository spotDealItemRepository;
+	
+	@Autowired
 	private AuctionRepository auctionRepository;
 	
 	@RequestMapping("/login")
 	@Transactional(readOnly = true)
-	public @ModelAttribute("auctions") Collection<AuctionViewAdapter> login() throws Exception {
+	public void login(ModelMap map) throws Exception {
 		LOGGER.trace("Login handler called.");
-		return biddingFacade.fetchUpcomingAuctions();
+		map.addAttribute("auctions", biddingFacade.fetchUpcomingAuctions());
+		map.addAttribute("spotDeals", spotDealItemRepository.findAll());
 	}
 	
 	@RequestMapping("/home")
@@ -50,6 +55,8 @@ public class LoginController {
 		map.addAttribute("numRunningAuctions", biddingFacade.fetchRunningAuctions(currentUsername).size());
 		map.addAttribute("hasAuctionHistory", !biddingFacade.fetchOldAuctions(currentUsername).isEmpty());
 		map.addAttribute("hasUpcommingAuctions", !auctionRepository.findUpcommingAuctions().isEmpty());
+		
+		map.addAttribute("spotDeals", spotDealItemRepository.findAll());
 		
 		// Return a view name specific to the user group
 		return new StringBuilder("home").append("_").append(group).toString();

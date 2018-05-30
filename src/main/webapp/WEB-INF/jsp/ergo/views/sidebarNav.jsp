@@ -53,10 +53,10 @@
 				</li>
 				
 				<li class="hasSubmenu">
-					<a data-toggle="collapse" href="#menu_news"><span>News</span></a>
+					<a data-toggle="collapse" href="#menu_news"><span><spring:message code="menu.spotdeals"/></span></a>
 					<ul class="collapse" id="menu_news">
-						<li class=""><a href=""><span>New</span></a></li>
-						<li class=""><a href=""><span>List</span></a></li>
+						<li class=""><a href="<spring:url value="/spotdeals/new" />"><span><spring:message code="menu.spotdeals.new"/></span></a></li>
+						<li class=""><a href="<spring:url value="/spotdeals" />"><span><spring:message code="menu.spotdeals.list"/></span></a></li>
 					</ul>
 					<span class="count">2</span>
 				</li>

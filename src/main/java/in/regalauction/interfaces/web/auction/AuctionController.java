@@ -94,7 +94,7 @@ public class AuctionController {
 	}
 	
 	@RequestMapping(value ="/new", method = RequestMethod.GET)
-	public AuctionForm getNewForm(ModelMap map) {
+	public AuctionForm getNewForm() {
 		return new AuctionForm();
 	}
 	
@@ -170,8 +170,7 @@ public class AuctionController {
 		if (auctionForm.getEndDate().isBefore(auctionForm.getStartDate()))
 			result.rejectValue("endDate", "Invalid.auctionForm.endDate");
 		
-		if (result.hasErrors()) 
-			return returnView;
+		if (result.hasErrors()) return returnView;
 		
 		Item item = itemRepository.findByCode(auctionForm.getItem());
 		OpenAuction auction;

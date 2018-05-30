@@ -2,9 +2,9 @@ package in.regalauction.infrastructure.persistence.inmemory;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,7 +18,7 @@ public class InMemoryAddressFinderService implements AddressFinderService {
 
 	private static Map<String, String[]> geoMap;
 	static {
-		geoMap = new HashMap<String, String[]>();
+		geoMap = new TreeMap<String, String[]>();
 		geoMap.put("Andaman & Nicobar Islands", new String[] {"Nicobar", "North And Middle Andaman", "South Andaman"});
 		geoMap.put("Andhra Pradesh", new String[] {"Adilabad", "Anantapur", "Chittoor", "Cuddapah", "East Godavari", "Guntur", "Hyderabad", "Karim Nagar", "Khammam", "Krishna", "Kurnool", "Mahabubnagar", "Medak", "Nalgonda", "Nellore", "Nizamabad", "Prakasam", "Rangareddi", "Srikakulam", "Visakhapatnam", "Vizianagaram", "Warangal", "West Godavari"});
 		geoMap.put("Arunachal Pradesh", new String[] {"Changlang", "Dibang Valley", "East Kameng", "East Siang", "Kurung Kumey", "Lohit", "Lower Dibang Valley", "Lower Subansiri", "Papum Pare", "Tawang", "Tirap", "Upper Siang", "Upper Subansiri", "West Kameng", "West Siang"});

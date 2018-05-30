@@ -99,3 +99,4 @@ insert into group_members select user_id, 1 from users where username = 'bidder2
 insert into group_members select user_id, 1 from users where username = 'bidder3@regalauction.in';
 
 insert into group_members select user_id, 3 from users where username = 'observer1@regalauction.in';
+

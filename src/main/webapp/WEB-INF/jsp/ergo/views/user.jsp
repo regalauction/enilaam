@@ -272,7 +272,7 @@ $(document).ready(function() {
 									<form:label path="state" cssClass="control-label"><spring:message code="user.city"/></form:label>
 								</div>
 								<div class="controls">
-									<form:select path="city" items="${states}"/>
+									<form:select path="city" items="${cities}"/>
 									<c:if test="${status.error}">
 										<p class="error help-block"><form:errors cssClass="label label-important" path="city"/></p>
 									</c:if>

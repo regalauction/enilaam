@@ -13,6 +13,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -50,6 +51,7 @@ public class ItemController {
 	
 	@RequestMapping(value = "/new", method = RequestMethod.GET)
 	public ItemForm getNewForm() {
+		LOGGER.debug("Getting new item form");
 		return new ItemForm();
 	}
 
@@ -64,7 +66,8 @@ public class ItemController {
 	@Transactional(readOnly = false, rollbackFor = IOException.class)
 	public String add(@Valid ItemForm itemForm, BindingResult result) throws IOException {
 		
-		if (result.hasErrors()) return "item/new";
+		if (result.hasErrors())
+			return "item/new";
 		
 		final String code = itemForm.getCode();
 		final String name = itemForm.getName();
@@ -91,8 +94,7 @@ public class ItemController {
 		
 		String returnView = new StringBuilder("item/").append(itemCode).toString();
 		
-		if (result.hasErrors())
-			return returnView;
+		if (result.hasErrors()) return returnView;
 		
 		final Item item = itemRepository.findByCode(itemCode);
 		BeanUtils.copyProperties(itemForm, item);

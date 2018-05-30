@@ -47,6 +47,20 @@
 }
 #news {
 	font-weight: normal;
+	height: 200px !important;
+}
+
+.spotdeal-item {
+	height: 200px !important;
+}
+.spotdeal-item dt {
+	width: 100px;
+}
+.spotdeal-item dd {
+	margin-left: 120px;
+}
+.spotdeal-item .purchase {
+	margin-left: 120px;
 }
 
 /* Rules for upcomming auction table on landing page */

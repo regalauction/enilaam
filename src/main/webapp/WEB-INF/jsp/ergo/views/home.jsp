@@ -38,20 +38,7 @@
 				</security:authorize>
 			</div>
 			<div class="span6">
-				<div class="widget">
-					<div class="widget-head">
-						<h4 class="heading glyphicons circle_info"><i></i><spring:message code="info.news.heading"/></h4>
-					</div>
-					<div class="widget-body">
-						<div id="news">
-							<%@include file="news.jsp" %>
-						</div>
-					</div>
-					<div class="widget-footer">
-						<a id="news_next" class="glyphicons step_forward" href="javascript: void(0);"><i></i></a>
-						<a id="news_prev" class="glyphicons step_backward" href="javascript: void(0);"><i></i></a>
-					</div>
-				</div>
+				<%@include file="spotdeals.jsp" %>
 				
 				<div class="widget">
 					<div class="widget-head">

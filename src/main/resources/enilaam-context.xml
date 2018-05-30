@@ -48,6 +48,10 @@
 		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
 	
+	<bean id="spotDealItemRepository" class="in.regalauction.infrastructure.persistence.hibernate.SpotDealItemRepositoryHibernate">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
 	<!-- To make it portable to no-debug environments, do not use name property in constructor-arg -->
 	<bean id="attachmentManager" class="in.regalauction.infrastructure.io.AttachmentManagerImpl">
 		<constructor-arg index="0" value="${dir.image}"/>

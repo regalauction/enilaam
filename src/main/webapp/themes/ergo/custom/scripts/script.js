@@ -475,18 +475,19 @@ var init = function() {
 	reRun();
 
 	// Sidebar menu collapsibles
-	$('#menu .collapse').on('show', function(e)
+	$('#menu .collapse')
+	.on('show', function(e)
 	{
 		e.stopPropagation();
 		
 		$(this).parents('.hasSubmenu:first').addClass('active');
 		
-		var id = $(this).attr("id");
-		if (typeof $.cookie != 'undefined') {
-			var sidebarNav = $.cookie('sidebarNav')? JSON.parse($.cookie('sidebarNav')) : {};
-			sidebarNav[id] = true;
-			$.cookie('sidebarNav', JSON.stringify(sidebarNav), { path: baseUrl() });
-		}
+//		var id = $(this).attr("id");
+//		if (typeof $.cookie != 'undefined') {
+//			var sidebarNav = $.cookie('sidebarNav')? JSON.parse($.cookie('sidebarNav')) : {};
+//			sidebarNav[id] = true;
+//			$.cookie('sidebarNav', JSON.stringify(sidebarNav), { path: baseUrl() });
+//		}
 	})
 	.on('hidden', function(e)
 	{
@@ -494,12 +495,12 @@ var init = function() {
 		
 		$(this).parents('.hasSubmenu:first').removeClass('active');
 		
-		var id = $(this).attr("id");
-		if (typeof $.cookie != 'undefined') {
-			var sidebarNav = $.cookie('sidebarNav')? JSON.parse($.cookie('sidebarNav')) : {};
-			sidebarNav[id] = false;
-			$.cookie('sidebarNav', JSON.stringify(sidebarNav), { path: baseUrl() });
-		}
+//		var id = $(this).attr("id");
+//		if (typeof $.cookie != 'undefined') {
+//			var sidebarNav = $.cookie('sidebarNav')? JSON.parse($.cookie('sidebarNav')) : {};
+//			sidebarNav[id] = false;
+//			$.cookie('sidebarNav', JSON.stringify(sidebarNav), { path: baseUrl() });
+//		}
 	});
 	
 	// main menu visibility toggle
@@ -951,13 +952,14 @@ var init = function() {
 	$("#dashboard-running").refreshWidget();
 	
 	// handle persistent sidebar menu
-	if (typeof $.cookie != 'undefined' && $.cookie('sidebarNav')) {
-		console.log("Reading sidebarNav states from Cookie...");
-		var sidebarNav = JSON.parse($.cookie('sidebarNav'));
-		$.each(sidebarNav, function(id, obj) {
-			if (obj) $("#" + id).collapse("show");
-		});
-	}
+//	if (typeof $.cookie != 'undefined' && $.cookie('sidebarNav')) {
+//		console.log("Reading sidebarNav states from Cookie...");
+//		var sidebarNav = JSON.parse($.cookie('sidebarNav'));
+//		$.each(sidebarNav, function(id, obj) {
+//			if (obj) $("#" + id).collapse("show");
+//		});
+//	}
+	
 	// Highlight dashboard when activated
 	if (window.location.pathname == $("#menu .menu-0 li:first a").attr("href")) {
 		$("#menu .menu-0 li:first").addClass("active");

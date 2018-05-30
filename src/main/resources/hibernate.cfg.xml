@@ -13,6 +13,8 @@
 		<mapping resource="in/regalauction/infrastructure/persistence/hibernate/Auction.hbm.xml" />
 		<mapping resource="in/regalauction/infrastructure/persistence/hibernate/Item.hbm.xml" />
 		<mapping resource="in/regalauction/infrastructure/persistence/hibernate/Attachment.hbm.xml" />
+		
+		<mapping resource="in/regalauction/infrastructure/persistence/hibernate/SpotDealItem.hbm.xml" />
 	</session-factory>
 
 </hibernate-configuration>

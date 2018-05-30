@@ -46,7 +46,7 @@ public class ItemForm {
 	
 //	public String getCurrThumbnailPath() {
 //		return currThumbnailPath;
-//	}
+//	}	
 	
 	public boolean isExisting() {
 		return existing;

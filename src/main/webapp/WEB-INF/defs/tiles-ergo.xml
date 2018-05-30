@@ -157,6 +157,42 @@
 		<put-attribute name="wrappedContent" value="item.wrappedContent"/>
 	</definition>
 	
+	<!-- Spot Deals -->
+	<definition name="spotdeals.new.wrappedContent" extends="contentWrapper.admin">
+		<put-attribute name="content" value="/WEB-INF/jsp/ergo/views/spotdealitem.jsp"/>
+	</definition>
+	<definition name="spotdeals/new" extends="template.admin">
+		<put-attribute name="title" value=""/>
+		<put-attribute name="wrappedContent" value="spotdeals.new.wrappedContent"/>
+	</definition>
+	
+	<definition name="spotdeals.edit.wrappedContent" extends="contentWrapper.admin">
+		<put-attribute name="content" value="/WEB-INF/jsp/ergo/views/spotdealitem.jsp"/>
+	</definition>
+	<definition name="spotdeals/*" extends="template.admin">
+		<put-attribute name="title" value=""/>
+		<put-attribute name="wrappedContent" value="spotdeals.edit.wrappedContent"/>
+	</definition>
+	
+	<definition name="spotdeals.wrappedContent" extends="contentWrapper.admin">
+		<put-attribute name="content" value="/WEB-INF/jsp/ergo/views/listSpotDealItems.jsp"/>
+	</definition>
+	<definition name="spotdeals" extends="template.admin">
+		<put-attribute name="title" value=""/>
+		<put-attribute name="wrappedContent" value="spotdeals.wrappedContent"/>
+	</definition>
+	
+	<definition name="spotdeals.purchase.wrappedContent" extends="contentWrapper.authUser">
+		<put-attribute name="content" value="/WEB-INF/jsp/ergo/views/spotdealPurchase.jsp"/>
+	</definition>
+	<definition name="spotdeals/purchase/*" extends="template.authUser">
+		<put-attribute name="title" value=""/>
+		<put-attribute name="wrappedContent" value="spotdeals.purchase.wrappedContent"/>
+	</definition>
+	
+	
+	
+	
 	<definition name="user.new.wrappedContent" extends="contentWrapper.admin">
 		<put-attribute name="content" value="/WEB-INF/jsp/ergo/views/user.jsp"/>
 	</definition>

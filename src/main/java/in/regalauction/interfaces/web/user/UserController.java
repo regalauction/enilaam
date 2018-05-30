@@ -2,6 +2,7 @@ package in.regalauction.interfaces.web.user;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -38,7 +39,11 @@ public class UserController {
 	public void populateModel(Model model) {
 		
 		model.addAttribute("roles", userService.findAllGroups());
-		model.addAttribute("states", addressFinderService.getStates());
+		List<String> states = addressFinderService.getStates();
+		model.addAttribute("states", states);
+		if (!states.isEmpty()) {
+			model.addAttribute("cities", addressFinderService.getCities(states.get(0)));
+		}
 		
 		ArrayList<String> list = new ArrayList<String>();
 		list.add("Manufacturer");

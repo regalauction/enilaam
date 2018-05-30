@@ -65,6 +65,7 @@
 	<div class="row-fluid row-merge">
 		<div class="span6">
 			<div class="innerAll">
+				<%@include file="spotdeals.jsp" %>
 				<%@include file="auction/upcoming.jsp" %>
 			</div>
 		</div>
