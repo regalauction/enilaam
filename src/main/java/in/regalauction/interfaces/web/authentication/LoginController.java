@@ -40,7 +40,7 @@ public class LoginController {
 	public void login(ModelMap map) throws Exception {
 		LOGGER.trace("Login handler called.");
 		map.addAttribute("auctions", biddingFacade.fetchUpcomingAuctions());
-		map.addAttribute("spotDeals", spotDealItemRepository.findAll());
+		map.addAttribute("spotDeals", spotDealItemRepository.fetchActiveItems());
 	}
 	
 	@RequestMapping("/home")
@@ -56,7 +56,7 @@ public class LoginController {
 		map.addAttribute("hasAuctionHistory", !biddingFacade.fetchOldAuctions(currentUsername).isEmpty());
 		map.addAttribute("hasUpcommingAuctions", !auctionRepository.findUpcommingAuctions().isEmpty());
 		
-		map.addAttribute("spotDeals", spotDealItemRepository.findAll());
+		map.addAttribute("spotDeals", spotDealItemRepository.fetchActiveItems());
 		
 		// Return a view name specific to the user group
 		return new StringBuilder("home").append("_").append(group).toString();

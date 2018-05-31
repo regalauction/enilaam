@@ -47,9 +47,11 @@
 								placeholder="<spring:message code="login.password.placeholder" />" tabindex="2"/>
 						</div>
 						
-						<button type="submit" class="btn btn-large btn-icon btn-primary glyphicons chevron-right" tabindex="3">
+						<button type="submit" class="btn btn-large btn-icon btn-primary glyphicons chevron-right login" tabindex="3">
 							<i></i><spring:message code="login.submit"/>
 						</button>
+												
+						<a class="btn btn-large register" data-toggle="modal" data-target="#registerModal" href="<spring:url value="/register" />"><spring:message code="login.register"/></a>
 					</form>
 					<!-- Login form - end -->
 
@@ -150,4 +152,16 @@
 	</div>
 </div>
 <!-- // Forgot Password Modal Holder END -->
+
+<!-- Register Modal Holder -->
+<div class="modal fade" id="registerModal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">
+			</div>
+		</div>
+	</div>
+</div>
+<!-- // Register Modal Holder END -->
+
 <!-- // login.jsp END-->

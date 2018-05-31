@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-access="field">
+	<class name="in.regalauction.domain.model.spotdeal.SpotDealItem" table="spotdealitem">
+
+		<id name="id" column="spotdealitem_id">
+		  <generator class="org.hibernate.id.IdentityGenerator"/>
+		</id>
+		
+		<property name="code" column="code" not-null="true" unique="true"/>
+		
+		<property name="name" column="name"/>
+		
+		<property name="unitOfMeasure" column="uom"/>
+		
+		
+		<many-to-one name="thumbnail" column="thumbimg_id" lazy="false" 
+			class="in.regalauction.domain.model.attachment.Image" cascade="all"/>
+		
+		<set name="images" table="spotdealitem_image" lazy="false">
+			<key column="spotdealitem_id" not-null="true"/>
+			<many-to-many class="in.regalauction.domain.model.attachment.Image" column="attachment_id"/>
+		</set>
+		
+		<property name="quantity" column="quantity"/>
+		<property name="deliveryPeriod" column="deliveryPeriod"/>
+		
+		<component name="basePrice" class="in.regalauction.domain.model.types.Money">
+			<property name="amount" column="baseprice" />
+		</component>
+		
+		<component name="address" class="in.regalauction.domain.model.types.Address">
+			<property name="address"/>
+			<property name="city"/>
+			<property name="state"/>
+			<property name="pincode"/>
+		</component>
+		
+		<property name="enabled" column="enabled"/>
+		
+		<property name="spec" column="spec"/>
+		<property name="sellerName" column="sellername"/>
+		<property name="sellerEmail" column="selleremail"/>
+		
+		
+		<list name="orders" table="spotdealorders">
+			<key column="spotdealitem_id" not-null="true"/>
+			<index column="sequence"/>
+			<composite-element class="in.regalauction.domain.model.spotdeal.SpotDealOrder">
+				<property name="quantity" column="quantity" not-null="true" update="false"/>
+				<property name="orderTime" column="ordertime" not-null="true" update="false" type="org.joda.time.contrib.hibernate.PersistentDateTime"/>
+				<many-to-one name="bidder" column="user_id" not-null="true" update="false"/>
+			</composite-element>
+		</list>
+		
+		
+	</class>
+</hibernate-mapping>

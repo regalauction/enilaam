@@ -36,6 +36,7 @@
 	</bean>
 	
 	<security:http pattern="/login*" security="none"/>
+	<security:http pattern="/register*" security="none"/>
 	<security:http pattern="/forgotPassword/**" security="none"/>
 	<security:http pattern="/services" security="none"/>
 	

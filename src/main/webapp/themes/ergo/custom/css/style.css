@@ -29,9 +29,13 @@
 #landing_1 .banner, #landing_1 .banner .banner-wrapper {
 	height: 250px;
 }
-#landing_1 .banner .banner-wrapper.banner-1 .btn {
+#landing_1 .banner .banner-wrapper.banner-1 .login {
 	top: 190px;
-	right: 0;
+	right: 130px;
+}
+#landing_1 .banner .banner-wrapper.banner-1 .register {
+	top: 190px;
+	right: 0px;
 }
 #landing_1 #appname {
 	position: absolute; 

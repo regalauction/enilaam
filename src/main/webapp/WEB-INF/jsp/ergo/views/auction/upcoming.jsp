@@ -2,15 +2,16 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://www.joda.org/joda/time/tags" prefix="joda"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="/WEB-INF/tlds/util.tld" prefix="util"%>
 <div class="widget">
 	<div class="widget-head">
-		<h4 class="heading glyphicons binoculars"><i></i><spring:message code="auction.upcoming"/></h4>
+		<h4 class="heading glyphicons binoculars"><i></i><spring:message code="auction.upcoming"/> (<c:out value="${fn:length(auctions)}"/>) </h4>
 	</div>
 	<div class="widget-body">
 		<c:choose>
 			<c:when test="${empty auctions}">
-				No upcoming auctions.
+				No upcoming auction.
 			</c:when>
 			<c:otherwise>
 				<table id="upcomingAuctionsTable" class="table table-condensed">

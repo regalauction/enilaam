@@ -931,6 +931,26 @@ var init = function() {
 		bind();
 	});
 	
+	/**
+	 * Ajax form submit for register
+	 */
+	$("#registerModal").on("shown.bs.modal", function() {
+		var bind = function() {
+			console.log("Binding Register form elements...");
+			$("#registrationForm").submit(function(e) {
+				console.log("Registration form submitted");
+				var url = $(this).attr("action");
+				$.post(url, $(this).serialize(), function(data) {
+					console.log("Success handler called.");
+					$("#registerModal .modal-body").html(data);
+					bind();
+				});
+				e.preventDefault();
+			});
+		};
+		bind();
+	});
+	
 	$("#galleryModal").on("shown.bs.modal", function() {
 		console.log("gallery displayed");
 		$(".carousel").carousel();

@@ -252,6 +252,10 @@
 	<definition name="forgotPassword/mailSent" template="/WEB-INF/jsp/ergo/views/resetPasswordMailSent.jsp"/>
 	
 	<definition name="auction/images" template="/WEB-INF/jsp/ergo/views/gallery.jsp"/>
+	
+	<definition name="register" template="/WEB-INF/jsp/ergo/views/register.jsp"/>
+	
+	<definition name="register/success" template="/WEB-INF/jsp/ergo/views/registerSuccess.jsp"/>
 	<!-- // Overlays END -->
 	
 </tiles-definitions>       
