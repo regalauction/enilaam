@@ -10,4 +10,6 @@ public interface MailingService {
 	void sendResetPasswordMail(String to, String resetPasswordLink);
 
 	void sendSpotDealOrderMail(SpotDealItem spotDealItem, User bidder, Long quantity);
+
+	void sendRegistrationRequestMail(String userMail, String data);
 }

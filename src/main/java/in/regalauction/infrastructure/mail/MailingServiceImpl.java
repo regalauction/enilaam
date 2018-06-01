@@ -123,6 +123,21 @@ public class MailingServiceImpl implements MailingService {
 				
 		sendMail(spotDealItem.getSellerEmail(), subject.toString(), bodyToClient);
 	}
+
+	@Override
+	public void sendRegistrationRequestMail(String userMail, String data) {
+		
+		String subject = "User registration request submitted";
+
+		StringBuilder body = new StringBuilder("Hello!\n\n")
+				.append("A new user registration request was submitted with the following information:\n")
+				.append(data)
+				.append("\nPlease take a print out of this email and submit it to us with the supporting documents.")
+				.append("\nThanks!");
+		
+		sendMail(userMail, subject, body.toString());
+		
+	}
 	
 
 }
