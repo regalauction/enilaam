@@ -12,7 +12,7 @@
 			<div class="row-fluid">
 				<div class="span9">
 					<img src="<spring:theme code="image.banner"/>" alt="website banner"/>
-					<h2 id="appname"><spring:message code="appname"/></h2>
+					<%-- <h2 id="appname"><spring:message code="appname"/></h2> --%>
 				</div>
 				<div class="span3">
 					
@@ -77,32 +77,32 @@
 					<div class="tab-content">
 						<div id="about_us" class="tab-pane active">
 							<h4 class="glyphicons group"><i></i><spring:message code="info.aboutUs.heading"/></h4>
-							<div class="slim-scroll" data-scroll-height="215px">
+							<div class="slim-scroll" data-scroll-height="350px">
 								<spring:message code="info.aboutUs.desc"/>
 							</div>
 						</div>
 						<div id="services" class="tab-pane">
 							<h4 class="glyphicons coins"><i></i><spring:message code="info.services.heading"/></h4>
-							<div class="slim-scroll" data-scroll-height="215px">
+							<div class="slim-scroll" data-scroll-height="350px">
 								<spring:message code="info.services.desc"/>
 							</div>
 						</div>
 						<div id="legal" class="tab-pane">
 							<h4 class="glyphicons tie"><i></i><spring:message code="info.legal.heading"/></h4>
-							<div class="slim-scroll" data-scroll-height="215px">
+							<div class="slim-scroll" data-scroll-height="350px">
 								<spring:message code="info.legal.desc"/>
 							</div>
 						</div>
 						<div id="privacy" class="tab-pane">
 							<h4 class="glyphicons keys"><i></i><spring:message code="info.privacy.heading"/></h4>
-							<div class="slim-scroll" data-scroll-height="215px">
+							<div class="slim-scroll" data-scroll-height="350px">
 								<spring:message code="contact.email.legal" var="emailLegal"/>
 								<spring:message code="info.privacy.desc" arguments="${emailLegal}"/>
 							</div>
 						</div>
 						<div id="contact" class="tab-pane">
 							<h4 class="glyphicons phone"><i></i><spring:message code="info.contact.heading"/></h4>
-							<div class="slim-scroll" data-scroll-height="215px">
+							<div class="slim-scroll" data-scroll-height="350px">
 								<spring:message code="contact.email.contact" var="emailContact"/>
 								<spring:message code="contact.email.support" var="emailSupport"/>
 								<spring:message code="contact.phone.phone1" var="phone1"/>

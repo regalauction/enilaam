@@ -41,6 +41,7 @@
 	<security:http pattern="/services" security="none"/>
 	
 	<security:http pattern="/themes/**" security="none"/>
+	<security:http pattern="/assets/**" security="none"/>
 	<security:http pattern="/attachments/**" security="none"/>
 	
 	<security:http pattern="/favicon.ico" security="none"/>
