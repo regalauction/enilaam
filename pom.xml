@@ -43,7 +43,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		
-		<java-version>1.7</java-version>
+		<java-version>1.8</java-version>
 		<org.springframework.version>3.1.0.RELEASE</org.springframework.version>
 		<org.hibernate.version>3.6.4.Final</org.hibernate.version>
 		
@@ -408,13 +408,13 @@
 		<profile>
 			<id>prod</id>
 			<properties>
-				<jdbc.url>jdbc:mysql://regalauction.in:3306/enilaamprod</jdbc.url>
-				<jdbc.username>root</jdbc.username>
-				<jdbc.password />
-				<dir.log>/root/logs/prod</dir.log>
-				<dir.image>/root/attachments/images/</dir.image>
-				<dir.document>/root/attachments/documents/</dir.document>
-				<html.base.href>http://www.regalauction.in/</html.base.href>
+				<jdbc.url>jdbc:mysql://localhost:3306/wedealau_enilaam</jdbc.url>
+				<jdbc.username>wedealau_dbadmin</jdbc.username>
+				<jdbc.password>Wedeal@123</jdbc.password>
+				<dir.log>/home/wedealauction/logs</dir.log>
+				<dir.image>/home/wedealauction/attachments/images/</dir.image>
+				<dir.document>/home/wedealauction/attachments/documents/</dir.document>
+				<html.base.href>http://www.wedealauction.com/</html.base.href>
 				<mail.disabled>false</mail.disabled>
 				<debug>false</debug>
 			</properties>
