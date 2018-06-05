@@ -414,7 +414,7 @@
 				<dir.log>/home/wedealauction/logs</dir.log>
 				<dir.image>/home/wedealauction/attachments/images/</dir.image>
 				<dir.document>/home/wedealauction/attachments/documents/</dir.document>
-				<html.base.href>http://www.wedealauction.com/</html.base.href>
+				<html.base.href>http://www.wedealauction.com:8080/enilaam/</html.base.href>
 				<mail.disabled>false</mail.disabled>
 				<debug>false</debug>
 			</properties>
