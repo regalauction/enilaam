@@ -415,6 +415,10 @@
 				<dir.image>/home/wedealauction/attachments/images/</dir.image>
 				<dir.document>/home/wedealauction/attachments/documents/</dir.document>
 				<html.base.href>http://www.wedealauction.com:8080/enilaam/</html.base.href>
+				<mail.host>mail.wedealauction.com</mail.host>
+				<mail.username>support@wedealauction.com</mail.username>
+				<mail.password>Wedeal@123</mail.password>
+				<mail.from>support@wedealauction.com</mail.from>
 				<mail.disabled>false</mail.disabled>
 				<debug>false</debug>
 			</properties>
